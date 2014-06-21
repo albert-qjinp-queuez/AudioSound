@@ -1,0 +1,577 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		6727EE41194548770038132D /* ASEng.c in Sources */ = {isa = PBXBuildFile; fileRef = 67E54A991944286D005ADA09 /* ASEng.c */; };
+		6727EE45194548A50038132D /* libportaudio.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6727EE44194548A50038132D /* libportaudio.a */; };
+		6727EE4919454A7D0038132D /* libportaudio.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6727EE44194548A50038132D /* libportaudio.a */; };
+		676724A3194D3D3C005AAAAB /* ASVibrationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 676724A2194D3D3C005AAAAB /* ASVibrationView.m */; };
+		676724A5194D3EB6005AAAAB /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 676724A4194D3EB6005AAAAB /* OpenGL.framework */; };
+		6778CA20194809D300E903E3 /* PortAudioBasicFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6778CA1F194809D300E903E3 /* PortAudioBasicFunctions.m */; };
+		677E7AF4195542B700C30944 /* libfftw3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 677E7AF3195542B700C30944 /* libfftw3.a */; };
+		677E7AF5195542B700C30944 /* libfftw3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 677E7AF3195542B700C30944 /* libfftw3.a */; };
+		677E7AF81955432C00C30944 /* libfftw3.la in Resources */ = {isa = PBXBuildFile; fileRef = 677E7AF71955432C00C30944 /* libfftw3.la */; };
+		677E7AF91955432C00C30944 /* libfftw3.la in Resources */ = {isa = PBXBuildFile; fileRef = 677E7AF71955432C00C30944 /* libfftw3.la */; };
+		677E7AFC195544B400C30944 /* ASFreqView.m in Sources */ = {isa = PBXBuildFile; fileRef = 677E7AFB195544B400C30944 /* ASFreqView.m */; };
+		677E7AFD195544B400C30944 /* ASFreqView.m in Sources */ = {isa = PBXBuildFile; fileRef = 677E7AFB195544B400C30944 /* ASFreqView.m */; };
+		67D65A091946CA5800184374 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67D65A081946CA5800184374 /* CoreAudio.framework */; };
+		67D65A0B1946CA6400184374 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67D65A0A1946CA6400184374 /* AudioToolbox.framework */; };
+		67D65A0D1946CA6D00184374 /* AudioUnit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67D65A0C1946CA6D00184374 /* AudioUnit.framework */; };
+		67D65A0F1946CA7500184374 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67D65A0E1946CA7500184374 /* CoreServices.framework */; };
+		67D65A111946CA7C00184374 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67D65A101946CA7C00184374 /* Carbon.framework */; };
+		67E54A5D19442369005ADA09 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67E54A5C19442369005ADA09 /* Cocoa.framework */; };
+		67E54A6719442369005ADA09 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 67E54A6519442369005ADA09 /* InfoPlist.strings */; };
+		67E54A6919442369005ADA09 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 67E54A6819442369005ADA09 /* main.m */; };
+		67E54A6D19442369005ADA09 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 67E54A6B19442369005ADA09 /* Credits.rtf */; };
+		67E54A7019442369005ADA09 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 67E54A6F19442369005ADA09 /* AppDelegate.m */; };
+		67E54A7319442369005ADA09 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67E54A7119442369005ADA09 /* MainMenu.xib */; };
+		67E54A7519442369005ADA09 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 67E54A7419442369005ADA09 /* Images.xcassets */; };
+		67E54A7C19442369005ADA09 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67E54A7B19442369005ADA09 /* XCTest.framework */; };
+		67E54A7D19442369005ADA09 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67E54A5C19442369005ADA09 /* Cocoa.framework */; };
+		67E54A8519442369005ADA09 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 67E54A8319442369005ADA09 /* InfoPlist.strings */; };
+		67E54A8719442369005ADA09 /* audiosoundTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 67E54A8619442369005ADA09 /* audiosoundTests.m */; };
+		67E54A9B1944286D005ADA09 /* ASEng.c in Sources */ = {isa = PBXBuildFile; fileRef = 67E54A991944286D005ADA09 /* ASEng.c */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		67E54A7E19442369005ADA09 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 67E54A5119442369005ADA09 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 67E54A5819442369005ADA09;
+			remoteInfo = audiosound;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		6727EE44194548A50038132D /* libportaudio.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libportaudio.a; path = portaudio/lib/.libs/libportaudio.a; sourceTree = "<group>"; };
+		676724A1194D3D3C005AAAAB /* ASVibrationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASVibrationView.h; sourceTree = "<group>"; };
+		676724A2194D3D3C005AAAAB /* ASVibrationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASVibrationView.m; sourceTree = "<group>"; };
+		676724A4194D3EB6005AAAAB /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
+		6778CA1F194809D300E903E3 /* PortAudioBasicFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PortAudioBasicFunctions.m; sourceTree = "<group>"; };
+		677E7AF3195542B700C30944 /* libfftw3.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfftw3.a; path = ../../../../usr/local/lib/libfftw3.a; sourceTree = "<group>"; };
+		677E7AF6195542F600C30944 /* fftw3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = fftw3.h; path = ../../../../usr/local/include/fftw3.h; sourceTree = "<group>"; };
+		677E7AF71955432C00C30944 /* libfftw3.la */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = libfftw3.la; path = ../../../../usr/local/lib/libfftw3.la; sourceTree = "<group>"; };
+		677E7AFA195544B400C30944 /* ASFreqView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASFreqView.h; sourceTree = "<group>"; };
+		677E7AFB195544B400C30944 /* ASFreqView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASFreqView.m; sourceTree = "<group>"; };
+		67D65A081946CA5800184374 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
+		67D65A0A1946CA6400184374 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		67D65A0C1946CA6D00184374 /* AudioUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioUnit.framework; path = System/Library/Frameworks/AudioUnit.framework; sourceTree = SDKROOT; };
+		67D65A0E1946CA7500184374 /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = System/Library/Frameworks/CoreServices.framework; sourceTree = SDKROOT; };
+		67D65A101946CA7C00184374 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
+		67D65A121946CD2100184374 /* portaudio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = portaudio.h; path = portaudio/include/portaudio.h; sourceTree = "<group>"; };
+		67D65A131946CD3000184374 /* pa_mac_core.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = pa_mac_core.h; path = portaudio/include/pa_mac_core.h; sourceTree = "<group>"; };
+		67E54A5919442369005ADA09 /* audiosound.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = audiosound.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		67E54A5C19442369005ADA09 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		67E54A5F19442369005ADA09 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		67E54A6019442369005ADA09 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		67E54A6119442369005ADA09 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		67E54A6419442369005ADA09 /* audiosound-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "audiosound-Info.plist"; sourceTree = "<group>"; };
+		67E54A6619442369005ADA09 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		67E54A6819442369005ADA09 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		67E54A6A19442369005ADA09 /* audiosound-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "audiosound-Prefix.pch"; sourceTree = "<group>"; };
+		67E54A6C19442369005ADA09 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
+		67E54A6E19442369005ADA09 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		67E54A6F19442369005ADA09 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		67E54A7219442369005ADA09 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		67E54A7419442369005ADA09 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		67E54A7A19442369005ADA09 /* audiosoundTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = audiosoundTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		67E54A7B19442369005ADA09 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		67E54A8219442369005ADA09 /* audiosoundTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "audiosoundTests-Info.plist"; sourceTree = "<group>"; };
+		67E54A8419442369005ADA09 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		67E54A8619442369005ADA09 /* audiosoundTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = audiosoundTests.m; sourceTree = "<group>"; };
+		67E54A991944286D005ADA09 /* ASEng.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ASEng.c; sourceTree = "<group>"; };
+		67E54A9C1944287E005ADA09 /* ASEng.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASEng.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		67E54A5619442369005ADA09 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				676724A5194D3EB6005AAAAB /* OpenGL.framework in Frameworks */,
+				6727EE45194548A50038132D /* libportaudio.a in Frameworks */,
+				677E7AF4195542B700C30944 /* libfftw3.a in Frameworks */,
+				67D65A111946CA7C00184374 /* Carbon.framework in Frameworks */,
+				67D65A0F1946CA7500184374 /* CoreServices.framework in Frameworks */,
+				67D65A0D1946CA6D00184374 /* AudioUnit.framework in Frameworks */,
+				67D65A0B1946CA6400184374 /* AudioToolbox.framework in Frameworks */,
+				67D65A091946CA5800184374 /* CoreAudio.framework in Frameworks */,
+				67E54A5D19442369005ADA09 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		67E54A7719442369005ADA09 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				67E54A7D19442369005ADA09 /* Cocoa.framework in Frameworks */,
+				67E54A7C19442369005ADA09 /* XCTest.framework in Frameworks */,
+				677E7AF5195542B700C30944 /* libfftw3.a in Frameworks */,
+				6727EE4919454A7D0038132D /* libportaudio.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		67E54A5019442369005ADA09 = {
+			isa = PBXGroup;
+			children = (
+				677E7AF3195542B700C30944 /* libfftw3.a */,
+				677E7AF6195542F600C30944 /* fftw3.h */,
+				677E7AF71955432C00C30944 /* libfftw3.la */,
+				6727EE44194548A50038132D /* libportaudio.a */,
+				67D65A131946CD3000184374 /* pa_mac_core.h */,
+				67D65A121946CD2100184374 /* portaudio.h */,
+				67E54A6219442369005ADA09 /* audiosound */,
+				67E54A8019442369005ADA09 /* audiosoundTests */,
+				67E54A5B19442369005ADA09 /* Frameworks */,
+				67E54A5A19442369005ADA09 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		67E54A5A19442369005ADA09 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				67E54A5919442369005ADA09 /* audiosound.app */,
+				67E54A7A19442369005ADA09 /* audiosoundTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		67E54A5B19442369005ADA09 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				676724A4194D3EB6005AAAAB /* OpenGL.framework */,
+				67D65A101946CA7C00184374 /* Carbon.framework */,
+				67D65A0E1946CA7500184374 /* CoreServices.framework */,
+				67D65A0C1946CA6D00184374 /* AudioUnit.framework */,
+				67D65A0A1946CA6400184374 /* AudioToolbox.framework */,
+				67D65A081946CA5800184374 /* CoreAudio.framework */,
+				67E54A5C19442369005ADA09 /* Cocoa.framework */,
+				67E54A7B19442369005ADA09 /* XCTest.framework */,
+				67E54A5E19442369005ADA09 /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		67E54A5E19442369005ADA09 /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				67E54A5F19442369005ADA09 /* AppKit.framework */,
+				67E54A6019442369005ADA09 /* CoreData.framework */,
+				67E54A6119442369005ADA09 /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		67E54A6219442369005ADA09 /* audiosound */ = {
+			isa = PBXGroup;
+			children = (
+				67E54A9C1944287E005ADA09 /* ASEng.h */,
+				67E54A991944286D005ADA09 /* ASEng.c */,
+				676724A1194D3D3C005AAAAB /* ASVibrationView.h */,
+				676724A2194D3D3C005AAAAB /* ASVibrationView.m */,
+				677E7AFA195544B400C30944 /* ASFreqView.h */,
+				677E7AFB195544B400C30944 /* ASFreqView.m */,
+				67E54A6E19442369005ADA09 /* AppDelegate.h */,
+				67E54A6F19442369005ADA09 /* AppDelegate.m */,
+				67E54A7119442369005ADA09 /* MainMenu.xib */,
+				67E54A7419442369005ADA09 /* Images.xcassets */,
+				67E54A6319442369005ADA09 /* Supporting Files */,
+			);
+			path = audiosound;
+			sourceTree = "<group>";
+		};
+		67E54A6319442369005ADA09 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				67E54A6419442369005ADA09 /* audiosound-Info.plist */,
+				67E54A6519442369005ADA09 /* InfoPlist.strings */,
+				67E54A6819442369005ADA09 /* main.m */,
+				67E54A6A19442369005ADA09 /* audiosound-Prefix.pch */,
+				67E54A6B19442369005ADA09 /* Credits.rtf */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		67E54A8019442369005ADA09 /* audiosoundTests */ = {
+			isa = PBXGroup;
+			children = (
+				67E54A8619442369005ADA09 /* audiosoundTests.m */,
+				6778CA1F194809D300E903E3 /* PortAudioBasicFunctions.m */,
+				67E54A8119442369005ADA09 /* Supporting Files */,
+			);
+			path = audiosoundTests;
+			sourceTree = "<group>";
+		};
+		67E54A8119442369005ADA09 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				67E54A8219442369005ADA09 /* audiosoundTests-Info.plist */,
+				67E54A8319442369005ADA09 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		67E54A5819442369005ADA09 /* audiosound */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 67E54A8A19442369005ADA09 /* Build configuration list for PBXNativeTarget "audiosound" */;
+			buildPhases = (
+				67E54A5619442369005ADA09 /* Frameworks */,
+				67E54A5519442369005ADA09 /* Sources */,
+				67E54A5719442369005ADA09 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = audiosound;
+			productName = audiosound;
+			productReference = 67E54A5919442369005ADA09 /* audiosound.app */;
+			productType = "com.apple.product-type.application";
+		};
+		67E54A7919442369005ADA09 /* audiosoundTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 67E54A8D19442369005ADA09 /* Build configuration list for PBXNativeTarget "audiosoundTests" */;
+			buildPhases = (
+				67E54A7619442369005ADA09 /* Sources */,
+				67E54A7719442369005ADA09 /* Frameworks */,
+				67E54A7819442369005ADA09 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				67E54A7F19442369005ADA09 /* PBXTargetDependency */,
+			);
+			name = audiosoundTests;
+			productName = audiosoundTests;
+			productReference = 67E54A7A19442369005ADA09 /* audiosoundTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		67E54A5119442369005ADA09 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = albert.q.park;
+				TargetAttributes = {
+					67E54A7919442369005ADA09 = {
+						TestTargetID = 67E54A5819442369005ADA09;
+					};
+				};
+			};
+			buildConfigurationList = 67E54A5419442369005ADA09 /* Build configuration list for PBXProject "audiosound" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 67E54A5019442369005ADA09;
+			productRefGroup = 67E54A5A19442369005ADA09 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				67E54A5819442369005ADA09 /* audiosound */,
+				67E54A7919442369005ADA09 /* audiosoundTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		67E54A5719442369005ADA09 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				67E54A6719442369005ADA09 /* InfoPlist.strings in Resources */,
+				67E54A7519442369005ADA09 /* Images.xcassets in Resources */,
+				67E54A6D19442369005ADA09 /* Credits.rtf in Resources */,
+				677E7AF81955432C00C30944 /* libfftw3.la in Resources */,
+				67E54A7319442369005ADA09 /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		67E54A7819442369005ADA09 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				67E54A8519442369005ADA09 /* InfoPlist.strings in Resources */,
+				677E7AF91955432C00C30944 /* libfftw3.la in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		67E54A5519442369005ADA09 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				677E7AFC195544B400C30944 /* ASFreqView.m in Sources */,
+				6727EE41194548770038132D /* ASEng.c in Sources */,
+				676724A3194D3D3C005AAAAB /* ASVibrationView.m in Sources */,
+				67E54A7019442369005ADA09 /* AppDelegate.m in Sources */,
+				67E54A6919442369005ADA09 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		67E54A7619442369005ADA09 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				677E7AFD195544B400C30944 /* ASFreqView.m in Sources */,
+				6778CA20194809D300E903E3 /* PortAudioBasicFunctions.m in Sources */,
+				67E54A9B1944286D005ADA09 /* ASEng.c in Sources */,
+				67E54A8719442369005ADA09 /* audiosoundTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		67E54A7F19442369005ADA09 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 67E54A5819442369005ADA09 /* audiosound */;
+			targetProxy = 67E54A7E19442369005ADA09 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		67E54A6519442369005ADA09 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				67E54A6619442369005ADA09 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		67E54A6B19442369005ADA09 /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				67E54A6C19442369005ADA09 /* en */,
+			);
+			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+		67E54A7119442369005ADA09 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				67E54A7219442369005ADA09 /* Base */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+		67E54A8319442369005ADA09 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				67E54A8419442369005ADA09 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		67E54A8819442369005ADA09 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LD_RUNPATH_SEARCH_PATHS = "";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		67E54A8919442369005ADA09 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LD_RUNPATH_SEARCH_PATHS = "";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		67E54A8B19442369005ADA09 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "audiosound/audiosound-Prefix.pch";
+				INFOPLIST_FILE = "audiosound/audiosound-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/portaudio/lib/.libs",
+					/usr/local/lib,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		67E54A8C19442369005ADA09 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "audiosound/audiosound-Prefix.pch";
+				INFOPLIST_FILE = "audiosound/audiosound-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/portaudio/lib/.libs",
+					/usr/local/lib,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		67E54A8E19442369005ADA09 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/audiosound.app/Contents/MacOS/audiosound";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "audiosound/audiosound-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "audiosoundTests/audiosoundTests-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/portaudio/lib/.libs",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		67E54A8F19442369005ADA09 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/audiosound.app/Contents/MacOS/audiosound";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "audiosound/audiosound-Prefix.pch";
+				INFOPLIST_FILE = "audiosoundTests/audiosoundTests-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/portaudio/lib/.libs",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		67E54A5419442369005ADA09 /* Build configuration list for PBXProject "audiosound" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				67E54A8819442369005ADA09 /* Debug */,
+				67E54A8919442369005ADA09 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		67E54A8A19442369005ADA09 /* Build configuration list for PBXNativeTarget "audiosound" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				67E54A8B19442369005ADA09 /* Debug */,
+				67E54A8C19442369005ADA09 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		67E54A8D19442369005ADA09 /* Build configuration list for PBXNativeTarget "audiosoundTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				67E54A8E19442369005ADA09 /* Debug */,
+				67E54A8F19442369005ADA09 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 67E54A5119442369005ADA09 /* Project object */;
+}
