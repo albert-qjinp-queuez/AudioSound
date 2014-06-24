@@ -63,12 +63,11 @@
         else hPoint= hPoint-sum;
         
         [path lineToPoint:(NSPoint){ wPoint , hPoint /max*h}];
+        
     }
 	//[path closePath];
-//#define SAMPLE_RATE (8192)
-//#define BUFSIZE (1024)
     
-    _text.doubleValue = ((double)maxInex)*4;//1024.0 *8192.0 /2.0;
+    _text.doubleValue = ((double)maxInex)/_size *_rate /2.0;
     [path moveToPoint:(NSPoint){0,sum/max*h}];
     [path lineToPoint:(NSPoint){w,sum/max*h}];
     
@@ -76,9 +75,10 @@
 	[path stroke];
     // Drawing code here.
 }
--(void)setBuffer:(double*)inbuf size:(long int)size{
+-(void)setBuffer:(double*)inbuf size:(long int)size rate:(long int)rate{
     _pBuf = inbuf;
     _size = size;
+    _rate = rate;
 }
 
 

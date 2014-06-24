@@ -12,7 +12,7 @@
 #include "fftw3.h"
 #import "ASVibrationView.h"
 #import "ASFreqView.h"
-
+#import "ASScratchView.h"
 typedef struct
 {
     float left_phase;
@@ -32,6 +32,7 @@ int patestCallback( const void *inputBuffer, void *outputBuffer,
 @property (assign) IBOutlet NSWindow *window;
 @property (assign) IBOutlet ASVibrationView* vibView;
 @property (assign) IBOutlet ASFreqView* frView;
+@property (assign) IBOutlet ASScratchView* scratchView;
 
 @property (assign) PaError err;
 @property (assign) PaStream *stream;

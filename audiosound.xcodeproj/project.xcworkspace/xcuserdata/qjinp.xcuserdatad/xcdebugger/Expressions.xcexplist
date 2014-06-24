@@ -13,5 +13,13 @@
             </PersistentString>
          </PersistentStrings>
       </ContextState>
+      <ContextState
+         contextName = "-[ASFreqView drawRect:]:ASFreqView.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "hPoint /max*h">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
    </ContextStates>
 </VariablesViewState>

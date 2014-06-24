@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="5056"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
@@ -14,6 +15,7 @@
         <customObject id="Voe-Tx-rLC" customClass="AppDelegate">
             <connections>
                 <outlet property="frView" destination="36r-hp-kgU" id="M30-Un-hjd"/>
+                <outlet property="scratchView" destination="RHn-k1-ZMG" id="IC8-u1-u1P"/>
                 <outlet property="vibView" destination="tW5-xf-BOv" id="3Ab-Km-ZNm"/>
                 <outlet property="window" destination="QvC-M9-y7g" id="gIp-Ho-8D9"/>
             </connections>
@@ -671,28 +673,31 @@
         <window title="audiosound" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" id="QvC-M9-y7g">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="335" y="390" width="480" height="360"/>
+            <rect key="contentRect" x="335" y="390" width="480" height="591"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1280" height="800"/>
             <view key="contentView" id="EiT-Mj-1SZ">
-                <rect key="frame" x="0.0" y="0.0" width="480" height="360"/>
+                <rect key="frame" x="0.0" y="0.0" width="480" height="591"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <customView translatesAutoresizingMaskIntoConstraints="NO" id="tW5-xf-BOv" customClass="ASVibrationView">
-                        <rect key="frame" x="20" y="190" width="440" height="150"/>
+                        <rect key="frame" x="20" y="453" width="210" height="118"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="tW5-xf-BOv" secondAttribute="height" multiplier="16:9" id="HGG-ua-6Z9"/>
+                        </constraints>
                         <connections>
                             <outlet property="frView" destination="36r-hp-kgU" id="Ybo-UL-W4u"/>
                         </connections>
                     </customView>
                     <customView translatesAutoresizingMaskIntoConstraints="NO" id="36r-hp-kgU" customClass="ASFreqView">
-                        <rect key="frame" x="20" y="20" width="440" height="150"/>
+                        <rect key="frame" x="250" y="453" width="210" height="118"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <connections>
                             <outlet property="text" destination="U3k-U2-0WF" id="qH0-LJ-LOp"/>
                         </connections>
                     </customView>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="U3k-U2-0WF">
-                        <rect key="frame" x="18" y="171" width="38" height="17"/>
+                        <rect key="frame" x="18" y="434" width="38" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Label" id="rTF-mw-eIe">
                             <font key="font" metaFont="system"/>
@@ -700,19 +705,25 @@
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
+                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="RHn-k1-ZMG" customClass="ASScratchView">
+                        <rect key="frame" x="20" y="20" width="440" height="411"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    </customView>
                 </subviews>
                 <constraints>
                     <constraint firstItem="tW5-xf-BOv" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="20" id="4ie-9t-xNj"/>
-                    <constraint firstAttribute="centerX" secondItem="tW5-xf-BOv" secondAttribute="centerX" id="AlY-cF-oDw"/>
+                    <constraint firstItem="RHn-k1-ZMG" firstAttribute="top" secondItem="U3k-U2-0WF" secondAttribute="top" constant="20" id="AWJ-kc-caP"/>
+                    <constraint firstAttribute="trailing" secondItem="RHn-k1-ZMG" secondAttribute="trailing" constant="20" id="Lc8-3r-1k3"/>
                     <constraint firstItem="tW5-xf-BOv" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" constant="20" id="Mt4-Ij-kRS"/>
                     <constraint firstItem="U3k-U2-0WF" firstAttribute="top" secondItem="tW5-xf-BOv" secondAttribute="bottom" constant="2" id="Np7-as-0cv"/>
-                    <constraint firstItem="36r-hp-kgU" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="20" id="OUz-fO-MMi"/>
-                    <constraint firstAttribute="bottom" secondItem="36r-hp-kgU" secondAttribute="bottom" constant="20" id="lTS-ey-hrx"/>
-                    <constraint firstAttribute="trailing" secondItem="tW5-xf-BOv" secondAttribute="trailing" constant="20" id="olX-OD-7DM"/>
-                    <constraint firstItem="36r-hp-kgU" firstAttribute="top" secondItem="tW5-xf-BOv" secondAttribute="bottom" constant="20" id="q1a-32-cch"/>
+                    <constraint firstItem="36r-hp-kgU" firstAttribute="centerY" secondItem="tW5-xf-BOv" secondAttribute="centerY" id="Q7d-WM-GXd"/>
+                    <constraint firstItem="RHn-k1-ZMG" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="20" id="QsX-ov-fh7"/>
+                    <constraint firstAttribute="bottom" secondItem="RHn-k1-ZMG" secondAttribute="bottom" constant="20" id="TIb-Hm-Tvt"/>
+                    <constraint firstItem="36r-hp-kgU" firstAttribute="width" secondItem="tW5-xf-BOv" secondAttribute="width" id="aDm-cP-FcN"/>
+                    <constraint firstItem="U3k-U2-0WF" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="20" id="h0w-XM-5ae"/>
                     <constraint firstAttribute="trailing" secondItem="36r-hp-kgU" secondAttribute="trailing" constant="20" id="rk9-eb-NUS"/>
-                    <constraint firstItem="tW5-xf-BOv" firstAttribute="leading" secondItem="U3k-U2-0WF" secondAttribute="leading" id="vBu-cL-SI3"/>
                     <constraint firstItem="tW5-xf-BOv" firstAttribute="height" secondItem="36r-hp-kgU" secondAttribute="height" id="wgH-aA-pXs"/>
+                    <constraint firstItem="36r-hp-kgU" firstAttribute="leading" secondItem="tW5-xf-BOv" secondAttribute="trailing" constant="20" id="xOg-s6-YSV"/>
                 </constraints>
             </view>
         </window>

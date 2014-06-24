@@ -9,7 +9,8 @@
 #import "AppDelegate.h"
 
 #define SAMPLE_RATE (8192)
-#define BUFSIZE (1024)
+#define SAMPLE_SIZE (256)
+#define BUF_SIZE    (40496)
 
 /* This routine will be called by the PortAudio engine when audio is needed.
  It may called at interrupt level on some machines so don't do anything
@@ -34,17 +35,20 @@ int patestCallback( const void *inputBuffer, void *outputBuffer,
         app.outData = NULL;
     }
     if (app.pBuf == NULL){
-        app.pBuf = malloc(sizeof(double)*framesPerBuffer);
-        app.outData = malloc(sizeof(double)*framesPerBuffer);
+        app.pBuf = malloc(sizeof(double)*BUF_SIZE);
+        app.outData = malloc(sizeof(double)*BUF_SIZE);
         app.size = framesPerBuffer;
-        app.plan = fftw_plan_r2r_1d(app.size, app.pBuf, app.outData, FFTW_REDFT00 , flag);
+        app.plan = fftw_plan_r2r_1d(BUF_SIZE, app.pBuf, app.outData, FFTW_REDFT00 , flag);
         [app.vibView setBuffer:app.pBuf size:framesPerBuffer];
-        [app.frView setBuffer:app.outData size:framesPerBuffer];
+        [app.frView setBuffer:app.outData size:BUF_SIZE rate:SAMPLE_RATE];
     }
     
     int i;
     for (i=0; i<framesPerBuffer; i++) {
         app.pBuf[i] = (double)in[i];
+    }
+    for( i=framesPerBuffer ; i<BUF_SIZE; i++){
+        app.pBuf[i] = 0.0;
     }
     fftw_execute(app.plan);
     
@@ -68,7 +72,7 @@ int patestCallback( const void *inputBuffer, void *outputBuffer,
                                0,          /* stereo output */
                                paFloat32,  /* 32 bit floating point output */
                                SAMPLE_RATE,
-                               BUFSIZE,        /* frames per buffer, i.e. the number
+                               SAMPLE_SIZE,        /* frames per buffer, i.e. the number
                                             of sample frames that PortAudio will
                                             request from the callback. Many apps
                                             may want to use
