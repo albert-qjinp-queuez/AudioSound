@@ -23,6 +23,7 @@
 - (void)drawRect:(NSRect)dirtyRect
 {
     [super drawRect:dirtyRect];
+    // Drawing code here.
     
 	NSBezierPath* path = [NSBezierPath bezierPath];
     
@@ -37,43 +38,18 @@
 	[[NSColor whiteColor] set];
     [path fill];
     
-	[path moveToPoint:(NSPoint){0,0}];
-    double max=0;
-    float sum=0;
-    int maxInex = 0;
-    for (int i = 1; i < _size; i++) {
-        if( max < fabs(_pBuf[i])){
-            max = fabs(_pBuf[i]);
-            maxInex = i;
-        }
-        sum+=fabs(_pBuf[i]);
-    }
-    if(_size != 0) sum = sum/_size;
-    max = max-sum;
-    if (max <= 0)max = 1;
-
+	
     
     CGFloat wPoint;
-    CGFloat hPoint;
     for (unsigned long i = 1; i < _size; i++) {
         wPoint = i * w / _size ;
-        
-        hPoint = fabs(_pBuf[i]);
-        if (sum > hPoint) hPoint = 0;
-        else hPoint= hPoint-sum;
-        
-        [path lineToPoint:(NSPoint){ wPoint , hPoint /max*h}];
+        [path moveToPoint:(NSPoint){ wPoint, 2}];
+        [path lineToPoint:(NSPoint){ wPoint , _pBuf[i]*h+2}];
         
     }
-	//[path closePath];
-    
-    _text.doubleValue = ((double)maxInex)/_size *_rate /2.0;
-    [path moveToPoint:(NSPoint){0,sum/max*h}];
-    [path lineToPoint:(NSPoint){w,sum/max*h}];
     
 	[[NSColor blackColor] set];
 	[path stroke];
-    // Drawing code here.
 }
 -(void)setBuffer:(double*)inbuf size:(long int)size rate:(long int)rate{
     _pBuf = inbuf;

@@ -30,17 +30,20 @@ int patestCallback( const void *inputBuffer, void *outputBuffer,
     
     if (app.pBuf != NULL && framesPerBuffer != app.size) {
         free(app.pBuf);
-        free(app.outData);
+        free(app.pFreq);
+        
         app.pBuf = NULL;
-        app.outData = NULL;
+        app.pFreq = NULL;
     }
     if (app.pBuf == NULL){
         app.pBuf = malloc(sizeof(double)*BUF_SIZE);
-        app.outData = malloc(sizeof(double)*BUF_SIZE);
+        app.pFreq = malloc(sizeof(double)*BUF_SIZE);
+
         app.size = framesPerBuffer;
-        app.plan = fftw_plan_r2r_1d(BUF_SIZE, app.pBuf, app.outData, FFTW_REDFT00 , flag);
+        app.plan = fftw_plan_r2r_1d(BUF_SIZE, app.pBuf, app.pFreq, FFTW_REDFT00 , flag);
         [app.vibView setBuffer:app.pBuf size:framesPerBuffer];
-        [app.frView setBuffer:app.outData size:BUF_SIZE rate:SAMPLE_RATE];
+        [app.frView setBuffer:app.pFreq size:BUF_SIZE rate:SAMPLE_RATE];
+
     }
     
     int i;
@@ -48,9 +51,45 @@ int patestCallback( const void *inputBuffer, void *outputBuffer,
         app.pBuf[i] = (double)in[i];
     }
     for( i=framesPerBuffer ; i<BUF_SIZE; i++){
+        //zero padding
         app.pBuf[i] = 0.0;
     }
     fftw_execute(app.plan);
+    
+    double max=0;
+    float sum=0;
+    int maxInex = 0;
+    app.pFreq[0] = fabs(app.pFreq[0]);
+    app.pFreq[BUF_SIZE-1] = fabs(app.pFreq[BUF_SIZE-1]);
+    for (int i = 1; i < BUF_SIZE; i++) {
+        app.pFreq[i] = fabs(app.pFreq[i]);
+        app.pFreq[BUF_SIZE-i-1] = fabs(app.pFreq[BUF_SIZE-i-1]);
+        if(app.pFreq[i] > app.pFreq[i-1]){
+            app.pFreq[i-1] = 0;
+        }
+        if(app.pFreq[BUF_SIZE-i] < app.pFreq[BUF_SIZE-i-1]){
+            app.pFreq[BUF_SIZE-i] = 0;
+        }
+        
+        if( max < app.pFreq[i]){
+            max = app.pFreq[i];
+            maxInex = i;
+        }
+        sum+=app.pFreq[i];
+    }
+    if (BUF_SIZE != 0) sum = sum/BUF_SIZE;
+    
+    if (max == 0) max = 1;
+    
+    
+    for (int i = 1; i < BUF_SIZE; i++) {
+        if (app.pFreq[i] > 0.001) {
+            [app.scratchView add:app.pFreq[i] on:i at:timeInfo->inputBufferAdcTime];
+        }
+        app.pFreq[i] = app.pFreq[i]/max;
+    }
+    
+    app.text.doubleValue = ((double)maxInex)/BUF_SIZE *SAMPLE_RATE /2.0;
     
     [app.vibView setNeedsDisplay:YES];
     [app.frView setNeedsDisplay:YES];
@@ -97,7 +136,7 @@ int patestCallback( const void *inputBuffer, void *outputBuffer,
 {
     fftw_destroy_plan(_plan);
     free(_pBuf);
-    free(_outData);
+    free(_pFreq);
     CFBridgingRelease(_pSelf);
     _err = Pa_StopStream( _stream );
     

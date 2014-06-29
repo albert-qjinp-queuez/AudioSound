@@ -13,7 +13,6 @@
 @property (assign) long int size;
 @property (assign) long int rate;
 
-@property (assign) IBOutlet NSTextField* text;
 
 -(void)setBuffer:(double*)inbuf size:(long int)size rate:(long int)rate;
 

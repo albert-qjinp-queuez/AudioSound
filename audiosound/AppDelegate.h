@@ -33,14 +33,15 @@ int patestCallback( const void *inputBuffer, void *outputBuffer,
 @property (assign) IBOutlet ASVibrationView* vibView;
 @property (assign) IBOutlet ASFreqView* frView;
 @property (assign) IBOutlet ASScratchView* scratchView;
+@property (assign) IBOutlet NSTextField* text;
 
 @property (assign) PaError err;
 @property (assign) PaStream *stream;
 @property (assign) void *pSelf;
-@property (assign) double *pBuf;
 @property (assign) long int size;
 
-@property (assign) double *outData;
+@property (assign) double *pBuf;
+@property (assign) double *pFreq;
 
 @property (assign) fftw_plan plan;
 
