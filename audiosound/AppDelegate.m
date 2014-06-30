@@ -46,7 +46,7 @@ int patestCallback( const void *inputBuffer, void *outputBuffer,
 
     }
     
-    int i;
+    long int i;
     for (i=0; i<framesPerBuffer; i++) {
         app.pBuf[i] = (double)in[i];
     }
@@ -58,10 +58,10 @@ int patestCallback( const void *inputBuffer, void *outputBuffer,
     
     double max=0;
     float sum=0;
-    int maxInex = 0;
+    long int maxInex = 0;
     app.pFreq[0] = fabs(app.pFreq[0]);
     app.pFreq[BUF_SIZE-1] = fabs(app.pFreq[BUF_SIZE-1]);
-    for (int i = 1; i < BUF_SIZE; i++) {
+    for (i = 1; i < BUF_SIZE; i++) {
         app.pFreq[i] = fabs(app.pFreq[i]);
         app.pFreq[BUF_SIZE-i-1] = fabs(app.pFreq[BUF_SIZE-i-1]);
         if(app.pFreq[i] > app.pFreq[i-1]){
@@ -84,7 +84,7 @@ int patestCallback( const void *inputBuffer, void *outputBuffer,
     
     for (int i = 1; i < BUF_SIZE; i++) {
         if (app.pFreq[i] > 0.001) {
-            [app.scratchView add:app.pFreq[i] on:i at:timeInfo->inputBufferAdcTime];
+//            [app.scratchView add:app.pFreq[i] on:i at:timeInfo->inputBufferAdcTime];
         }
         app.pFreq[i] = app.pFreq[i]/max;
     }
@@ -119,7 +119,7 @@ int patestCallback( const void *inputBuffer, void *outputBuffer,
                                             tells PortAudio to pick the best,
                                             possibly changing, buffer size.*/
                                patestCallback, /* this is your callback function */
-                               _pSelf ); /*This is a pointer that will be passed to
+                               (void*)_pSelf ); /*This is a pointer that will be passed to
                                          your callback*/
 //if( err != paNoError ) goto error;
     
@@ -142,4 +142,5 @@ int patestCallback( const void *inputBuffer, void *outputBuffer,
     
     _err = Pa_Terminate();
 }
+
 @end

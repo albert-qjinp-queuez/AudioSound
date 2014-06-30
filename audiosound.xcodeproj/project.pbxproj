@@ -11,6 +11,7 @@
 		6727EE4919454A7D0038132D /* libportaudio.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6727EE44194548A50038132D /* libportaudio.a */; };
 		676724A3194D3D3C005AAAAB /* ASVibrationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 676724A2194D3D3C005AAAAB /* ASVibrationView.m */; };
 		676724A5194D3EB6005AAAAB /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 676724A4194D3EB6005AAAAB /* OpenGL.framework */; };
+		676CE5A319611D78005B816E /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67E54A5F19442369005ADA09 /* AppKit.framework */; };
 		6778CA20194809D300E903E3 /* PortAudioBasicFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6778CA1F194809D300E903E3 /* PortAudioBasicFunctions.m */; };
 		677E7AF4195542B700C30944 /* libfftw3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 677E7AF3195542B700C30944 /* libfftw3.a */; };
 		677E7AF5195542B700C30944 /* libfftw3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 677E7AF3195542B700C30944 /* libfftw3.a */; };
@@ -94,6 +95,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				676CE5A319611D78005B816E /* AppKit.framework in Frameworks */,
 				676724A5194D3EB6005AAAAB /* OpenGL.framework in Frameworks */,
 				6727EE45194548A50038132D /* libportaudio.a in Frameworks */,
 				677E7AF4195542B700C30944 /* libfftw3.a in Frameworks */,

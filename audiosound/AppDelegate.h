@@ -35,14 +35,18 @@ int patestCallback( const void *inputBuffer, void *outputBuffer,
 @property (assign) IBOutlet ASScratchView* scratchView;
 @property (assign) IBOutlet NSTextField* text;
 
+@property (assign) IBOutlet NSSlider* noise;
+
 @property (assign) PaError err;
 @property (assign) PaStream *stream;
-@property (assign) void *pSelf;
+@property (assign) CFTypeRef pSelf;
 @property (assign) long int size;
+@property (assign) double noiseLv;
 
 @property (assign) double *pBuf;
 @property (assign) double *pFreq;
 
 @property (assign) fftw_plan plan;
+
 
 @end

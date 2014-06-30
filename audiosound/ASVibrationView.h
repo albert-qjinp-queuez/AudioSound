@@ -12,6 +12,8 @@
 
 @property (assign) double *pBuf;
 @property (assign) unsigned long size;
+@property (assign) double noiseLv;
+@property (assign) IBOutlet NSSlider* noise;
 
 -(void)setBuffer:(double*)inbuf size:(long int)size;
 

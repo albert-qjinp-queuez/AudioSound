@@ -48,6 +48,14 @@
     
 	[[NSColor blackColor] set];
 	[path stroke];
+    
+	NSBezierPath* noisePath = [NSBezierPath bezierPath];
+    [noisePath moveToPoint:(NSPoint){ 0 , h/2+_noise.doubleValue}];
+    [noisePath lineToPoint:(NSPoint){ w , h/2+_noise.doubleValue }];
+    [noisePath moveToPoint:(NSPoint){ 0 , h/2-_noise.doubleValue}];
+    [noisePath lineToPoint:(NSPoint){ w , h/2-_noise.doubleValue }];
+	[[NSColor redColor] set];
+	[noisePath stroke];
     // Drawing code here.
 }
 

@@ -16,6 +16,7 @@
         <customObject id="Voe-Tx-rLC" customClass="AppDelegate">
             <connections>
                 <outlet property="frView" destination="36r-hp-kgU" id="M30-Un-hjd"/>
+                <outlet property="noise" destination="DvU-tR-NUr" id="DYV-nX-94R"/>
                 <outlet property="scratchView" destination="RHn-k1-ZMG" id="IC8-u1-u1P"/>
                 <outlet property="text" destination="U3k-U2-0WF" id="SfC-Sd-JRA"/>
                 <outlet property="vibView" destination="tW5-xf-BOv" id="3Ab-Km-ZNm"/>
@@ -674,8 +675,7 @@
         </menu>
         <window title="audiosound" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" id="QvC-M9-y7g">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
-            <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="335" y="390" width="480" height="591"/>
+            <rect key="contentRect" x="541" y="201" width="480" height="591"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1280" height="800"/>
             <view key="contentView" id="EiT-Mj-1SZ">
                 <rect key="frame" x="0.0" y="0.0" width="480" height="591"/>
@@ -688,7 +688,7 @@
                             <constraint firstAttribute="width" secondItem="tW5-xf-BOv" secondAttribute="height" multiplier="1:1" id="HGG-ua-6Z9"/>
                         </constraints>
                         <connections>
-                            <outlet property="frView" destination="36r-hp-kgU" id="Ybo-UL-W4u"/>
+                            <outlet property="noise" destination="DvU-tR-NUr" id="fwd-4y-Dj9"/>
                         </connections>
                     </customView>
                     <customView translatesAutoresizingMaskIntoConstraints="NO" id="36r-hp-kgU" customClass="ASFreqView">
@@ -711,10 +711,30 @@
                         <rect key="frame" x="20" y="20" width="440" height="424"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     </customView>
+                    <slider horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="DvU-tR-NUr">
+                        <rect key="frame" x="123" y="463" width="21" height="110"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <sliderCell key="cell" alignment="left" maxValue="100" tickMarkPosition="right" sliderType="linear" id="c2X-hq-uBL"/>
+                        <connections>
+                            <action selector="slide:" target="Voe-Tx-rLC" id="EGJ-9H-1XI"/>
+                        </connections>
+                    </slider>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="2OT-0c-6Cr">
+                        <rect key="frame" x="105" y="571" width="57" height="17"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Noise Lv" id="g3B-Zf-CgI">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="DvU-tR-NUr" firstAttribute="leading" secondItem="tW5-xf-BOv" secondAttribute="trailing" id="40O-Nl-mjC"/>
                     <constraint firstItem="tW5-xf-BOv" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="20" id="4ie-9t-xNj"/>
                     <constraint firstItem="RHn-k1-ZMG" firstAttribute="top" secondItem="U3k-U2-0WF" secondAttribute="top" constant="20" id="AWJ-kc-caP"/>
+                    <constraint firstItem="DvU-tR-NUr" firstAttribute="top" secondItem="tW5-xf-BOv" secondAttribute="top" id="J3y-c2-cjE"/>
+                    <constraint firstItem="DvU-tR-NUr" firstAttribute="top" secondItem="2OT-0c-6Cr" secondAttribute="bottom" id="JPi-Bs-Gv3"/>
                     <constraint firstAttribute="trailing" secondItem="RHn-k1-ZMG" secondAttribute="trailing" constant="20" id="Lc8-3r-1k3"/>
                     <constraint firstItem="tW5-xf-BOv" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" constant="20" id="Mt4-Ij-kRS"/>
                     <constraint firstItem="U3k-U2-0WF" firstAttribute="top" secondItem="tW5-xf-BOv" secondAttribute="bottom" constant="2" id="Np7-as-0cv"/>
@@ -722,6 +742,8 @@
                     <constraint firstItem="RHn-k1-ZMG" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="20" id="QsX-ov-fh7"/>
                     <constraint firstAttribute="bottom" secondItem="RHn-k1-ZMG" secondAttribute="bottom" constant="20" id="TIb-Hm-Tvt"/>
                     <constraint firstItem="36r-hp-kgU" firstAttribute="width" secondItem="tW5-xf-BOv" secondAttribute="width" multiplier="3" id="aDm-cP-FcN"/>
+                    <constraint firstItem="tW5-xf-BOv" firstAttribute="height" secondItem="DvU-tR-NUr" secondAttribute="height" id="bSk-Fp-ImD"/>
+                    <constraint firstItem="DvU-tR-NUr" firstAttribute="centerX" secondItem="2OT-0c-6Cr" secondAttribute="centerX" id="eq9-Ra-21L"/>
                     <constraint firstItem="U3k-U2-0WF" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="20" id="h0w-XM-5ae"/>
                     <constraint firstAttribute="trailing" secondItem="36r-hp-kgU" secondAttribute="trailing" constant="20" id="rk9-eb-NUS"/>
                     <constraint firstItem="tW5-xf-BOv" firstAttribute="height" secondItem="36r-hp-kgU" secondAttribute="height" id="wgH-aA-pXs"/>

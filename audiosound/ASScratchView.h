@@ -7,6 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import <AppKit/AppKit.h>
 
 @interface ASChartNote : NSObject
 
@@ -14,19 +15,23 @@
 @property (assign) double freq;
 @property (assign) double size;
 @property (assign) int octave;
+@property (assign) int codeNo;
 @property (assign) NSString* code;
 @end
 
 @interface ASChartTime : NSObject
 @property (assign) double time;
 @property (retain) NSMutableArray  * note;
+@property (retain) NSMutableSet  * codes;
 - (void)time:(double)time freq:(double)freq size:(double)size;
 @end
 
 
 @interface ASChart : NSObject
+@property (retain) NSMutableDictionary * chartDic;
+@property (retain) NSMutableArray * chartArr;
 -(void)size:(double)size freq:(double)freq time:(double)time;
-@property (retain) NSMutableDictionary * chart;
+-(void)drawChart;
 @end
 
 

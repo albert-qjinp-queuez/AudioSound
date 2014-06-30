@@ -27,8 +27,11 @@ static NSString* code[] = {@"A", @"A#", @"B", @"C", @"C#", @"D", @"D#", @"E", @"
                 for (int j=0; j < sizeof(scale)/sizeof(double)-1; j++) {
                     if (oct[i] *scale[j] <= freq && freq < oct[i] *scale[j+1]) {
                         _code = code[j];
+                        _codeNo = j;
+                        break;
                     }
                 }
+                break;
             }
         }
     }
@@ -42,6 +45,7 @@ static NSString* code[] = {@"A", @"A#", @"B", @"C", @"C#", @"D", @"D#", @"E", @"
     if (self) {
         _time = time;
         _note = [[NSMutableArray alloc]init];
+        _codes = [[NSMutableSet alloc]initWithCapacity:12];
     }
     return self;
 }
@@ -49,7 +53,9 @@ static NSString* code[] = {@"A", @"A#", @"B", @"C", @"C#", @"D", @"D#", @"E", @"
     if (_time != time) {
         _time = time;
     }
-    [_note addObject:[[ASChartNote alloc]initWith:freq size:size ]];
+    ASChartNote* note = [[ASChartNote alloc]initWith:freq size:size ];
+    [_note addObject:note];
+    [_codes addObject:note.code];
 }
 @end
 
@@ -57,7 +63,8 @@ static NSString* code[] = {@"A", @"A#", @"B", @"C", @"C#", @"D", @"D#", @"E", @"
 -(id)init{
     self = [super init];
     if (self) {
-        _chart = [[NSMutableDictionary alloc]init];
+        _chartDic = [[NSMutableDictionary alloc]init];
+        _chartArr = [[NSMutableArray alloc]init];
     }
     return self;
 }
@@ -65,13 +72,27 @@ static NSString* code[] = {@"A", @"A#", @"B", @"C", @"C#", @"D", @"D#", @"E", @"
 -(void)size:(double)size freq:(double)freq time:(double)time{
     NSNumber *objTime = [NSNumber numberWithDouble:time];
     ASChartTime *chartTime =
-      (ASChartTime *)[_chart objectForKey:objTime];
+      (ASChartTime *)[_chartDic objectForKey:objTime];
     
     if (chartTime == nil) {
         chartTime = [[ASChartTime alloc]initWithTime:time];
-        [_chart setObject:chartTime forKey:objTime];
+        [_chartDic setObject:chartTime forKey:objTime];
+        [_chartArr addObject:chartTime];
     }
     [chartTime time:time freq:freq size:size];
+}
+-(void)drawChart{
+    NSMutableParagraphStyle * paragraphStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
+    [paragraphStyle setAlignment:NSCenterTextAlignment];
+    NSDictionary * attributes = [NSDictionary dictionaryWithObject:paragraphStyle forKey:NSParagraphStyleAttributeName];
+
+    int yPos = 10;
+    for (ASChartTime* cTime in _chartArr) {
+        for( NSString* code in cTime.codes){
+            [code drawAtPoint:(NSPoint){10,yPos} withAttributes:attributes];
+            yPos += 14;
+        }
+    }
 }
 @end
 
@@ -92,10 +113,10 @@ static NSString* code[] = {@"A", @"A#", @"B", @"C", @"C#", @"D", @"D#", @"E", @"
 {
     [super drawRect:dirtyRect];
     
+    // Drawing code here.
     [[NSColor whiteColor] set];
     NSRectFill(self.bounds);
-    // Drawing code here.
-    
+//    [_chart drawChart];
 }
 
 - (void)add:(double)size on:(double)freq at:(double)time{
