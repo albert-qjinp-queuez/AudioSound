@@ -16,7 +16,11 @@ int getCodeNo(int oct, int scale){
     return oct*12 + scale;
 }
 int getScale(int code){
-    return abs(code%12);
+    int mod = code%12;
+    if (mod < 0) {
+        mod += 12;
+    }
+    return mod;
 }
 int getOct(int code){
     return code/12;
@@ -25,7 +29,7 @@ int freq2CodeNo(double freq){
     double rt12 = cbrt(sqrt(sqrt(2.0)));
     double theCode = (freq/(double)440/rt12);
     double a = log(theCode)/log(rt12);
-    return round(a);
+    return round(a)+1;
 }
 
 @implementation ASSoundItem
@@ -40,6 +44,20 @@ int freq2CodeNo(double freq){
         _sounds = [NSMutableArray arrayWithCapacity:500];
         _sTime = 0.0;
     }
+/*
+    int codeNo;
+    NSString * strCode;
+    codeNo = getScale(freq2CodeNo(440.0));//A >> A
+    strCode = code[codeNo];
+    codeNo = getScale(freq2CodeNo(463.0));//A# >> A#
+    strCode = code[codeNo];
+    codeNo = getScale(freq2CodeNo(496.0));//B >> B
+    strCode = code[codeNo];
+    codeNo = getScale(freq2CodeNo(420.0));//G# >> G#
+    strCode = code[codeNo];
+    codeNo = getScale(freq2CodeNo(390.0));//G >> G
+    strCode = code[codeNo];
+ */
     return self;
 }
 

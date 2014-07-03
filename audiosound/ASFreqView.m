@@ -71,7 +71,7 @@
             if(_pCopy[i] < _noise.doubleValue){
                 _pCopy[i] = 0;
             }else{
-                [_scaleView size:_pCopy[i] freq:i time:0];
+//                [_scaleView size:_pCopy[i] freq:i time:0];
             }
             _pCopy[i] = _pCopy[i]/max;
         }
@@ -86,7 +86,7 @@
             [path lineToPoint:(NSPoint){ wPoint , _pCopy[i]*h+2}];
             
         }
-        _scaleView.needsDisplay = YES;
+//        _scaleView.needsDisplay = YES;
     }
 	[[NSColor blackColor] set];
 	[path stroke];
