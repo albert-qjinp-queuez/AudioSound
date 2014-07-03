@@ -9,37 +9,21 @@
 #import <Cocoa/Cocoa.h>
 #import <AppKit/AppKit.h>
 
-@interface ASChartNote : NSObject
 
--(id)initWith:(double)freq size:(double)size;
-@property (assign) double freq;
-@property (assign) double size;
-@property (assign) int octave;
-@property (assign) int codeNo;
-@property (assign) NSString* code;
-@end
-
-@interface ASChartTime : NSObject
+@interface ASSoundItem : NSObject
 @property (assign) double time;
-@property (retain) NSMutableArray  * note;
-@property (retain) NSMutableSet  * codes;
-- (void)time:(double)time freq:(double)freq size:(double)size;
+@property (assign) int code;
+@property (assign) double size;
+
 @end
-
-
-@interface ASChart : NSObject
-@property (retain) NSMutableDictionary * chartDic;
-@property (retain) NSMutableArray * chartArr;
--(void)size:(double)size freq:(double)freq time:(double)time;
--(void)drawChart;
-@end
-
 
 @interface ASScratchView : NSView
 
-@property (retain) ASChart *chart;
+@property (assign) IBOutlet id app;
+@property (retain) NSMutableArray * sounds;
+@property (assign) double sTime;
 
-- (void)add:(double)size on:(double)freq at:(double)time;
+- (void)size:(double)size freq:(double)freq time:(double)time;
 
 
 @end

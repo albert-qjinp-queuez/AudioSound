@@ -8,6 +8,9 @@
             <PersistentString
                value = "hPoint /max*h">
             </PersistentString>
+            <PersistentString
+               value = "_noise.doubleValue">
+            </PersistentString>
          </PersistentStrings>
       </ContextState>
       <ContextState
@@ -17,16 +20,40 @@
          contextName = "patestCallback:AppDelegate.m">
          <PersistentStrings>
             <PersistentString
-               value = "app.outData[i]">
+               value = "app.pData[0]">
             </PersistentString>
             <PersistentString
-               value = "(i/BUF_SIZE *SAMPLE_RATE /2.0)">
+               value = "app.pData[2]">
             </PersistentString>
             <PersistentString
-               value = "app.pClearFreq[40496-i]">
+               value = "app.pData[4]">
             </PersistentString>
             <PersistentString
-               value = "app.pClearFreq[40496-i-1]">
+               value = "app.pData[6]">
+            </PersistentString>
+            <PersistentString
+               value = "app.pData[8]">
+            </PersistentString>
+            <PersistentString
+               value = "app.pData[11]">
+            </PersistentString>
+            <PersistentString
+               value = "app.pData[10]">
+            </PersistentString>
+            <PersistentString
+               value = "app.pData[1]">
+            </PersistentString>
+            <PersistentString
+               value = "app.pData[3]">
+            </PersistentString>
+            <PersistentString
+               value = "app.pData[5]">
+            </PersistentString>
+            <PersistentString
+               value = "app.pData[7]">
+            </PersistentString>
+            <PersistentString
+               value = "app.pData[9]">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

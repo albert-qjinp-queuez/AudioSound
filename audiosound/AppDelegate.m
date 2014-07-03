@@ -10,7 +10,7 @@
 
 #define SAMPLE_RATE (8192)
 #define SAMPLE_SIZE (256)
-#define BUF_SIZE    (40496)
+#define BUF_SIZE    (32768)
 
 /* This routine will be called by the PortAudio engine when audio is needed.
  It may called at interrupt level on some machines so don't do anything
@@ -27,6 +27,9 @@ int patestCallback( const void *inputBuffer, void *outputBuffer,
     float *in = (float*)inputBuffer;
     
     unsigned flag = FFTW_MEASURE;
+//    [app.vibView setNeedsDisplay:YES];
+    [app.frView setNeedsDisplay:YES];
+    app.lastPlayTime = timeInfo->inputBufferAdcTime;
     
     if (app.pBuf != NULL && framesPerBuffer != app.size) {
         free(app.pBuf);
@@ -41,9 +44,8 @@ int patestCallback( const void *inputBuffer, void *outputBuffer,
 
         app.size = framesPerBuffer;
         app.plan = fftw_plan_r2r_1d(BUF_SIZE, app.pBuf, app.pFreq, FFTW_REDFT00 , flag);
-        [app.vibView setBuffer:app.pBuf size:framesPerBuffer];
-        [app.frView setBuffer:app.pFreq size:BUF_SIZE rate:SAMPLE_RATE];
-
+//        [app.vibView setBuffer:app.pBuf size:framesPerBuffer];
+        [app.frView setBuffer:app.pFreq size:BUF_SIZE rate:SAMPLE_RATE ];
     }
     
     long int i;
@@ -56,48 +58,17 @@ int patestCallback( const void *inputBuffer, void *outputBuffer,
     }
     fftw_execute(app.plan);
     
-    double max=0;
-    float sum=0;
-    long int maxInex = 0;
-    app.pFreq[0] = fabs(app.pFreq[0]);
-    app.pFreq[BUF_SIZE-1] = fabs(app.pFreq[BUF_SIZE-1]);
-    for (i = 1; i < BUF_SIZE; i++) {
-        app.pFreq[i] = fabs(app.pFreq[i]);
-        app.pFreq[BUF_SIZE-i-1] = fabs(app.pFreq[BUF_SIZE-i-1]);
-        if(app.pFreq[i] > app.pFreq[i-1]){
-            app.pFreq[i-1] = 0;
-        }
-        if(app.pFreq[BUF_SIZE-i] < app.pFreq[BUF_SIZE-i-1]){
-            app.pFreq[BUF_SIZE-i] = 0;
-        }
-        
-        if( max < app.pFreq[i]){
-            max = app.pFreq[i];
-            maxInex = i;
-        }
-        sum+=app.pFreq[i];
-    }
-    if (BUF_SIZE != 0) sum = sum/BUF_SIZE;
-    
-    if (max == 0) max = 1;
-    
-    
-    for (int i = 1; i < BUF_SIZE; i++) {
-        if (app.pFreq[i] > 0.001) {
-//            [app.scratchView add:app.pFreq[i] on:i at:timeInfo->inputBufferAdcTime];
-        }
-        app.pFreq[i] = app.pFreq[i]/max;
-    }
-    
-    app.text.doubleValue = ((double)maxInex)/BUF_SIZE *SAMPLE_RATE /2.0;
-    
-    [app.vibView setNeedsDisplay:YES];
-    [app.frView setNeedsDisplay:YES];
     return 0;
 }
 
 @implementation AppDelegate
 
+-(double)getLastPlayTime{
+    return _lastPlayTime;
+}
+-(void)setLastPlayTime:(double)lpt{
+    _lastPlayTime = lpt;
+}
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
     // Insert code here to initialize your application
