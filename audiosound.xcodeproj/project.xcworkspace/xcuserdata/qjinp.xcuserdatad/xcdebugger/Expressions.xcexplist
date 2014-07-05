@@ -14,7 +14,23 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "-[ASFreqView push:size:]:ASFreqView.m">
+         contextName = "-[ASScratchView peak:on:]:ASScratchView.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "scale[j]">
+            </PersistentString>
+            <PersistentString
+               value = "oct[i]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[ASScratchView drawRect:]:ASScratchView.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "((double)scale+ oct*12) / 12.0*8 * winY}">
+            </PersistentString>
+         </PersistentStrings>
       </ContextState>
       <ContextState
          contextName = "patestCallback:AppDelegate.m">
@@ -66,15 +82,7 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "-[ASScratchView peak:on:]:ASScratchView.m">
-         <PersistentStrings>
-            <PersistentString
-               value = "scale[j]">
-            </PersistentString>
-            <PersistentString
-               value = "oct[i]">
-            </PersistentString>
-         </PersistentStrings>
+         contextName = "-[ASFreqView push:size:]:ASFreqView.m">
       </ContextState>
    </ContextStates>
 </VariablesViewState>

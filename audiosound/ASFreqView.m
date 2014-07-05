@@ -39,7 +39,7 @@
 	[[NSColor whiteColor] set];
     [path fill];
     
-    double max=1;
+    double max=0;
     float sum=0;
     long int maxInex = 0;
     memcpy(_pCopy, _pBuf, sizeof(double)*_size);
@@ -68,10 +68,10 @@
         if (max == 0) max = 1;
         
         for (int i = 0; i < _size; i++) {
-            if(_pCopy[i] < _noise.doubleValue){
-                _pCopy[i] = 0;
+            if(_pCopy[i] > _noise.doubleValue && _pCopy[i] > max/2){
+                [_scaleView size:_pCopy[i] freq:i time:0];
             }else{
-//                [_scaleView size:_pCopy[i] freq:i time:0];
+//                _pCopy[i] = 0;
             }
             _pCopy[i] = _pCopy[i]/max;
         }
@@ -86,7 +86,7 @@
             [path lineToPoint:(NSPoint){ wPoint , _pCopy[i]*h+2}];
             
         }
-//        _scaleView.needsDisplay = YES;
+        _scaleView.needsDisplay = YES;
     }
 	[[NSColor blackColor] set];
 	[path stroke];

@@ -30,7 +30,7 @@ int patestCallback( const void *inputBuffer, void *outputBuffer,
 @interface AppDelegate : NSObject <NSApplicationDelegate>
 
 @property (assign) IBOutlet NSWindow *window;
-//@property (assign) IBOutlet ASVibrationView* vibView;
+@property (assign) IBOutlet ASVibrationView* vibView;
 @property (assign) IBOutlet ASFreqView* frView;
 @property (assign) IBOutlet ASScratchView* scratchView;
 
@@ -42,11 +42,9 @@ int patestCallback( const void *inputBuffer, void *outputBuffer,
 
 @property (assign) double *pBuf;
 @property (assign) double *pFreq;
-@property (assign) double lastPlayTime;
+@property (assign,readwrite) double lastPlayTime;
 
 @property (assign) fftw_plan plan;
 
--(double)getLastPlayTime;
--(void)setLastPlayTime:(double)lpt;
 
 @end

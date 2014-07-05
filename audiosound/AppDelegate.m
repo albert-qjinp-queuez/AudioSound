@@ -27,7 +27,7 @@ int patestCallback( const void *inputBuffer, void *outputBuffer,
     float *in = (float*)inputBuffer;
     
     unsigned flag = FFTW_MEASURE;
-//    [app.vibView setNeedsDisplay:YES];
+    [app.vibView setNeedsDisplay:YES];
     [app.frView setNeedsDisplay:YES];
     app.lastPlayTime = timeInfo->inputBufferAdcTime;
     
@@ -44,7 +44,7 @@ int patestCallback( const void *inputBuffer, void *outputBuffer,
 
         app.size = framesPerBuffer;
         app.plan = fftw_plan_r2r_1d(BUF_SIZE, app.pBuf, app.pFreq, FFTW_REDFT00 , flag);
-//        [app.vibView setBuffer:app.pBuf size:framesPerBuffer];
+        [app.vibView setBuffer:app.pBuf size:framesPerBuffer];
         [app.frView setBuffer:app.pFreq size:BUF_SIZE rate:SAMPLE_RATE ];
     }
     
@@ -63,12 +63,6 @@ int patestCallback( const void *inputBuffer, void *outputBuffer,
 
 @implementation AppDelegate
 
--(double)getLastPlayTime{
-    return _lastPlayTime;
-}
--(void)setLastPlayTime:(double)lpt{
-    _lastPlayTime = lpt;
-}
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
     // Insert code here to initialize your application

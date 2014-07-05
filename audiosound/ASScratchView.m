@@ -64,7 +64,7 @@ int freq2CodeNo(double freq){
 - (void)drawRect:(NSRect)dirtyRect
 {
     AppDelegate * a = _app;
-    double lpTime = [a getLastPlayTime ];
+    double lpTime = a.lastPlayTime;
     
     [super drawRect:dirtyRect];
     
@@ -82,22 +82,34 @@ int freq2CodeNo(double freq){
     = @{NSFontAttributeName:
             [NSFont fontWithName:@"Verdana" size:11]};
     ASSoundItem * sound;
+    
+    NSBezierPath* noisePath = [NSBezierPath bezierPath];
+    
     for (int i=0; i<_sounds.count; i++) {
         sound = [_sounds objectAtIndex:i];
-        double po = (lpTime - sound.time)*10;
+        double po = (lpTime - sound.time)*_spead.doubleValue ;
         if ( po < winX) {
             int scale = getScale(sound.code);
-            [code[scale] drawAtPoint:(NSPoint){ po , ((double)scale) / 12.0 * winY} withAttributes:attributes];
+            int oct = getOct(sound.code);
+            if (po < winX/256){
+              [code[scale] drawAtPoint:(NSPoint){ 0 , ((double)scale+ oct*12) / 12.0/8 * winY} withAttributes:attributes];
+            }
+            
+            [noisePath moveToPoint:(NSPoint){ po , sound.code / 12.0/8 * winY}];
+            [noisePath lineToPoint:(NSPoint){ po+(winX*_spead.doubleValue/8192) , sound.code / 12.0/8 * winY}];
+            
         }else{
             [_sounds removeObjectAtIndex:i];
             i--;
         }
     }
+    [[NSColor blueColor] set];
+    [noisePath stroke];
 }
 
 - (void)size:(double)size freq:(double)freq time:(double)time {
     AppDelegate * a = _app;
-    double lpTime = [a getLastPlayTime ];
+    double lpTime = a.lastPlayTime;
     if (_sTime == 0) {
         _sTime = lpTime;
     }

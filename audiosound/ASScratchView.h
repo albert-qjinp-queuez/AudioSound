@@ -20,6 +20,7 @@
 @interface ASScratchView : NSView
 
 @property (assign) IBOutlet id app;
+@property (assign) IBOutlet NSSlider* spead;
 @property (retain) NSMutableArray * sounds;
 @property (assign) double sTime;
 
