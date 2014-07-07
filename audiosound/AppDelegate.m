@@ -49,12 +49,14 @@ int patestCallback( const void *inputBuffer, void *outputBuffer,
     }
     
     long int i;
-    for (i=0; i<framesPerBuffer; i++) {
-        app.pBuf[i] = (double)in[i];
-    }
     for( i=framesPerBuffer ; i<BUF_SIZE; i++){
         //zero padding
-        app.pBuf[i] = 0.0;
+        //app.pBuf[i] = 0.0;
+        //data from a past
+        app.pBuf[i] = app.pBuf[i-framesPerBuffer];
+    }
+    for (i=0; i<framesPerBuffer; i++) {
+        app.pBuf[i] = (double)in[i];
     }
     fftw_execute(app.plan);
     
