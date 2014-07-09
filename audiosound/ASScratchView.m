@@ -83,7 +83,7 @@ int freq2CodeNo(double freq){
             [NSFont fontWithName:@"Verdana" size:11]};
     ASSoundItem * sound;
     
-    NSBezierPath* noisePath = [NSBezierPath bezierPath];
+    NSBezierPath* soundPath = [NSBezierPath bezierPath];
     
     for (int i=0; i<_sounds.count; i++) {
         sound = [_sounds objectAtIndex:i];
@@ -95,8 +95,9 @@ int freq2CodeNo(double freq){
               [code[scale] drawAtPoint:(NSPoint){ 0 , ((double)scale+ oct*12) / 12.0/8 * winY} withAttributes:attributes];
             }
             
-            [noisePath moveToPoint:(NSPoint){ po , sound.code / 12.0/8 * winY}];
-            [noisePath lineToPoint:(NSPoint){ po+(winX*_spead.doubleValue/8192) , sound.code / 12.0/8 * winY}];
+            [soundPath moveToPoint:(NSPoint){ po , sound.code / 12.0/8 * winY}];
+            [soundPath lineToPoint:(NSPoint){ po+(winX*_spead.doubleValue/8192) , sound.code / 12.0/8 * winY}];
+            [soundPath lineToPoint:(NSPoint){ po+(winX*_spead.doubleValue/8192) , (sound.code+sound.size/30.0) / 12.0/8 * winY }];
             
         }else{
             [_sounds removeObjectAtIndex:i];
@@ -104,7 +105,7 @@ int freq2CodeNo(double freq){
         }
     }
     [[NSColor blueColor] set];
-    [noisePath stroke];
+    [soundPath stroke];
 }
 
 - (void)size:(double)size freq:(double)freq time:(double)time {
