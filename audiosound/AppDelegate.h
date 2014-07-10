@@ -40,7 +40,8 @@ int patestCallback( const void *inputBuffer, void *outputBuffer,
 @property (assign) long int size;
 @property (assign) double noiseLv;
 
-@property (assign) double *pBuf;
+@property (assign) double *pinBuf;
+@property (assign) double *pWindowed;
 @property (assign) double *pFreq;
 @property (assign,readwrite) double lastPlayTime;
 

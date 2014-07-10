@@ -97,7 +97,7 @@ int freq2CodeNo(double freq){
             
             [soundPath moveToPoint:(NSPoint){ po , sound.code / 12.0/8 * winY}];
             [soundPath lineToPoint:(NSPoint){ po+(winX*_spead.doubleValue/8192) , sound.code / 12.0/8 * winY}];
-            [soundPath lineToPoint:(NSPoint){ po+(winX*_spead.doubleValue/8192) , (sound.code+sound.size/30.0) / 12.0/8 * winY }];
+//            [soundPath lineToPoint:(NSPoint){ po+(winX*_spead.doubleValue/8192) , (sound.code+sound.size/100.0) / 12.0/8 * winY }];
             
         }else{
             [_sounds removeObjectAtIndex:i];

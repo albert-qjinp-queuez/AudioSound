@@ -53,8 +53,8 @@
                 _pCopy[_size-i-1] = fabs(_pCopy[_size-i-1]);
             }
             
-            if(_pCopy[i] > _pCopy[i-1]) _pCopy[i-1] = 0;
-            if(_pCopy[_size-i] < _pCopy[_size-i-1]) _pCopy[_size-i] = 0;
+//            if(_pCopy[i] > _pCopy[i-1]) _pCopy[i-1] = 0;
+//            if(_pCopy[_size-i] < _pCopy[_size-i-1]) _pCopy[_size-i] = 0;
             
             if( max < _pCopy[i]){
                 max = _pCopy[i];

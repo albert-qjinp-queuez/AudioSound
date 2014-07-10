@@ -31,33 +31,41 @@ int patestCallback( const void *inputBuffer, void *outputBuffer,
     [app.frView setNeedsDisplay:YES];
     app.lastPlayTime = timeInfo->inputBufferAdcTime;
     
-    if (app.pBuf != NULL && framesPerBuffer != app.size) {
-        free(app.pBuf);
+    if (app.pinBuf != NULL && framesPerBuffer != app.size) {
+        free(app.pinBuf);
         free(app.pFreq);
         
-        app.pBuf = NULL;
+        app.pinBuf = NULL;
         app.pFreq = NULL;
+        app.pWindowed = NULL;
     }
-    if (app.pBuf == NULL){
-        app.pBuf = malloc(sizeof(double)*BUF_SIZE);
+    if (app.pinBuf == NULL){
+        app.pinBuf = malloc(sizeof(double)*BUF_SIZE);
         app.pFreq = malloc(sizeof(double)*BUF_SIZE);
+        app.pWindowed = malloc(sizeof(double)*BUF_SIZE);
 
         app.size = framesPerBuffer;
-        app.plan = fftw_plan_r2r_1d(BUF_SIZE, app.pBuf, app.pFreq, FFTW_REDFT00 , flag);
-        [app.vibView setBuffer:app.pBuf size:framesPerBuffer];
+        app.plan = fftw_plan_r2r_1d(BUF_SIZE, app.pinBuf, app.pFreq, FFTW_REDFT00 , flag);
+        [app.vibView setBuffer:app.pWindowed size:BUF_SIZE];
         [app.frView setBuffer:app.pFreq size:BUF_SIZE rate:SAMPLE_RATE ];
     }
     
     long int i;
     for( i=framesPerBuffer ; i<BUF_SIZE; i++){
-        //zero padding
-        //app.pBuf[i] = 0.0;
-        //data from a past
-        app.pBuf[i] = app.pBuf[i-framesPerBuffer];
+        //shifting the data from the past
+        app.pinBuf[i] = app.pinBuf[i-framesPerBuffer];
     }
     for (i=0; i<framesPerBuffer; i++) {
-        app.pBuf[i] = (double)in[i];
+        app.pinBuf[i] = (double)in[i];
     }
+    
+    
+    for (i=0; i<BUF_SIZE; i++) {
+        app.pWindowed[i] = app.pinBuf[i];
+        app.pWindowed[i] *= 0.5*(1-cos( 2*M_PI*i/(BUF_SIZE-1)) ); // Hann windowing
+        app.pWindowed[i] *= exp(-1*fabs(i-(BUF_SIZE-1)/2)*2*1/(BUF_SIZE-1)/8.69 );//poison window
+    }
+    
     fftw_execute(app.plan);
     
     return 0;
@@ -102,7 +110,8 @@ int patestCallback( const void *inputBuffer, void *outputBuffer,
 - (void)applicationWillTerminate:(NSNotification *)aNotification
 {
     fftw_destroy_plan(_plan);
-    free(_pBuf);
+    free(_pinBuf);
+    free(_pWindowed);
     free(_pFreq);
     CFBridgingRelease(_pSelf);
     _err = Pa_StopStream( _stream );
