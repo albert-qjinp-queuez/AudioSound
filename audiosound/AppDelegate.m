@@ -10,7 +10,7 @@
 
 #define SAMPLE_RATE (8192)
 #define SAMPLE_SIZE (256)
-#define BUF_SIZE    (32768)
+#define BUF_SIZE    (16384)
 
 /* This routine will be called by the PortAudio engine when audio is needed.
  It may called at interrupt level on some machines so don't do anything
@@ -45,29 +45,32 @@ int patestCallback( const void *inputBuffer, void *outputBuffer,
         app.pWindowed = malloc(sizeof(double)*BUF_SIZE);
 
         app.size = framesPerBuffer;
-        app.plan = fftw_plan_r2r_1d(BUF_SIZE, app.pinBuf, app.pFreq, FFTW_REDFT00 , flag);
-        [app.vibView setBuffer:app.pWindowed size:BUF_SIZE];
+        app.plan = fftw_plan_r2r_1d(BUF_SIZE, app.pWindowed, app.pFreq, FFTW_REDFT00 , flag);
+        [app.vibView setBuffer:(app.pWindowed) size:BUF_SIZE];
         [app.frView setBuffer:app.pFreq size:BUF_SIZE rate:SAMPLE_RATE ];
     }
     
-    long int i;
-    for( i=framesPerBuffer ; i<BUF_SIZE; i++){
-        //shifting the data from the past
-        app.pinBuf[i] = app.pinBuf[i-framesPerBuffer];
+    long int n;
+    for( n=0 ; n < BUF_SIZE/2; n++){
+        //shifting the data from the past to bothside
+        app.pinBuf[n] = app.pinBuf[n+framesPerBuffer];
+        app.pinBuf[BUF_SIZE-n-1] = app.pinBuf[BUF_SIZE-n-framesPerBuffer-1];
     }
-    for (i=0; i<framesPerBuffer; i++) {
-        app.pinBuf[i] = (double)in[i];
+    //new signal generated from the middle :)
+    for (n=0; n<framesPerBuffer; n++) {
+        app.pinBuf[BUF_SIZE/2+framesPerBuffer-n-1] = (double)in[n];
+        app.pinBuf[BUF_SIZE/2-framesPerBuffer+n+1] = (double)in[n];
     }
     
     
-    for (i=0; i<BUF_SIZE; i++) {
-        app.pWindowed[i] = app.pinBuf[i];
-        app.pWindowed[i] *= 0.5*(1-cos( 2*M_PI*i/(BUF_SIZE-1)) ); // Hann windowing
-        app.pWindowed[i] *= exp(-1*fabs(i-(BUF_SIZE-1)/2)*2*1/(BUF_SIZE-1)/8.69 );//poison window
+    for (n=0; n<BUF_SIZE; n++) {
+        app.pWindowed[n] = app.pinBuf[n];
+        app.pWindowed[n] *= 0.5*(1-cos( 2*M_PI*n/(BUF_SIZE-1)) ); // Hann windowing
+        app.pWindowed[n] *= exp(-0.007*fabs(n-(BUF_SIZE-1)/2));//poisson window
     }
     
     fftw_execute(app.plan);
-    
+    app.prvTime = timeInfo->inputBufferAdcTime;
     return 0;
 }
 

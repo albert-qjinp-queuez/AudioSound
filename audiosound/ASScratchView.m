@@ -9,28 +9,8 @@
 #import "ASScratchView.h"
 #import "AppDelegate.h"
 
-static NSString* code[] = {@"A", @"A#", @"B", @"C", @"C#", @"D", @"D#", @"E", @"F", @"F#", @"G", @"G#"};
+static NSString* strCode[] = {@"A", @"A#", @"B", @"C", @"C#", @"D", @"D#", @"E", @"F", @"F#", @"G", @"G#"};
 
-
-int getCodeNo(int oct, int scale){
-    return oct*12 + scale;
-}
-int getScale(int code){
-    int mod = code%12;
-    if (mod < 0) {
-        mod += 12;
-    }
-    return mod;
-}
-int getOct(int code){
-    return code/12;
-}
-int freq2CodeNo(double freq){
-    double rt12 = cbrt(sqrt(sqrt(2.0)));
-    double theCode = (freq/(double)440/rt12);
-    double a = log(theCode)/log(rt12);
-    return round(a)+1;
-}
 
 @implementation ASSoundItem
 @end
@@ -44,20 +24,6 @@ int freq2CodeNo(double freq){
         _sounds = [NSMutableArray arrayWithCapacity:500];
         _sTime = 0.0;
     }
-/*
-    int codeNo;
-    NSString * strCode;
-    codeNo = getScale(freq2CodeNo(440.0));//A >> A
-    strCode = code[codeNo];
-    codeNo = getScale(freq2CodeNo(463.0));//A# >> A#
-    strCode = code[codeNo];
-    codeNo = getScale(freq2CodeNo(496.0));//B >> B
-    strCode = code[codeNo];
-    codeNo = getScale(freq2CodeNo(420.0));//G# >> G#
-    strCode = code[codeNo];
-    codeNo = getScale(freq2CodeNo(390.0));//G >> G
-    strCode = code[codeNo];
- */
     return self;
 }
 
@@ -92,12 +58,10 @@ int freq2CodeNo(double freq){
             int scale = getScale(sound.code);
             int oct = getOct(sound.code);
             if (po < winX/256){
-              [code[scale] drawAtPoint:(NSPoint){ 0 , ((double)scale+ oct*12) / 12.0/8 * winY} withAttributes:attributes];
+              [strCode[scale] drawAtPoint:(NSPoint){ 0 , ((double)scale+ oct*12) / 12.0/8 * winY} withAttributes:attributes];
             }
-            
-            [soundPath moveToPoint:(NSPoint){ po , sound.code / 12.0/8 * winY}];
-            [soundPath lineToPoint:(NSPoint){ po+(winX*_spead.doubleValue/8192) , sound.code / 12.0/8 * winY}];
-//            [soundPath lineToPoint:(NSPoint){ po+(winX*_spead.doubleValue/8192) , (sound.code+sound.size/100.0) / 12.0/8 * winY }];
+            [soundPath moveToPoint:(NSPoint){ po+(winX*_spead.doubleValue/8192)-sound.code*(_spead.doubleValue/4096)  , (sound.code-sound.size/100.0) / 12.0/8 * winY}];
+            [soundPath lineToPoint:(NSPoint){ po+(winX*_spead.doubleValue/8192)-sound.code*(_spead.doubleValue/4096)  , (sound.code+sound.size/100.0) / 12.0/8 * winY }];
             
         }else{
             [_sounds removeObjectAtIndex:i];

@@ -7,6 +7,7 @@
 //
 
 #import "ASFreqView.h"
+#import "Music.h"
 
 @implementation ASFreqView
 
@@ -17,6 +18,12 @@
         // Initialization code here.
         _pBuf = NULL;
         _pCopy = NULL;
+        _pOct = NULL;
+        _A1 = freq2CodeNo(55.0);//Guitar starts from E1 - 82.5Hz
+        _A6 = freq2CodeNo(1760.0);//Guitar Ends B - 1162Hz
+        _fqA1Lb = CodeNo2FreqFloor(_A1);
+        _fqA6Lb = CodeNo2FreqCeil(_A6);
+        
     }
     return self;
 }
@@ -53,8 +60,8 @@
                 _pCopy[_size-i-1] = fabs(_pCopy[_size-i-1]);
             }
             
-//            if(_pCopy[i] > _pCopy[i-1]) _pCopy[i-1] = 0;
-//            if(_pCopy[_size-i] < _pCopy[_size-i-1]) _pCopy[_size-i] = 0;
+            if(1 < i &&_pCopy[i] > _pCopy[i-2]) _pCopy[i-2] = 0;
+            if(1 < i && _pCopy[_size-i+1] < _pCopy[_size-i-1] ) _pCopy[_size-i+1] = 0;
             
             if( max < _pCopy[i]){
                 max = _pCopy[i];
@@ -67,6 +74,16 @@
         
         if (max == 0) max = 1;
         
+        for (int i=0; i<_A6-_A1; i++) {
+            _pOct[i].size = 0.0;
+            _pOct[i].count = 0;
+        }
+        for (int i = [self freq2order:_fqA1Lb]; i < [self freq2order:_fqA6Lb]; i++) {
+            int codeNo = freq2CodeNo([self order2freq:i]);
+            _pOct[codeNo - _A1].size += _pCopy[i];
+            _pOct[codeNo - _A1].count ++;
+        }
+        
         for (int i = 0; i < _size; i++) {
             if(_pCopy[i] > _noise.doubleValue && _pCopy[i] > max/2){
                 [_scaleView size:_pCopy[i] freq:i time:0];
@@ -76,14 +93,16 @@
             _pCopy[i] = _pCopy[i]/max;
         }
         
-        _maxFreqLabel.doubleValue = ((double)maxInex)/_size *_rate /2.0;
+        _maxFreqLabel.doubleValue = ((double)maxInex)/(double)_size*(double)_rate /2.0;
         
         
         CGFloat wPoint;
+        [path moveToPoint:(NSPoint){ 0, 0}];
         for (unsigned long i = 1; i < _size; i++) {
             wPoint = i * w / _size ;
-            [path moveToPoint:(NSPoint){ wPoint, 2}];
-            [path lineToPoint:(NSPoint){ wPoint , _pCopy[i]*h+2}];
+//            [path moveToPoint:(NSPoint){ wPoint, 0}];
+//            if(i%2 == 0)
+              [path lineToPoint:(NSPoint){ wPoint , _pCopy[i]*h}];
             
         }
         _scaleView.needsDisplay = YES;
@@ -92,8 +111,8 @@
 	[path stroke];
     
 	NSBezierPath* noisePath = [NSBezierPath bezierPath];
-    [noisePath moveToPoint:(NSPoint){ 0 , _noise.doubleValue/max*h+2}];
-    [noisePath lineToPoint:(NSPoint){ w , _noise.doubleValue/max*h+2}];
+    [noisePath moveToPoint:(NSPoint){ 0 , _noise.doubleValue/max*h}];
+    [noisePath lineToPoint:(NSPoint){ w , _noise.doubleValue/max*h}];
 	[[NSColor redColor] set];
 	[noisePath stroke];
 }
@@ -103,9 +122,17 @@
     _pBuf = inbuf;
     if (_pCopy != NULL) {
         free(_pCopy);
+        free(_pOct);
     }
     _pCopy = malloc(sizeof(double)*size);
+    _pOct = malloc(sizeof(struct codeChart)*(_A6-_A1));
 
+}
+- (double)order2freq:(int)num{
+    return num*_rate /2.0/_size;
+}
+- (int)freq2order:(double)freq{
+    return freq * 2.0 * _size/ _rate;
 }
 
 

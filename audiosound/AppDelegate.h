@@ -39,6 +39,7 @@ int patestCallback( const void *inputBuffer, void *outputBuffer,
 @property (assign) CFTypeRef pSelf;
 @property (assign) long int size;
 @property (assign) double noiseLv;
+@property (assign) double prvTime;
 
 @property (assign) double *pinBuf;
 @property (assign) double *pWindowed;
@@ -46,6 +47,5 @@ int patestCallback( const void *inputBuffer, void *outputBuffer,
 @property (assign,readwrite) double lastPlayTime;
 
 @property (assign) fftw_plan plan;
-
 
 @end

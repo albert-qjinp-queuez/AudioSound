@@ -9,11 +9,12 @@
 #import <XCTest/XCTest.h>
 #import "../portaudio/include/portaudio.h"
 #import "../portaudio/include/pa_mac_core.h"
-#import "../audiosound/ASEng.h"
+#import "../audiosound/AppDelegate.h"
 
 
 PaError err;
 PaStream *stream;
+paTestData data;
 #define SAMPLE_RATE (44100)
 
 @interface PortAudioBasicFunctions : XCTestCase
@@ -46,8 +47,8 @@ PaStream *stream;
                                             paFramesPerBufferUnspecified, which
                                             tells PortAudio to pick the best,
                                             possibly changing, buffer size.*/
-                               patestCallback2, /* this is your callback function */
-                               &data2 ); /*This is a pointer that will be passed to
+                               patestCallback, /* this is your callback function */
+                               &data ); /*This is a pointer that will be passed to
                                          your callback*/
     if( err != paNoError)
         XCTFail(@"No implementation for \"%d\"", err);

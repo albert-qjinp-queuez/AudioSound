@@ -6,10 +6,28 @@
          contextName = "-[ASFreqView drawRect:]:ASFreqView.m">
          <PersistentStrings>
             <PersistentString
-               value = "hPoint /max*h">
+               value = "_pCopy[i+1]">
             </PersistentString>
             <PersistentString
-               value = "_noise.doubleValue">
+               value = "_pCopy[i-1]">
+            </PersistentString>
+            <PersistentString
+               value = "_pCopy[i+2]">
+            </PersistentString>
+            <PersistentString
+               value = "_pCopy[i-2]">
+            </PersistentString>
+            <PersistentString
+               value = "_pCopy[i+3]">
+            </PersistentString>
+            <PersistentString
+               value = "_pCopy[i-3]">
+            </PersistentString>
+            <PersistentString
+               value = "_pCopy[i]">
+            </PersistentString>
+            <PersistentString
+               value = "_pCopy[i-4]">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -25,12 +43,7 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "-[ASScratchView drawRect:]:ASScratchView.m">
-         <PersistentStrings>
-            <PersistentString
-               value = "((double)scale+ oct*12) / 12.0*8 * winY}">
-            </PersistentString>
-         </PersistentStrings>
+         contextName = "-[ASFreqView push:size:]:ASFreqView.m">
       </ContextState>
       <ContextState
          contextName = "patestCallback:AppDelegate.m">
@@ -82,7 +95,12 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "-[ASFreqView push:size:]:ASFreqView.m">
+         contextName = "-[ASScratchView drawRect:]:ASScratchView.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "((double)scale+ oct*12) / 12.0*8 * winY}">
+            </PersistentString>
+         </PersistentStrings>
       </ContextState>
    </ContextStates>
 </VariablesViewState>

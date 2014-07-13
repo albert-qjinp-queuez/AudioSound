@@ -14,13 +14,16 @@
 		676CE5A319611D78005B816E /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67E54A5F19442369005ADA09 /* AppKit.framework */; };
 		6778CA20194809D300E903E3 /* PortAudioBasicFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6778CA1F194809D300E903E3 /* PortAudioBasicFunctions.m */; };
 		677E7AF4195542B700C30944 /* libfftw3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 677E7AF3195542B700C30944 /* libfftw3.a */; };
-		677E7AF5195542B700C30944 /* libfftw3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 677E7AF3195542B700C30944 /* libfftw3.a */; };
 		677E7AF81955432C00C30944 /* libfftw3.la in Resources */ = {isa = PBXBuildFile; fileRef = 677E7AF71955432C00C30944 /* libfftw3.la */; };
-		677E7AF91955432C00C30944 /* libfftw3.la in Resources */ = {isa = PBXBuildFile; fileRef = 677E7AF71955432C00C30944 /* libfftw3.la */; };
 		677E7AFC195544B400C30944 /* ASFreqView.m in Sources */ = {isa = PBXBuildFile; fileRef = 677E7AFB195544B400C30944 /* ASFreqView.m */; };
 		677E7AFD195544B400C30944 /* ASFreqView.m in Sources */ = {isa = PBXBuildFile; fileRef = 677E7AFB195544B400C30944 /* ASFreqView.m */; };
+		678E18741972583300DECC03 /* TestASFreqView.m in Sources */ = {isa = PBXBuildFile; fileRef = 678E18731972583300DECC03 /* TestASFreqView.m */; };
 		679F1BC61959404D00F1A2E0 /* ASScratchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 679F1BC51959404D00F1A2E0 /* ASScratchView.m */; };
 		679F1BC71959404D00F1A2E0 /* ASScratchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 679F1BC51959404D00F1A2E0 /* ASScratchView.m */; };
+		67D003DB1970F47F00947732 /* Music.c in Sources */ = {isa = PBXBuildFile; fileRef = 67D003DA1970F47F00947732 /* Music.c */; };
+		67D003DC1970F47F00947732 /* Music.c in Sources */ = {isa = PBXBuildFile; fileRef = 67D003DA1970F47F00947732 /* Music.c */; };
+		67D003DF1970FFA900947732 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 67E54A6F19442369005ADA09 /* AppDelegate.m */; };
+		67D003E1197100E200947732 /* musicTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 67D003E0197100E200947732 /* musicTest.m */; };
 		67D65A091946CA5800184374 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67D65A081946CA5800184374 /* CoreAudio.framework */; };
 		67D65A0B1946CA6400184374 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67D65A0A1946CA6400184374 /* AudioToolbox.framework */; };
 		67D65A0D1946CA6D00184374 /* AudioUnit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67D65A0C1946CA6D00184374 /* AudioUnit.framework */; };
@@ -60,8 +63,12 @@
 		677E7AF71955432C00C30944 /* libfftw3.la */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = libfftw3.la; path = ../../../../usr/local/lib/libfftw3.la; sourceTree = "<group>"; };
 		677E7AFA195544B400C30944 /* ASFreqView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASFreqView.h; sourceTree = "<group>"; };
 		677E7AFB195544B400C30944 /* ASFreqView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASFreqView.m; sourceTree = "<group>"; };
+		678E18731972583300DECC03 /* TestASFreqView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestASFreqView.m; path = ../TestASFreqView.m; sourceTree = "<group>"; };
 		679F1BC41959404D00F1A2E0 /* ASScratchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASScratchView.h; sourceTree = "<group>"; };
 		679F1BC51959404D00F1A2E0 /* ASScratchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASScratchView.m; sourceTree = "<group>"; };
+		67D003DA1970F47F00947732 /* Music.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Music.c; sourceTree = "<group>"; };
+		67D003DD1970F49100947732 /* Music.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Music.h; sourceTree = "<group>"; };
+		67D003E0197100E200947732 /* musicTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = musicTest.m; sourceTree = "<group>"; };
 		67D65A081946CA5800184374 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
 		67D65A0A1946CA6400184374 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		67D65A0C1946CA6D00184374 /* AudioUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioUnit.framework; path = System/Library/Frameworks/AudioUnit.framework; sourceTree = SDKROOT; };
@@ -114,7 +121,6 @@
 			files = (
 				67E54A7D19442369005ADA09 /* Cocoa.framework in Frameworks */,
 				67E54A7C19442369005ADA09 /* XCTest.framework in Frameworks */,
-				677E7AF5195542B700C30944 /* libfftw3.a in Frameworks */,
 				6727EE4919454A7D0038132D /* libportaudio.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -182,6 +188,8 @@
 				677E7AFB195544B400C30944 /* ASFreqView.m */,
 				679F1BC41959404D00F1A2E0 /* ASScratchView.h */,
 				679F1BC51959404D00F1A2E0 /* ASScratchView.m */,
+				67D003DD1970F49100947732 /* Music.h */,
+				67D003DA1970F47F00947732 /* Music.c */,
 				67E54A6E19442369005ADA09 /* AppDelegate.h */,
 				67E54A6F19442369005ADA09 /* AppDelegate.m */,
 				67E54A7119442369005ADA09 /* MainMenu.xib */,
@@ -206,7 +214,9 @@
 		67E54A8019442369005ADA09 /* audiosoundTests */ = {
 			isa = PBXGroup;
 			children = (
+				678E18731972583300DECC03 /* TestASFreqView.m */,
 				67E54A8619442369005ADA09 /* audiosoundTests.m */,
+				67D003E0197100E200947732 /* musicTest.m */,
 				6778CA1F194809D300E903E3 /* PortAudioBasicFunctions.m */,
 				67E54A8119442369005ADA09 /* Supporting Files */,
 			);
@@ -311,7 +321,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				67E54A8519442369005ADA09 /* InfoPlist.strings in Resources */,
-				677E7AF91955432C00C30944 /* libfftw3.la in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -325,6 +334,7 @@
 				677E7AFC195544B400C30944 /* ASFreqView.m in Sources */,
 				679F1BC61959404D00F1A2E0 /* ASScratchView.m in Sources */,
 				676724A3194D3D3C005AAAAB /* ASVibrationView.m in Sources */,
+				67D003DB1970F47F00947732 /* Music.c in Sources */,
 				67E54A7019442369005ADA09 /* AppDelegate.m in Sources */,
 				67E54A6919442369005ADA09 /* main.m in Sources */,
 			);
@@ -334,9 +344,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				678E18741972583300DECC03 /* TestASFreqView.m in Sources */,
+				67D003DF1970FFA900947732 /* AppDelegate.m in Sources */,
 				677E7AFD195544B400C30944 /* ASFreqView.m in Sources */,
+				67D003DC1970F47F00947732 /* Music.c in Sources */,
 				679F1BC71959404D00F1A2E0 /* ASScratchView.m in Sources */,
 				6778CA20194809D300E903E3 /* PortAudioBasicFunctions.m in Sources */,
+				67D003E1197100E200947732 /* musicTest.m in Sources */,
 				67E54A8719442369005ADA09 /* audiosoundTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -498,6 +512,7 @@
 		67E54A8E19442369005ADA09 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/audiosound.app/Contents/MacOS/audiosound";
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -524,6 +539,7 @@
 		67E54A8F19442369005ADA09 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/audiosound.app/Contents/MacOS/audiosound";
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (

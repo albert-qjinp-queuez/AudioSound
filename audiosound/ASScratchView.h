@@ -8,7 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 #import <AppKit/AppKit.h>
-
+#import "Music.h"
 
 @interface ASSoundItem : NSObject
 @property (assign) double time;
