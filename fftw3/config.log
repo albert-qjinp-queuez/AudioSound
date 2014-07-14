@@ -30,8 +30,8 @@ Kernel configured for up to 2 processors.
 Processor type: i486 (Intel 80486)
 Processors active: 0 1
 Primary memory available: 4.00 gigabytes
-Default processor set: 159 tasks, 640 threads, 2 processors
-Load average: 1.69, Mach factor: 0.83
+Default processor set: 176 tasks, 988 threads, 2 processors
+Load average: 1.12, Mach factor: 0.87
 /bin/machine           = unknown
 /usr/bin/oslevel       = unknown
 /bin/universe          = unknown
@@ -1665,7 +1665,7 @@ configure:15239: checking for _doprnt
 configure:15239: gcc -o conftest -O3 -fomit-frame-pointer -mtune=native -fstrict-aliasing -fno-schedule-insns -ffast-math   conftest.c  >&5
 Undefined symbols for architecture x86_64:
   "__doprnt", referenced from:
-      _main in conftest-1f285d.o
+      _main in conftest-94b7b4.o
 ld: symbol(s) not found for architecture x86_64
 clang: error: linker command failed with exit code 1 (use -v to see invocation)
 configure:15239: $? = 1
@@ -1773,7 +1773,7 @@ configure:15389: checking for BSDgettimeofday
 configure:15389: gcc -o conftest -O3 -fomit-frame-pointer -mtune=native -fstrict-aliasing -fno-schedule-insns -ffast-math   conftest.c -lm  >&5
 Undefined symbols for architecture x86_64:
   "_BSDgettimeofday", referenced from:
-      _main in conftest-6e9b95.o
+      _main in conftest-4adb22.o
 ld: symbol(s) not found for architecture x86_64
 clang: error: linker command failed with exit code 1 (use -v to see invocation)
 configure:15389: $? = 1
@@ -1877,7 +1877,7 @@ configure:15389: checking for gethrtime
 configure:15389: gcc -o conftest -O3 -fomit-frame-pointer -mtune=native -fstrict-aliasing -fno-schedule-insns -ffast-math   conftest.c -lm  >&5
 Undefined symbols for architecture x86_64:
   "_gethrtime", referenced from:
-      _main in conftest-451918.o
+      _main in conftest-8e3e89.o
 ld: symbol(s) not found for architecture x86_64
 clang: error: linker command failed with exit code 1 (use -v to see invocation)
 configure:15389: $? = 1
@@ -1978,7 +1978,7 @@ configure:15389: checking for read_real_time
 configure:15389: gcc -o conftest -O3 -fomit-frame-pointer -mtune=native -fstrict-aliasing -fno-schedule-insns -ffast-math   conftest.c -lm  >&5
 Undefined symbols for architecture x86_64:
   "_read_real_time", referenced from:
-      _main in conftest-57c19c.o
+      _main in conftest-6a05da.o
 ld: symbol(s) not found for architecture x86_64
 clang: error: linker command failed with exit code 1 (use -v to see invocation)
 configure:15389: $? = 1
@@ -2079,7 +2079,7 @@ configure:15389: checking for time_base_to_time
 configure:15389: gcc -o conftest -O3 -fomit-frame-pointer -mtune=native -fstrict-aliasing -fno-schedule-insns -ffast-math   conftest.c -lm  >&5
 Undefined symbols for architecture x86_64:
   "_time_base_to_time", referenced from:
-      _main in conftest-6ccedb.o
+      _main in conftest-268356.o
 ld: symbol(s) not found for architecture x86_64
 clang: error: linker command failed with exit code 1 (use -v to see invocation)
 configure:15389: $? = 1
@@ -2206,7 +2206,7 @@ configure:15389: checking for memalign
 configure:15389: gcc -o conftest -O3 -fomit-frame-pointer -mtune=native -fstrict-aliasing -fno-schedule-insns -ffast-math   conftest.c -lm  >&5
 Undefined symbols for architecture x86_64:
   "_memalign", referenced from:
-      _main in conftest-ec841f.o
+      _main in conftest-f00dcb.o
 ld: symbol(s) not found for architecture x86_64
 clang: error: linker command failed with exit code 1 (use -v to see invocation)
 configure:15389: $? = 1
@@ -2311,7 +2311,7 @@ configure:15389: checking for _mm_malloc
 configure:15389: gcc -o conftest -O3 -fomit-frame-pointer -mtune=native -fstrict-aliasing -fno-schedule-insns -ffast-math   conftest.c -lm  >&5
 Undefined symbols for architecture x86_64:
   "__mm_malloc", referenced from:
-      _main in conftest-6e842a.o
+      _main in conftest-bb8580.o
 ld: symbol(s) not found for architecture x86_64
 clang: error: linker command failed with exit code 1 (use -v to see invocation)
 configure:15389: $? = 1
@@ -2416,7 +2416,7 @@ configure:15389: checking for _mm_free
 configure:15389: gcc -o conftest -O3 -fomit-frame-pointer -mtune=native -fstrict-aliasing -fno-schedule-insns -ffast-math   conftest.c -lm  >&5
 Undefined symbols for architecture x86_64:
   "__mm_free", referenced from:
-      _main in conftest-b3e307.o
+      _main in conftest-2b1d30.o
 ld: symbol(s) not found for architecture x86_64
 clang: error: linker command failed with exit code 1 (use -v to see invocation)
 configure:15389: $? = 1
@@ -2521,7 +2521,7 @@ configure:15389: checking for clock_gettime
 configure:15389: gcc -o conftest -O3 -fomit-frame-pointer -mtune=native -fstrict-aliasing -fno-schedule-insns -ffast-math   conftest.c -lm  >&5
 Undefined symbols for architecture x86_64:
   "_clock_gettime", referenced from:
-      _main in conftest-ee4f5b.o
+      _main in conftest-070d85.o
 ld: symbol(s) not found for architecture x86_64
 clang: error: linker command failed with exit code 1 (use -v to see invocation)
 configure:15389: $? = 1
@@ -2970,7 +2970,7 @@ _rtc()
 1 warning generated.
 Undefined symbols for architecture x86_64:
   "__rtc", referenced from:
-      _main in conftest-b33fa8.o
+      _main in conftest-e43f9a.o
 ld: symbol(s) not found for architecture x86_64
 clang: error: linker command failed with exit code 1 (use -v to see invocation)
 configure:15505: $? = 1
@@ -3299,6 +3299,7 @@ config.status:1266: creating tools/fftw-wisdom-to-conf
 config.status:1266: creating m4/Makefile
 config.status:1266: creating fftw.pc
 config.status:1266: creating config.h
+config.status:1447: config.h is unchanged
 config.status:1495: executing depfiles commands
 config.status:1495: executing libtool commands
 

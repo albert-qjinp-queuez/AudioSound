@@ -6,28 +6,19 @@
          contextName = "-[ASFreqView drawRect:]:ASFreqView.m">
          <PersistentStrings>
             <PersistentString
-               value = "_pCopy[i+1]">
+               value = "_pCode[i-_A1].size/cdMax">
             </PersistentString>
             <PersistentString
-               value = "_pCopy[i-1]">
+               value = "_pCode[i-_A1].size">
             </PersistentString>
             <PersistentString
-               value = "_pCopy[i+2]">
+               value = "CodeNo2FreqRound(i)">
             </PersistentString>
             <PersistentString
-               value = "_pCopy[i-2]">
+               value = "wPoint">
             </PersistentString>
             <PersistentString
-               value = "_pCopy[i+3]">
-            </PersistentString>
-            <PersistentString
-               value = "_pCopy[i-3]">
-            </PersistentString>
-            <PersistentString
-               value = "_pCopy[i]">
-            </PersistentString>
-            <PersistentString
-               value = "_pCopy[i-4]">
+               value = "[self freq2order: CodeNo2FreqRound(i)]">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

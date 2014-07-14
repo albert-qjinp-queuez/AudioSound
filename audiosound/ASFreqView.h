@@ -18,7 +18,7 @@ struct codeChart {
 
 @property (assign) double *pBuf;
 @property (assign) double *pCopy;
-@property (assign) struct codeChart *pOct;
+@property (assign) struct codeChart *pCode;
 @property (assign) long int size;
 @property (assign) long int rate;
 
