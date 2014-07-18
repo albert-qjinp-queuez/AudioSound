@@ -68,6 +68,16 @@ int patestCallback( const void *inputBuffer, void *outputBuffer,
         app.pWindowed[n] *= 0.5*(1-cos( 2*M_PI*n/(BUF_SIZE-1)) ); // Hann windowing
         app.pWindowed[n] *= exp(-0.007*fabs(n-(BUF_SIZE-1)/2));//poisson window
     }
+    //my own transform
+    double cossum = 0, sinsum = 0, absolute;
+    for ( n=0; n < SAMPLE_SIZE*4; n++) {
+        double fx = app.pWindowed[BUF_SIZE/2+n];
+        double sinenwt = sin(880*M_PI/8192*n);
+        double cosinenwt = cos(880*M_PI/8192*n);
+        sinsum += fx*sinenwt;
+        cossum += fx*cosinenwt;
+    }
+    absolute = sqrt(sinsum*sinsum + cossum*cossum);
     
     fftw_execute(app.plan);
     app.prvTime = timeInfo->inputBufferAdcTime;

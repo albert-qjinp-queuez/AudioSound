@@ -12,8 +12,26 @@
 static NSString* strCode[] = {@"A", @"A#", @"B", @"C", @"C#", @"D", @"D#", @"E", @"F", @"F#", @"G", @"G#"};
 
 
-@implementation ASSoundItem
+
+@implementation ASChartTime
+-(id) initWithCodePower:(struct codePower*)pCode size:(int)size time:(double)time{
+    self = [super init];
+    if (self) {
+        _time = time;
+        _size = size;
+        _codes = malloc(sizeof(double)*_size);
+        for (int i = 0; i<_size; i++) {
+            _codes[i] = pCode[i].size;
+        }
+    }
+    return self;
+}
+- (void)dealloc {
+    free(_codes);
+}
+
 @end
+
 @implementation ASScratchView
 
 - (id)initWithFrame:(NSRect)frame
@@ -21,7 +39,7 @@ static NSString* strCode[] = {@"A", @"A#", @"B", @"C", @"C#", @"D", @"D#", @"E",
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code here.
-        _sounds = [NSMutableArray arrayWithCapacity:500];
+        _sounds = [[NSMutableArray alloc]init];
         _sTime = 0.0;
     }
     return self;
@@ -42,27 +60,29 @@ static NSString* strCode[] = {@"A", @"A#", @"B", @"C", @"C#", @"D", @"D#", @"E",
     
     
 //    lpTime - _sTime
-    
-    
-    NSDictionary *attributes
-    = @{NSFontAttributeName:
-            [NSFont fontWithName:@"Verdana" size:11]};
-    ASSoundItem * sound;
+    NSDictionary *attributes = @{NSFontAttributeName: [NSFont fontWithName:@"Verdana" size:11]};
     
     NSBezierPath* soundPath = [NSBezierPath bezierPath];
     
     for (int i=0; i<_sounds.count; i++) {
-        sound = [_sounds objectAtIndex:i];
-        double po = (lpTime - sound.time)*_spead.doubleValue ;
+        ASChartTime * sound = [_sounds objectAtIndex:i];
+        double po = (lpTime - sound.time)*_speed.doubleValue ;
+        
         if ( po < winX) {
-            int scale = getScale(sound.code);
-            int oct = getOct(sound.code);
-            if (po < winX/256){
-              [strCode[scale] drawAtPoint:(NSPoint){ 0 , ((double)scale+ oct*12) / 12.0/8 * winY} withAttributes:attributes];
+            for (int j=0; j<sound.size; j++) { // scaled from j = 0, A1 - 55.0Hz for each
+                
+                
+                [soundPath
+                 moveToPoint:(NSPoint){
+                     po+(winX*_speed.doubleValue/8192)-(winX*_speed.doubleValue*j/1024/128)
+                     , (j-sound.codes[j]/50.0) / sound.size * winY
+                 }];
+                [soundPath
+                 lineToPoint:(NSPoint){
+                     po+(winX*_speed.doubleValue/8192)-(winX*_speed.doubleValue*j/1024/128)
+                     , (j+sound.codes[j]/50.0) / sound.size * winY
+                 }];
             }
-            [soundPath moveToPoint:(NSPoint){ po+(winX*_spead.doubleValue/8192)-sound.code*(_spead.doubleValue/4096)  , (sound.code-sound.size/100.0) / 12.0/8 * winY}];
-            [soundPath lineToPoint:(NSPoint){ po+(winX*_spead.doubleValue/8192)-sound.code*(_spead.doubleValue/4096)  , (sound.code+sound.size/100.0) / 12.0/8 * winY }];
-            
         }else{
             [_sounds removeObjectAtIndex:i];
             i--;
@@ -72,19 +92,15 @@ static NSString* strCode[] = {@"A", @"A#", @"B", @"C", @"C#", @"D", @"D#", @"E",
     [soundPath stroke];
 }
 
-- (void)size:(double)size freq:(double)freq time:(double)time {
+
+- (void)code:(struct codePower*)pCode size:(int)size{
     AppDelegate * a = _app;
     double lpTime = a.lastPlayTime;
     if (_sTime == 0) {
         _sTime = lpTime;
     }
-
-    int codeNo = freq2CodeNo(freq);
-    ASSoundItem * item = [[ASSoundItem alloc]init];
-    item.time = lpTime;
-    item.code = codeNo;
-    item.size = size;
-    [_sounds addObject:item];
+    ASChartTime * chart = [[ASChartTime alloc]initWithCodePower:pCode size:size time:lpTime];
+    [_sounds addObject:chart];
 }
 
 

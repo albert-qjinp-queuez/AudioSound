@@ -20,9 +20,9 @@
         _pCopy = NULL;
         _pCode = NULL;
         _A1 = freq2CodeNo(55.0);//Guitar starts from E1 - 82.5Hz
-        _A6 = freq2CodeNo(1760.0);//Guitar Ends B - 1162Hz
+//        _A6 = freq2CodeNo(1760.0);//Guitar Ends B - 1162Hz
         _fqA1Lb = CodeNo2FreqCeil(_A1);
-        _fqA6Lb = CodeNo2FreqFloor(_A6);
+//        _fqA6Lb = CodeNo2FreqFloor(_A6);
         
     }
     return self;
@@ -77,20 +77,23 @@
         }
         
         //Summery of Code
-        for (int i=0; i<_A6-_A1; i++) {
+        for (int i=0; i<_LastCode-_A1; i++) {
             _pCode[i].size = 0.0;
             _pCode[i].count = 0;
         }
         
-        for (int i = [self freq2order:_fqA1Lb]; i < [self freq2order:_fqA6Lb]; i++) {
+        for (int i = [self freq2order:_fqA1Lb]; i < _size; i++) {
             int codeNo = freq2CodeNo([self order2freq:i]);
-            _pCode[codeNo - _A1].size = (_pCode[codeNo - _A1].size*_pCode[codeNo - _A1].count + _pCopy[i])/(_pCode[codeNo - _A1].count + 1);
-            
+            _pCode[codeNo - _A1].size +=  _pCopy[i];
             _pCode[codeNo - _A1].count ++;
-            if (cdMax < _pCode[codeNo - _A1].size){
-                cdMax  = _pCode[codeNo - _A1].size;
-            }
         }
+        
+        for (int i=0; i<_LastCode-_A1; i++) {
+            if (_pCode[i].count == 0) _pCode[i].count = 1;
+            _pCode[i].size = _pCode[i].size/_pCode[i].count;
+            if (cdMax < _pCode[i].size) cdMax  = _pCode[i].size;
+        }
+        [_scaleView code:_pCode size:_LastCode-_A1];
         
         //mak total avaerage
         if (_size != 0) sum = sum/_size;
@@ -100,16 +103,10 @@
         if (cdMax == 0) cdMax = 1;
         
         for (int i = 0; i < _size; i++) {
-            if(_pCopy[i] > _noise.doubleValue && _pCopy[i] > fqMax/2){
-//                [_scaleView size:_pCopy[i] freq:i time:0];
-            }else{
-//                _pCopy[i] = 0;
-            }
             _pCopy[i] = _pCopy[i]/fqMax;
         }
         
         _maxFreqLabel.doubleValue = ((double)maxInex)/(double)_size*(double)_rate /2.0;
-        
         
         CGFloat wPoint;
         
@@ -128,7 +125,7 @@
         //code scale view
         NSBezierPath* codePath = [NSBezierPath bezierPath];
         [[NSColor blueColor] set];
-        for (int i=_A1; i<_A6; i++) {
+        for (int i=_A1; i < _LastCode; i++) {
             wPoint = [self freq2order: CodeNo2FreqRound(i)]*w/_size;
             [codePath moveToPoint:(NSPoint){ wPoint , 0}];
             [codePath lineToPoint:(NSPoint){ wPoint , _pCode[i-_A1].size*h/cdMax}];
@@ -152,9 +149,17 @@
         free(_pCopy);
         free(_pCode);
     }
+    
+    _LastCode =  freq2CodeNo([self order2freq:(int) _size-1]);
     _pCopy = malloc(sizeof(double)*size);
-    _pCode = malloc(sizeof(struct codeChart)*(_A6-_A1));
+    _pCode = malloc(sizeof(struct codePower)*(_LastCode-_A1));
 
+}
+-(void) dealloc {
+    if (_pCopy != NULL) {
+        free(_pCopy);
+        free(_pCode);
+    }
 }
 - (double)order2freq:(int)num{
     return num*_rate /2.0/_size;

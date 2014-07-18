@@ -6,19 +6,7 @@
          contextName = "-[ASFreqView drawRect:]:ASFreqView.m">
          <PersistentStrings>
             <PersistentString
-               value = "_pCode[i-_A1].size/cdMax">
-            </PersistentString>
-            <PersistentString
-               value = "_pCode[i-_A1].size">
-            </PersistentString>
-            <PersistentString
-               value = "CodeNo2FreqRound(i)">
-            </PersistentString>
-            <PersistentString
-               value = "wPoint">
-            </PersistentString>
-            <PersistentString
-               value = "[self freq2order: CodeNo2FreqRound(i)]">
+               value = "_pCode[i].count">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -40,40 +28,7 @@
          contextName = "patestCallback:AppDelegate.m">
          <PersistentStrings>
             <PersistentString
-               value = "app.pData[0]">
-            </PersistentString>
-            <PersistentString
-               value = "app.pData[2]">
-            </PersistentString>
-            <PersistentString
-               value = "app.pData[4]">
-            </PersistentString>
-            <PersistentString
-               value = "app.pData[6]">
-            </PersistentString>
-            <PersistentString
-               value = "app.pData[8]">
-            </PersistentString>
-            <PersistentString
-               value = "app.pData[11]">
-            </PersistentString>
-            <PersistentString
-               value = "app.pData[10]">
-            </PersistentString>
-            <PersistentString
-               value = "app.pData[1]">
-            </PersistentString>
-            <PersistentString
-               value = "app.pData[3]">
-            </PersistentString>
-            <PersistentString
-               value = "app.pData[5]">
-            </PersistentString>
-            <PersistentString
-               value = "app.pData[7]">
-            </PersistentString>
-            <PersistentString
-               value = "app.pData[9]">
+               value = "880*M_PI/8192*n">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

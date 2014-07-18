@@ -10,21 +10,20 @@
 #import <AppKit/AppKit.h>
 #import "Music.h"
 
-@interface ASSoundItem : NSObject
-@property (assign) double time;
-@property (assign) int code;
-@property (assign) double size;
 
+@interface ASChartTime : NSObject
+@property (assign) double time;
+@property (assign) double* codes;
+@property (assign) int size;
 @end
 
 @interface ASScratchView : NSView
 
 @property (assign) IBOutlet id app;
-@property (assign) IBOutlet NSSlider* spead;
+@property (assign) IBOutlet NSSlider* speed;
 @property (retain) NSMutableArray * sounds;
 @property (assign) double sTime;
 
-- (void)size:(double)size freq:(double)freq time:(double)time;
-
+- (void)code:(struct codePower*)_pCode size:(int)size;
 
 @end

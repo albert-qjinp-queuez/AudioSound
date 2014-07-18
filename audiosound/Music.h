@@ -9,6 +9,11 @@
 #ifndef audiosound_Music_h
 #define audiosound_Music_h
 
+struct codePower {
+    double size;
+    int count;
+};
+
 int getCodeNo(int oct, int scale);
 int getScale(int code);
 int getOct(int code);
