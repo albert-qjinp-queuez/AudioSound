@@ -55,12 +55,14 @@
     
     if (_pCopy != NULL) {
         //copy freq data
-        memcpy(_pCopy, _pBuf, sizeof(double)*_size);
+        //memcpy(_pCopy, _pBuf, sizeof(double)*_size);
         
         //absoluting
         for (int i = 0; i < _size; i++) {
-            _pCopy[i] = fabs(_pCopy[i]);
-            _pCopy[_size-i-1] = fabs(_pCopy[_size-i-1]);
+            _pCopy[i] =  sqrt(_pBuf[i][0]*_pBuf[i][0]+_pBuf[i][1]*_pBuf[i][1]);
+//            _pCopy[i] = fabs(_pBuf[i][0]);
+//            _pCopy[_size-i-1] = fabs(_pBuf[_size-i-1][0]);
+            
         }
         for (int i = 1; i < _size; i++) {
             //Flatting non top items.
@@ -82,10 +84,12 @@
             _pCode[i].count = 0;
         }
         
-        for (int i = [self freq2order:_fqA1Lb]; i < _size; i++) {
-            int codeNo = freq2CodeNo([self order2freq:i]);
-            _pCode[codeNo - _A1].size +=  _pCopy[i];
-            _pCode[codeNo - _A1].count ++;
+        for (int i = freq2order(_fqA1Lb); i < _size; i++) {
+            if (_pCopy[i] != 0.0) {
+                int codeNo = freq2CodeNo( order2freq(i));
+                _pCode[codeNo - _A1].size +=  _pCopy[i];
+                _pCode[codeNo - _A1].count ++;
+            }
         }
         
         for (int i=0; i<_LastCode-_A1; i++) {
@@ -126,7 +130,7 @@
         NSBezierPath* codePath = [NSBezierPath bezierPath];
         [[NSColor blueColor] set];
         for (int i=_A1; i < _LastCode; i++) {
-            wPoint = [self freq2order: CodeNo2FreqRound(i)]*w/_size;
+            wPoint = freq2order(CodeNo2FreqRound(i))*w/_size;
             [codePath moveToPoint:(NSPoint){ wPoint , 0}];
             [codePath lineToPoint:(NSPoint){ wPoint , _pCode[i-_A1].size*h/cdMax}];
         }
@@ -141,7 +145,7 @@
     [[NSColor redColor] set];
     [noisePath stroke];
 }
--(void)setBuffer:(double*)inbuf size:(long int)size rate:(long int)rate{
+-(void)setBuffer:(fftw_complex*)inbuf size:(long int)size rate:(long int)rate{
     _size = size;
     _rate = rate;
     _pBuf = inbuf;
@@ -150,7 +154,7 @@
         free(_pCode);
     }
     
-    _LastCode =  freq2CodeNo([self order2freq:(int) _size-1]);
+    _LastCode =  freq2CodeNo(order2freq((int) _size-1) );
     _pCopy = malloc(sizeof(double)*size);
     _pCode = malloc(sizeof(struct codePower)*(_LastCode-_A1));
 
@@ -160,12 +164,6 @@
         free(_pCopy);
         free(_pCode);
     }
-}
-- (double)order2freq:(int)num{
-    return num*_rate /2.0/_size;
-}
-- (int)freq2order:(double)freq{
-    return freq * 2.0 * _size/ _rate;
 }
 
 

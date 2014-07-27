@@ -39,23 +39,23 @@ ASFreqView * fqView;
 
 - (void)testExample
 {
-    XCTAssertTrue(true ,@"%d",[fqView freq2order:fqView.fqA1Lb]);
-    XCTAssertTrue(true ,@"%d",[fqView freq2order:fqView.fqA6Lb]);
+//    XCTAssertTrue(true ,@"%d",[fqView freq2order:fqView.fqA1Lb]);
+//    XCTAssertTrue(true ,@"%d",[fqView freq2order:fqView.fqA6Lb]);
     
     
 }
 - (void)testLoop{
     BOOL run = false;
-    for (int i = [fqView freq2order:fqView.fqA1Lb]; i < [fqView freq2order:fqView.fqA6Lb]; i++) {
+//    for (int i = [fqView freq2order:fqView.fqA1Lb]; i < [fqView freq2order:fqView.fqA6Lb]; i++) {
         run = true;
-        XCTAssertTrue( 0 < i, @"outBound %d", i);
+//        XCTAssertTrue( 0 < i, @"outBound %d", i);
         
-        int codeNo = freq2CodeNo([fqView order2freq:i]);
-        XCTAssertTrue( 0 <= codeNo- fqView.A1 , @"outBound %d %d %d", codeNo, codeNo- fqView.A1, i);
-        XCTAssertTrue( codeNo- fqView.A1 < fqView.A6 -fqView.A1, @"outBound %d %d %d", i, codeNo, fqView.A6);
-        fqView.pCode[codeNo - fqView.A1].size += fqView.pCode[i].size;
-    }
-    XCTAssertTrue(run);
+//        int codeNo = freq2CodeNo([fqView order2freq:i]);
+//        XCTAssertTrue( 0 <= codeNo- fqView.A1 , @"outBound %d %d %d", codeNo, codeNo- fqView.A1, i);
+//        XCTAssertTrue( codeNo- fqView.A1 < fqView.A6 -fqView.A1, @"outBound %d %d %d", i, codeNo, fqView.A6);
+//        fqView.pCode[codeNo - fqView.A1].size += fqView.pCode[i].size;
+//    }
+//    XCTAssertTrue(run);
 }
 
 @end

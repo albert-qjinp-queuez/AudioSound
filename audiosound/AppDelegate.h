@@ -10,6 +10,8 @@
 #import "portaudio.h"
 #import "pa_mac_core.h"
 #include "fftw3.h"
+#import "Music.h"
+ 
 #import "ASVibrationView.h"
 #import "ASFreqView.h"
 #import "ASScratchView.h"
@@ -43,9 +45,10 @@ int patestCallback( const void *inputBuffer, void *outputBuffer,
 
 @property (assign) double *pinBuf;
 @property (assign) double *pWindowed;
-@property (assign) double *pFreq;
+@property (assign) fftw_complex *pFreq;
 @property (assign,readwrite) double lastPlayTime;
 
 @property (assign) fftw_plan plan;
-
+-(void)getPowerOfOrder:(int)order;
+-(void)get3PowerOfCodeNo:(int)code;
 @end

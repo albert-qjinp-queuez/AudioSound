@@ -8,11 +8,12 @@
 
 #import <Cocoa/Cocoa.h>
 #import "ASScratchView.h"
+#include "fftw3.h"
 
 
 @interface ASFreqView : NSView
 
-@property (assign) double *pBuf;
+@property (assign) fftw_complex *pBuf;
 @property (assign) double *pCopy;
 @property (assign) struct codePower *pCode;
 @property (assign) long int size;
@@ -29,8 +30,6 @@
 @property (assign) IBOutlet ASScratchView* scaleView;
 
 
--(void)setBuffer:(double*)inbuf size:(long int)size rate:(long int)rate;
-- (double)order2freq:(int)num;
-- (int)freq2order:(double)freq;
+-(void)setBuffer:(fftw_complex*)inbuf size:(long int)size rate:(long int)rate;
 
 @end

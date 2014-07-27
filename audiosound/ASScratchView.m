@@ -60,7 +60,7 @@ static NSString* strCode[] = {@"A", @"A#", @"B", @"C", @"C#", @"D", @"D#", @"E",
     
     
 //    lpTime - _sTime
-    NSDictionary *attributes = @{NSFontAttributeName: [NSFont fontWithName:@"Verdana" size:11]};
+//    NSDictionary *attributes = @{NSFontAttributeName: [NSFont fontWithName:@"Verdana" size:11]};
     
     NSBezierPath* soundPath = [NSBezierPath bezierPath];
     

@@ -8,9 +8,6 @@
 
 #import "AppDelegate.h"
 
-#define SAMPLE_RATE (8192)
-#define SAMPLE_SIZE (256)
-#define BUF_SIZE    (16384)
 
 /* This routine will be called by the PortAudio engine when audio is needed.
  It may called at interrupt level on some machines so don't do anything
@@ -26,7 +23,6 @@ int patestCallback( const void *inputBuffer, void *outputBuffer,
     AppDelegate* app = (__bridge AppDelegate *)userData;
     float *in = (float*)inputBuffer;
     
-    unsigned flag = FFTW_MEASURE;
     [app.vibView setNeedsDisplay:YES];
     [app.frView setNeedsDisplay:YES];
     app.lastPlayTime = timeInfo->inputBufferAdcTime;
@@ -41,48 +37,48 @@ int patestCallback( const void *inputBuffer, void *outputBuffer,
     }
     if (app.pinBuf == NULL){
         app.pinBuf = malloc(sizeof(double)*BUF_SIZE);
-        app.pFreq = malloc(sizeof(double)*BUF_SIZE);
+        app.pFreq = malloc(sizeof(fftw_complex)*BUF_SIZE);
         app.pWindowed = malloc(sizeof(double)*BUF_SIZE);
 
         app.size = framesPerBuffer;
-        app.plan = fftw_plan_r2r_1d(BUF_SIZE, app.pWindowed, app.pFreq, FFTW_REDFT00 , flag);
-        [app.vibView setBuffer:(app.pWindowed) size:BUF_SIZE];
+//        unsigned flag = FFTW_MEASURE;
+//        app.plan = fftw_plan_dft_r2c_1d((int)BUF_SIZE, app.pWindowed, app.pFreq , flag);
+//        app.plan = fftw_plan_r2r_1d(BUF_SIZE, app.pWindowed, app.pFreq, FFTW_REDFT00 , flag);
+        [app.vibView setBuffer:(app.pinBuf) size:BUF_SIZE];
         [app.frView setBuffer:app.pFreq size:BUF_SIZE rate:SAMPLE_RATE ];
     }
     
     long int n;
-    for( n=0 ; n < BUF_SIZE/2; n++){
+    for( n=0 ; n < BUF_SIZE-framesPerBuffer; n++){
         //shifting the data from the past to bothside
-        app.pinBuf[n] = app.pinBuf[n+framesPerBuffer];
-        app.pinBuf[BUF_SIZE-n-1] = app.pinBuf[BUF_SIZE-n-framesPerBuffer-1];
+        app.pinBuf[BUF_SIZE-1-n] = app.pinBuf[BUF_SIZE-framesPerBuffer-1-n];
     }
     //new signal generated from the middle :)
     for (n=0; n<framesPerBuffer; n++) {
-        app.pinBuf[BUF_SIZE/2+framesPerBuffer-n-1] = (double)in[n];
-        app.pinBuf[BUF_SIZE/2-framesPerBuffer+n+1] = (double)in[n];
+        app.pinBuf[framesPerBuffer-n] = (double)in[n];
     }
     
-    
-    for (n=0; n<BUF_SIZE; n++) {
-        app.pWindowed[n] = app.pinBuf[n];
-        app.pWindowed[n] *= 0.5*(1-cos( 2*M_PI*n/(BUF_SIZE-1)) ); // Hann windowing
-        app.pWindowed[n] *= exp(-0.007*fabs(n-(BUF_SIZE-1)/2));//poisson window
-    }
+
+//    for (n=0; n<BUF_SIZE; n++) {
+//        app.pWindowed[n] = app.pinBuf[n];
+//        app.pWindowed[n] *= 0.5*(1-sin( M_PI*n/(BUF_SIZE-1)/2) ); // Hann windowing
+//        app.pWindowed[n] *= exp(-0.007*fabs(n));//poisson window
+//    }
+
+//    fftw_execute(app.plan);
+
     //my own transform
-    double cossum = 0, sinsum = 0, absolute;
-    for ( n=0; n < SAMPLE_SIZE*4; n++) {
-        double fx = app.pWindowed[BUF_SIZE/2+n];
-        double sinenwt = sin(880*M_PI/8192*n);
-        double cosinenwt = cos(880*M_PI/8192*n);
-        sinsum += fx*sinenwt;
-        cossum += fx*cosinenwt;
-    }
-    absolute = sqrt(sinsum*sinsum + cossum*cossum);
     
-    fftw_execute(app.plan);
+    int firstCode = freq2CodeNo(55.0);
+    int lastCode = order2CodeNo((int)BUF_SIZE);
+    
+    for (int k=firstCode; k<lastCode; k++) {
+        [app get3PowerOfCodeNo:k];
+    }
     app.prvTime = timeInfo->inputBufferAdcTime;
     return 0;
 }
+
 
 @implementation AppDelegate
 
@@ -113,11 +109,43 @@ int patestCallback( const void *inputBuffer, void *outputBuffer,
     
     _err = Pa_StartStream( _stream );
 
-    
     /* Sleep for several seconds. */
     //    Pa_Sleep(15*1000);
     
 
+}
+-(void)get3PowerOfCodeNo:(int)code{
+    int order;
+    order = codeNo2OrderLower(code);
+    [self getPowerOfOrder:order];
+    order = codeNo2OrderRound(code);
+    [self getPowerOfOrder:order];
+    order = codeNo2OrderHigher(code);
+    [self getPowerOfOrder:order];
+
+}
+-(void)getPowerOfOrder:(int)order{
+    int div = 4; // this number is the key of speed!!!
+    double cossum = 0;
+    double sinsum = 0;
+//    double fx, cosnwt, sinnwt;
+    int scale = div - div*order/BUF_SIZE;
+    int n2;
+    
+    for (int n=0; n < BUF_SIZE/order*64 && n < BUF_SIZE; n+= scale) {
+//    for (int n=0; n < BUF_SIZE*scale/div; n+= scale) {
+//        fx = _pWindowed[n];
+//        cosnwt = cos(M_PI*order/BUF_SIZE*n);
+//        sinnwt = sin(M_PI*order/BUF_SIZE*n);
+//        cossum += fx*cosnwt;
+//        sinsum -= fx*sinnwt;
+        n2 = n+rand()%scale;
+        cossum += _pinBuf[n2]*cos(M_PI*order/BUF_SIZE*n2)*0.5*(1-sin( M_PI*n/(BUF_SIZE/order*64-1)/2) );
+        sinsum -= _pinBuf[n2]*sin(M_PI*order/BUF_SIZE*n2)*0.5*(1-sin( M_PI*n/(BUF_SIZE/order*64-1)/2) );
+    }
+    
+    _pFreq[order][0] = cossum/log(BUF_SIZE/order*64)/log(BUF_SIZE/order*64);
+    _pFreq[order][1] = sinsum/log(BUF_SIZE/order*64)/log(BUF_SIZE/order*64);
 }
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification

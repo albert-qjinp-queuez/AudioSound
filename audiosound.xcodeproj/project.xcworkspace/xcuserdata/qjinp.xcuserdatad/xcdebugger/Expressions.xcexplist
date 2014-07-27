@@ -3,14 +3,6 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "-[ASFreqView drawRect:]:ASFreqView.m">
-         <PersistentStrings>
-            <PersistentString
-               value = "_pCode[i].count">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
          contextName = "-[ASScratchView peak:on:]:ASScratchView.m">
          <PersistentStrings>
             <PersistentString
@@ -22,21 +14,21 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "-[ASFreqView push:size:]:ASFreqView.m">
+         contextName = "-[ASFreqView drawRect:]:ASFreqView.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "_pCode[i].count">
+            </PersistentString>
+         </PersistentStrings>
       </ContextState>
       <ContextState
          contextName = "patestCallback:AppDelegate.m">
          <PersistentStrings>
             <PersistentString
-               value = "880*M_PI/8192*n">
+               value = "app.pinBuf[n]">
             </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "-[ASVibrationView drawRect:]:ASVibrationView.m">
-         <PersistentStrings>
             <PersistentString
-               value = "_pBuf[i]">
+               value = "app.pWindowed[n]">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -45,6 +37,25 @@
          <PersistentStrings>
             <PersistentString
                value = "((double)scale+ oct*12) / 12.0*8 * winY}">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[AppDelegate getPowerOfOrder:]:AppDelegate.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "scale/2+1">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[ASFreqView push:size:]:ASFreqView.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[ASVibrationView drawRect:]:ASVibrationView.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "_pBuf[i]">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

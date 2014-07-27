@@ -9,38 +9,6 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "audiosound/AppDelegate.m"
-            timestampString = "426745553.680064"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "60"
-            endingLineNumber = "60"
-            landmarkName = "patestCallback()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "audiosound/AppDelegate.m"
-            timestampString = "426745553.680064"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "54"
-            endingLineNumber = "54"
-            landmarkName = "patestCallback()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "audiosoundTests/musicTest.m"
             timestampString = "426836944.164796"
             startingColumnNumber = "9223372036854775807"
@@ -221,14 +189,114 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "audiosound/AppDelegate.m"
-            timestampString = "427356899.828675"
+            filePath = "audiosoundTests/musicTest.m"
+            timestampString = "427961769.808177"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "80"
-            endingLineNumber = "80"
-            landmarkName = "patestCallback()"
-            landmarkType = "7">
+            startingLineNumber = "93"
+            endingLineNumber = "93"
+            landmarkName = "-testgetFreqFL"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[musicTest testgetFreqFL]"
+                  moduleName = "audiosoundTests"
+                  urlString = "file:///Users/qjinp/Documents/audiosound/audiosoundTests/musicTest.m"
+                  timestampString = "427961927.900838"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "93"
+                  endingLineNumber = "93"
+                  offsetFromSymbolStart = "28">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[musicTest testgetFreqFL]"
+                  moduleName = "audiosoundTests"
+                  urlString = "file:///Users/qjinp/Documents/audiosound/audiosoundTests/musicTest.m"
+                  timestampString = "427961927.901204"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "93"
+                  endingLineNumber = "93"
+                  offsetFromSymbolStart = "86">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[musicTest testgetFreqFL]"
+                  moduleName = "audiosoundTests"
+                  urlString = "file:///Users/qjinp/Documents/audiosound/audiosoundTests/musicTest.m"
+                  timestampString = "427961927.901645"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "93"
+                  endingLineNumber = "93"
+                  offsetFromSymbolStart = "517">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[musicTest testgetFreqFL]"
+                  moduleName = "audiosoundTests"
+                  urlString = "file:///Users/qjinp/Documents/audiosound/audiosoundTests/musicTest.m"
+                  timestampString = "427961927.902034"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "93"
+                  endingLineNumber = "93"
+                  offsetFromSymbolStart = "632">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[musicTest testgetFreqFL]"
+                  moduleName = "audiosoundTests"
+                  urlString = "file:///Users/qjinp/Documents/audiosound/audiosoundTests/musicTest.m"
+                  timestampString = "427961927.902279"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "93"
+                  endingLineNumber = "93"
+                  offsetFromSymbolStart = "781">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[musicTest testgetFreqFL]"
+                  moduleName = "audiosoundTests"
+                  urlString = "file:///Users/qjinp/Documents/audiosound/audiosoundTests/musicTest.m"
+                  timestampString = "427961927.902531"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "93"
+                  endingLineNumber = "93"
+                  offsetFromSymbolStart = "1628">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[musicTest testgetFreqFL]"
+                  moduleName = "audiosoundTests"
+                  urlString = "file:///Users/qjinp/Documents/audiosound/audiosoundTests/musicTest.m"
+                  timestampString = "427961927.902785"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "93"
+                  endingLineNumber = "93"
+                  offsetFromSymbolStart = "3191">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -238,27 +306,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "audiosound/AppDelegate.m"
-            timestampString = "427356930.802144"
+            timestampString = "428134371.519721"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "73"
-            endingLineNumber = "73"
-            landmarkName = "patestCallback()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "audiosound/AppDelegate.m"
-            timestampString = "427357187.621635"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "83"
-            endingLineNumber = "83"
+            startingLineNumber = "63"
+            endingLineNumber = "63"
             landmarkName = "patestCallback()"
             landmarkType = "7">
          </BreakpointContent>

@@ -93,5 +93,12 @@
     XCTAssertEqualWithAccuracy(  CodeNo2FreqFloor( 0) , 427, 1, @"Freq");
     XCTAssertEqualWithAccuracy(  CodeNo2FreqCeil( -1) , 427, 1, @"Freq");
 }
+- (void)testCodeBound
+{
+    int firstCode = freq2CodeNo(55.0);
+    int lastCode = order2CodeNo(BUF_SIZE);
+    XCTAssertEqual( firstCode , -36, @"code %d", firstCode);
+    XCTAssertEqual( lastCode , 39, @"code %d", lastCode);
+}
 
 @end
