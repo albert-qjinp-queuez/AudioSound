@@ -19,10 +19,12 @@
 
 @interface ASScratchView : NSView
 
+@property (assign) IBOutlet NSTextField* maxFreqLabel;
 @property (assign) IBOutlet id app;
 @property (assign) IBOutlet NSSlider* speed;
 @property (retain) NSMutableArray * sounds;
 @property (assign) double sTime;
+@property (assign) double* codes;
 
 - (void)code:(struct codePower*)_pCode size:(int)size;
 

@@ -13,23 +13,19 @@
 
 @interface ASFreqView : NSView
 
-@property (assign) fftw_complex *pBuf;
+@property (assign) double *pBuf;
 @property (assign) double *pCopy;
 @property (assign) struct codePower *pCode;
 @property (assign) long int size;
 @property (assign) long int rate;
 
-@property (assign) int A1;
-//@property (assign) int A6;
 @property (assign) int LastCode;
-@property (assign) double fqA1Lb;
-@property (assign) double fqA6Lb;
 
 @property (assign) IBOutlet NSTextField* maxFreqLabel;
 @property (assign) IBOutlet NSSlider* noise;
 @property (assign) IBOutlet ASScratchView* scaleView;
 
 
--(void)setBuffer:(fftw_complex*)inbuf size:(long int)size rate:(long int)rate;
+-(void)setBuffer:(double*)inbuf size:(long int)size rate:(long int)rate;
 
 @end

@@ -33,19 +33,19 @@ int patestCallback( const void *inputBuffer, void *outputBuffer,
         
         app.pinBuf = NULL;
         app.pFreq = NULL;
-        app.pWindowed = NULL;
+//        app.pWindowed = NULL;
     }
     if (app.pinBuf == NULL){
         app.pinBuf = malloc(sizeof(double)*BUF_SIZE);
-        app.pFreq = malloc(sizeof(fftw_complex)*BUF_SIZE);
-        app.pWindowed = malloc(sizeof(double)*BUF_SIZE);
+        app.pFreq = malloc(sizeof(double)*(CODE_HIGHST-CODE_A1)*3);
+//        app.pWindowed = malloc(sizeof(double)*BUF_SIZE);
 
         app.size = framesPerBuffer;
 //        unsigned flag = FFTW_MEASURE;
 //        app.plan = fftw_plan_dft_r2c_1d((int)BUF_SIZE, app.pWindowed, app.pFreq , flag);
 //        app.plan = fftw_plan_r2r_1d(BUF_SIZE, app.pWindowed, app.pFreq, FFTW_REDFT00 , flag);
         [app.vibView setBuffer:(app.pinBuf) size:BUF_SIZE];
-        [app.frView setBuffer:app.pFreq size:BUF_SIZE rate:SAMPLE_RATE ];
+        [app.frView setBuffer:app.pFreq size:(CODE_HIGHST-CODE_A1)*3 rate:SAMPLE_RATE ];
     }
     
     long int n;
@@ -68,13 +68,8 @@ int patestCallback( const void *inputBuffer, void *outputBuffer,
 //    fftw_execute(app.plan);
 
     //my own transform
-    
-    int firstCode = freq2CodeNo(55.0);
-    int lastCode = order2CodeNo((int)BUF_SIZE);
-    
-    for (int k=firstCode; k<lastCode; k++) {
-        [app get3PowerOfCodeNo:k];
-    }
+    [app CFT];
+
     app.prvTime = timeInfo->inputBufferAdcTime;
     return 0;
 }
@@ -86,6 +81,7 @@ int patestCallback( const void *inputBuffer, void *outputBuffer,
 {
     // Insert code here to initialize your application
     _err = Pa_Initialize();
+    initMusic();
 //    if( err != paNoError ) goto error;
 
     _pSelf = CFBridgingRetain(self);
@@ -114,45 +110,54 @@ int patestCallback( const void *inputBuffer, void *outputBuffer,
     
 
 }
+-(void)CFT{
+    //my own foureier transform
+    //only gets 3 freq per each code
+    //with the seperated sample langth
+    
+    for (int k=CODE_A1; k<CODE_HIGHST; k++) {
+        [self get3PowerOfCodeNo:k];
+    }
+}
+
 -(void)get3PowerOfCodeNo:(int)code{
     int order;
+    int code2 = (code - CODE_A1)*3;
     order = codeNo2OrderLower(code);
-    [self getPowerOfOrder:order];
+    _pFreq[code2] = [self getPowerOfOrder:order];
     order = codeNo2OrderRound(code);
-    [self getPowerOfOrder:order];
+    _pFreq[code2+1] = [self getPowerOfOrder:order];
     order = codeNo2OrderHigher(code);
-    [self getPowerOfOrder:order];
+    _pFreq[code2+2] = [self getPowerOfOrder:order];
 
 }
--(void)getPowerOfOrder:(int)order{
-    int div = 4; // this number is the key of speed!!!
+-(double)getPowerOfOrder:(int)order{
     double cossum = 0;
     double sinsum = 0;
-//    double fx, cosnwt, sinnwt;
-    int scale = div - div*order/BUF_SIZE;
-    int n2;
+    double fx, cosnwt, sinnwt;
+//    int n2;
+//    int div = 4; // this number is the key of speed!!!
+//    int scale = div - div*order/BUF_SIZE;
+//    int scale = 1;
     
-    for (int n=0; n < BUF_SIZE/order*64 && n < BUF_SIZE; n+= scale) {
-//    for (int n=0; n < BUF_SIZE*scale/div; n+= scale) {
-//        fx = _pWindowed[n];
-//        cosnwt = cos(M_PI*order/BUF_SIZE*n);
-//        sinnwt = sin(M_PI*order/BUF_SIZE*n);
-//        cossum += fx*cosnwt;
-//        sinsum -= fx*sinnwt;
-        n2 = n+rand()%scale;
-        cossum += _pinBuf[n2]*cos(M_PI*order/BUF_SIZE*n2)*0.5*(1-sin( M_PI*n/(BUF_SIZE/order*64-1)/2) );
-        sinsum -= _pinBuf[n2]*sin(M_PI*order/BUF_SIZE*n2)*0.5*(1-sin( M_PI*n/(BUF_SIZE/order*64-1)/2) );
+    int loopEnd = (BUF_SIZE/order*128 < BUF_SIZE)?(int)BUF_SIZE/order*64:(int)BUF_SIZE;
+    
+    for (int n=0; n < loopEnd; n++) {
+        fx = _pinBuf[n] * (0.54+0.46*cos(M_PI*n/(loopEnd-1)));
+        cosnwt = cos(M_PI*order/BUF_SIZE*n);
+        sinnwt = sin(M_PI*order/BUF_SIZE*n);
+        cossum += fx*cosnwt;
+        sinsum -= fx*sinnwt;
     }
     
-    _pFreq[order][0] = cossum/log(BUF_SIZE/order*64)/log(BUF_SIZE/order*64);
-    _pFreq[order][1] = sinsum/log(BUF_SIZE/order*64)/log(BUF_SIZE/order*64);
+    return sqrt(cossum*cossum + sinsum*sinsum);
 }
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification
 {
-    fftw_destroy_plan(_plan);
+//    fftw_destroy_plan(_plan);
     free(_pinBuf);
-    free(_pWindowed);
+//    free(_pWindowed);
     free(_pFreq);
     CFBridgingRelease(_pSelf);
     _err = Pa_StopStream( _stream );

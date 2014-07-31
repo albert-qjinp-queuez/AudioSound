@@ -44,11 +44,12 @@ int patestCallback( const void *inputBuffer, void *outputBuffer,
 @property (assign) double prvTime;
 
 @property (assign) double *pinBuf;
-@property (assign) double *pWindowed;
-@property (assign) fftw_complex *pFreq;
+//@property (assign) double *pWindowed;
+@property (assign) double *pFreq;
 @property (assign,readwrite) double lastPlayTime;
 
-@property (assign) fftw_plan plan;
--(void)getPowerOfOrder:(int)order;
+//@property (assign) fftw_plan plan;
+-(void)CFT;
+-(double)getPowerOfOrder:(int)order;
 -(void)get3PowerOfCodeNo:(int)code;
 @end

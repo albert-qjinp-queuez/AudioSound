@@ -19,11 +19,7 @@
         _pBuf = NULL;
         _pCopy = NULL;
         _pCode = NULL;
-        _A1 = freq2CodeNo(55.0);//Guitar starts from E1 - 82.5Hz
-//        _A6 = freq2CodeNo(1760.0);//Guitar Ends B - 1162Hz
-        _fqA1Lb = CodeNo2FreqCeil(_A1);
-//        _fqA6Lb = CodeNo2FreqFloor(_A6);
-        
+        initMusic();
     }
     return self;
 }
@@ -57,12 +53,33 @@
         //copy freq data
         //memcpy(_pCopy, _pBuf, sizeof(double)*_size);
         
+        for (int i = 0; i < _size; i++) {
+            _pCopy[i] = 0;
+        }
+        
         //absoluting
         for (int i = 0; i < _size; i++) {
-            _pCopy[i] =  sqrt(_pBuf[i][0]*_pBuf[i][0]+_pBuf[i][1]*_pBuf[i][1]);
-//            _pCopy[i] = fabs(_pBuf[i][0]);
-//            _pCopy[_size-i-1] = fabs(_pBuf[_size-i-1][0]);
-            
+            _pCopy[i] += fabs(_pBuf[i]);
+/*
+            if (i+12 < _size && _pBuf[i]>_pBuf[i+12]) {
+                _pCopy[i] += fabs(_pBuf[i+12])/4;
+                _pCopy[i+12] -= fabs(_pBuf[i])/4;
+                if (i+18 < _size && _pBuf[i]>_pBuf[i+18]) {
+                    _pCopy[i] += fabs(_pBuf[i+18])/9;
+                    _pCopy[i+18] -= fabs(_pBuf[i])/9;
+                    if (i+24 < _size && _pBuf[i]>_pBuf[i+24]) {
+                        _pCopy[i] += fabs(_pBuf[i+24])/16;
+                        _pCopy[i+24] -= fabs(_pBuf[i])/16;
+                    }else{
+                        _pCopy[i] += fabs(_pBuf[i+18])/16;
+                    }
+                }else{
+                    _pCopy[i] += fabs(_pBuf[i+12])/9;
+                }
+            }else{
+                _pCopy[i] += fabs(_pBuf[i])/4;
+            }
+*/
         }
         for (int i = 1; i < _size; i++) {
             //Flatting non top items.
@@ -79,25 +96,24 @@
         }
         
         //Summery of Code
-        for (int i=0; i<_LastCode-_A1; i++) {
+        for (int i=0; i<_size/3; i++) {
             _pCode[i].size = 0.0;
             _pCode[i].count = 0;
         }
         
-        for (int i = freq2order(_fqA1Lb); i < _size; i++) {
+        for (int i = 0; i < _size; i++) {
             if (_pCopy[i] != 0.0) {
-                int codeNo = freq2CodeNo( order2freq(i));
-                _pCode[codeNo - _A1].size +=  _pCopy[i];
-                _pCode[codeNo - _A1].count ++;
+                _pCode[i/3].size +=  _pCopy[i];
+                _pCode[i/3].count ++;
             }
         }
         
-        for (int i=0; i<_LastCode-_A1; i++) {
+        for (int i=0; i<_size/3; i++) {
             if (_pCode[i].count == 0) _pCode[i].count = 1;
             _pCode[i].size = _pCode[i].size/_pCode[i].count;
             if (cdMax < _pCode[i].size) cdMax  = _pCode[i].size;
         }
-        [_scaleView code:_pCode size:_LastCode-_A1];
+        [_scaleView code:_pCode size:_size/3];
         
         //mak total avaerage
         if (_size != 0) sum = sum/_size;
@@ -110,14 +126,15 @@
             _pCopy[i] = _pCopy[i]/fqMax;
         }
         
-        _maxFreqLabel.doubleValue = ((double)maxInex)/(double)_size*(double)_rate /2.0;
+//        _maxFreqLabel.doubleValue = ((double)maxInex)/(double)_size*(double)_rate /2.0;
+//        _maxFreqLabel.stringValue = [ASFreqView strCode: getScale(maxInex+CODE_A1)];
         
         CGFloat wPoint;
         
         //frequecy scale view
         [path moveToPoint:(NSPoint){ 0, 0}];
-        for (unsigned long i = 1; i < _size; i++) {
-            wPoint = i * w / _size ;
+        for (unsigned long i = 0; i < _size; i++) {
+            wPoint = i * w / _size;
             [path lineToPoint:(NSPoint){ wPoint , _pCopy[i]*h}];
             
         }
@@ -129,10 +146,11 @@
         //code scale view
         NSBezierPath* codePath = [NSBezierPath bezierPath];
         [[NSColor blueColor] set];
-        for (int i=_A1; i < _LastCode; i++) {
-            wPoint = freq2order(CodeNo2FreqRound(i))*w/_size;
+        for (int i=0; i < _size/3; i++) {
+            //wPoint = freq2order(CodeNo2FreqRound(i))*w/_size;
+            wPoint = i * w /_size*3;
             [codePath moveToPoint:(NSPoint){ wPoint , 0}];
-            [codePath lineToPoint:(NSPoint){ wPoint , _pCode[i-_A1].size*h/cdMax}];
+            [codePath lineToPoint:(NSPoint){ wPoint , _pCode[i].size*h/cdMax}];
         }
         [codePath stroke];
         
@@ -145,7 +163,7 @@
     [[NSColor redColor] set];
     [noisePath stroke];
 }
--(void)setBuffer:(fftw_complex*)inbuf size:(long int)size rate:(long int)rate{
+-(void)setBuffer:(double*)inbuf size:(long int)size rate:(long int)rate{
     _size = size;
     _rate = rate;
     _pBuf = inbuf;
@@ -154,9 +172,8 @@
         free(_pCode);
     }
     
-    _LastCode =  freq2CodeNo(order2freq((int) _size-1) );
     _pCopy = malloc(sizeof(double)*size);
-    _pCode = malloc(sizeof(struct codePower)*(_LastCode-_A1));
+    _pCode = malloc(sizeof(struct codePower)*(size/3));
 
 }
 -(void) dealloc {

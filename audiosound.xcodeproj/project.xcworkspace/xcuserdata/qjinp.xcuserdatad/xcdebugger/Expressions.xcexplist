@@ -36,7 +36,7 @@
          contextName = "-[ASScratchView drawRect:]:ASScratchView.m">
          <PersistentStrings>
             <PersistentString
-               value = "((double)scale+ oct*12) / 12.0*8 * winY}">
+               value = "_codes[j]">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -45,6 +45,9 @@
          <PersistentStrings>
             <PersistentString
                value = "scale/2+1">
+            </PersistentString>
+            <PersistentString
+               value = "_pFreq[order][0]">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

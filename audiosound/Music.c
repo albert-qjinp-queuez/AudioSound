@@ -12,20 +12,32 @@
 
 char* cStrCode[] = {"A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#"};
 
-long int BUF_SIZE = 16384;
+long int BUF_SIZE = 32768;
 long int SAMPLE_RATE = 8192;
 long int SAMPLE_SIZE = 256;
+double BASE_FREQ = 440;
+double FREQ_A1 = 55;
+double FREQ_LWA1;
+int CODE_A1;
+int CODE_HIGHST;
+int ORDER_LWA1;
 
+void initMusic(){
+    CODE_A1 = freq2CodeNo(55.0);
+    FREQ_LWA1 = codeNo2FreqCeil(CODE_A1);
+    ORDER_LWA1 = freq2order(FREQ_LWA1);
+    CODE_HIGHST = order2CodeNo((int)BUF_SIZE);
+}
 
 
 int codeNo2OrderRound(int codeNo){
-    return freq2order(CodeNo2FreqRound(codeNo));
+    return freq2order(codeNo2FreqRound(codeNo));
 }
 int codeNo2OrderLower(int codeNo){
-    return freq2order(CodeNo2FreqLower(codeNo));
+    return freq2order(codeNo2FreqLower(codeNo));
 }
 int codeNo2OrderHigher(int codeNo){
-    return freq2order(CodeNo2FreqHigher(codeNo));
+    return freq2order(codeNo2FreqHigher(codeNo));
 }
 
 int order2CodeNo(int order){
@@ -63,30 +75,26 @@ int freq2CodeNo(double freq){
 
 
 //getting exact freq of the code
-double dbCodeNo2FreqRound(double code){
+double codeNo2FreqRound(double code){
     double rt12 = cbrt(sqrt(sqrt(2.0)));
     return exp(log(rt12)*code)*440 ;
 }
-double CodeNo2FreqRound(int code){
-    return dbCodeNo2FreqRound(code);
-}
 
 //getting lower bound freq of the code
-double CodeNo2FreqFloor(int code){
-    return dbCodeNo2FreqRound((double)code - 0.5);
+double codeNo2FreqFloor(double code){
+    return codeNo2FreqRound(code - 0.5);
 }
 //getting upper bound freq of the code
-double CodeNo2FreqCeil(int code){
-    return dbCodeNo2FreqRound((double)code + 0.5);
+double codeNo2FreqCeil(double code){
+    return codeNo2FreqRound(code + 0.5);
 }
 //getting slightly lower freq of the code
-double CodeNo2FreqLower(int code){
-    return dbCodeNo2FreqRound((double)code - 1.0/3.0);
+double codeNo2FreqLower(double code){
+    return codeNo2FreqRound(code - 1.0/3.0);
 }
 //getting slightly upper freq of the code
-double CodeNo2FreqHigher(int code){
-    double dbCode = code;
-    return dbCodeNo2FreqRound(dbCode + 1.0/3.0);
+double codeNo2FreqHigher(double code){
+    return codeNo2FreqRound(code + 1.0/3.0);
 }
 
 

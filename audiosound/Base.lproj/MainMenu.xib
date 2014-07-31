@@ -674,7 +674,7 @@
         <window title="audiosound" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" id="QvC-M9-y7g">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <rect key="contentRect" x="541" y="201" width="583" height="474"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1280" height="800"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1280" height="778"/>
             <view key="contentView" id="EiT-Mj-1SZ">
                 <rect key="frame" x="0.0" y="0.0" width="583" height="474"/>
                 <autoresizingMask key="autoresizingMask"/>
@@ -712,13 +712,14 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <connections>
                             <outlet property="app" destination="Voe-Tx-rLC" id="Aw7-Gh-pFv"/>
+                            <outlet property="maxFreqLabel" destination="U3k-U2-0WF" id="Zmh-He-krH"/>
                             <outlet property="speed" destination="qa1-o6-sIt" id="ea1-JJ-NTB"/>
                         </connections>
                     </customView>
                     <slider horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="DvU-tR-NUr">
                         <rect key="frame" x="149" y="377" width="21" height="79"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <sliderCell key="cell" alignment="left" maxValue="100" doubleValue="6" tickMarkPosition="left" sliderType="linear" id="c2X-hq-uBL"/>
+                        <sliderCell key="cell" alignment="left" maxValue="100" doubleValue="6" tickMarkPosition="right" sliderType="linear" id="c2X-hq-uBL"/>
                     </slider>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="2OT-0c-6Cr">
                         <rect key="frame" x="131" y="454" width="57" height="17"/>

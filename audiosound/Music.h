@@ -9,15 +9,25 @@
 #ifndef audiosound_Music_h
 #define audiosound_Music_h
 
+extern char* cStrCode[];
+
 extern long int BUF_SIZE;
 extern long int SAMPLE_SIZE;
 extern long int SAMPLE_RATE;
-
+extern double BASE_FREQ;
+extern double FREQ_A1;
+extern double FREQ_LWA1;
+extern int CODE_A1;
+extern int CODE_HIGHST;
+extern int ORDER_LWA1;
 
 struct codePower {
     double size;
     int count;
 };
+
+void initMusic();
+
 int codeNo2OrderRound(int codeNo);
 int codeNo2OrderLower(int codeNo);
 int codeNo2OrderHigher(int codeNo);
@@ -33,12 +43,11 @@ int getOct(int code);
 
 int freq2CodeNo(double freq);
 
-double CodeNo2FreqRound(int code);
-double CodeNo2FreqFloor(int code);
-double CodeNo2FreqCeil(int code);
-double CodeNo2FreqLower(int code);
-double CodeNo2FreqHigher(int code);
+double codeNo2FreqRound(double code);
+double codeNo2FreqFloor(double code);
+double codeNo2FreqCeil(double code);
+double codeNo2FreqLower(double code);
+double codeNo2FreqHigher(double code);
 
-extern char* cStrCode[];
 
 #endif

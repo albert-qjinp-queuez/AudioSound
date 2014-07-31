@@ -34,6 +34,11 @@ static NSString* strCode[] = {@"A", @"A#", @"B", @"C", @"C#", @"D", @"D#", @"E",
 
 @implementation ASScratchView
 
++ (NSString*) strCode:(int)code {
+    NSString* strCodes[] ={ @"A", @"A#", @"B", @"C", @"C#", @"D", @"D#", @"E", @"F", @"F#", @"G", @"G#" };
+    return strCodes[code];
+}
+
 - (id)initWithFrame:(NSRect)frame
 {
     self = [super initWithFrame:frame];
@@ -41,8 +46,15 @@ static NSString* strCode[] = {@"A", @"A#", @"B", @"C", @"C#", @"D", @"D#", @"E",
         // Initialization code here.
         _sounds = [[NSMutableArray alloc]init];
         _sTime = 0.0;
+        _codes = NULL;
     }
     return self;
+}
+
+- (void)dealloc {
+    if (_codes != NULL) {
+        free(_codes);
+    }
 }
 
 - (void)drawRect:(NSRect)dirtyRect
@@ -63,33 +75,53 @@ static NSString* strCode[] = {@"A", @"A#", @"B", @"C", @"C#", @"D", @"D#", @"E",
 //    NSDictionary *attributes = @{NSFontAttributeName: [NSFont fontWithName:@"Verdana" size:11]};
     
     NSBezierPath* soundPath = [NSBezierPath bezierPath];
-    
-    for (int i=0; i<_sounds.count; i++) {
-        ASChartTime * sound = [_sounds objectAtIndex:i];
-        double po = (lpTime - sound.time)*_speed.doubleValue ;
-        
-        if ( po < winX) {
-            for (int j=0; j<sound.size; j++) { // scaled from j = 0, A1 - 55.0Hz for each
-                
-                
-                [soundPath
-                 moveToPoint:(NSPoint){
-                     po+(winX*_speed.doubleValue/8192)-(winX*_speed.doubleValue*j/1024/128)
-                     , (j-sound.codes[j]/50.0) / sound.size * winY
-                 }];
-                [soundPath
-                 lineToPoint:(NSPoint){
-                     po+(winX*_speed.doubleValue/8192)-(winX*_speed.doubleValue*j/1024/128)
-                     , (j+sound.codes[j]/50.0) / sound.size * winY
-                 }];
-            }
-        }else{
-            [_sounds removeObjectAtIndex:i];
-            i--;
+    double max = 0.0;
+    int maxInt = 0;
+    if (_sounds.count > 0){
+        ASChartTime * sound = [_sounds objectAtIndex:0];
+        for(int j=0;j < sound.size; j++){
+            _codes[j] =0;
         }
+        for (int i=0; i<10; i++) {
+            
+            sound = [_sounds objectAtIndex:_sounds.count-i-1];
+            if( _codes!= NULL){
+                for(int j=0;j < sound.size; j++){
+                    _codes[j] += sound.codes[j];
+                    if (max < _codes[j]) {
+                        max = _codes[j];
+                        maxInt = j;
+                    }
+                }
+            }
+        }
+        _maxFreqLabel.stringValue = [ASScratchView strCode:((maxInt))%12];
+        
+        for (int i=0; i<_sounds.count; i++) {
+            ASChartTime * sound = [_sounds objectAtIndex:i];
+            double po = (lpTime - sound.time)*_speed.doubleValue ;
+            
+            if ( po < winX) {
+                for (int j=0; j<sound.size; j++) { // scaled from j = 0, A1 - 55.0Hz for each
+                    [soundPath
+                     moveToPoint:(NSPoint){
+                         po+(winX*_speed.doubleValue/8192)-(winX*_speed.doubleValue*j/1024/128)
+                         , (j-sound.codes[j]/50.0) / sound.size * winY
+                     }];
+                    [soundPath
+                     lineToPoint:(NSPoint){
+                         po+(winX*_speed.doubleValue/8192)-(winX*_speed.doubleValue*j/1024/128)
+                         , (j+sound.codes[j]/50.0) / sound.size * winY
+                     }];
+                }
+            }else{
+                [_sounds removeObjectAtIndex:i];
+                i--;
+            }
+        }
+        [[NSColor blueColor] set];
+        [soundPath stroke];
     }
-    [[NSColor blueColor] set];
-    [soundPath stroke];
 }
 
 
@@ -101,6 +133,9 @@ static NSString* strCode[] = {@"A", @"A#", @"B", @"C", @"C#", @"D", @"D#", @"E",
     }
     ASChartTime * chart = [[ASChartTime alloc]initWithCodePower:pCode size:size time:lpTime];
     [_sounds addObject:chart];
+    if (_codes == NULL) {
+        _codes = malloc(sizeof(double)*size);
+    }
 }
 
 
