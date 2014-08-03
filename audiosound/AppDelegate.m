@@ -70,6 +70,8 @@ int patestCallback( const void *inputBuffer, void *outputBuffer,
     //my own transform
     [app CFT];
 
+    app.textTimer.doubleValue = timeInfo->inputBufferAdcTime;
+    app.textDif.doubleValue = timeInfo->inputBufferAdcTime - app.prvTime;
     app.prvTime = timeInfo->inputBufferAdcTime;
     return 0;
 }
@@ -129,8 +131,9 @@ int patestCallback( const void *inputBuffer, void *outputBuffer,
     _pFreq[code2+1] = [self getPowerOfOrder:order];
     order = codeNo2OrderHigher(code);
     _pFreq[code2+2] = [self getPowerOfOrder:order];
-
+    
 }
+
 -(double)getPowerOfOrder:(int)order{
     double cossum = 0;
     double sinsum = 0;
@@ -139,8 +142,8 @@ int patestCallback( const void *inputBuffer, void *outputBuffer,
 //    int div = 4; // this number is the key of speed!!!
 //    int scale = div - div*order/BUF_SIZE;
 //    int scale = 1;
-    
-    int loopEnd = (BUF_SIZE/order*128 < BUF_SIZE)?(int)BUF_SIZE/order*64:(int)BUF_SIZE;
+    int length = (int)BUF_SIZE/order*128;
+    int loopEnd = (length < BUF_SIZE)?length:(int)BUF_SIZE;
     
     for (int n=0; n < loopEnd; n++) {
         fx = _pinBuf[n] * (0.54+0.46*cos(M_PI*n/(loopEnd-1)));
@@ -150,7 +153,7 @@ int patestCallback( const void *inputBuffer, void *outputBuffer,
         sinsum -= fx*sinnwt;
     }
     
-    return sqrt(cossum*cossum + sinsum*sinsum);
+    return sqrt((cossum*cossum + sinsum*sinsum)/loopEnd);
 }
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification

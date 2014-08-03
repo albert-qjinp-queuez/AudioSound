@@ -113,7 +113,7 @@
             _pCode[i].size = _pCode[i].size/_pCode[i].count;
             if (cdMax < _pCode[i].size) cdMax  = _pCode[i].size;
         }
-        [_scaleView code:_pCode size:_size/3];
+        [_scaleView code:_pCode size:(int)_size/3];
         
         //mak total avaerage
         if (_size != 0) sum = sum/_size;

@@ -17,6 +17,8 @@
             <connections>
                 <outlet property="frView" destination="36r-hp-kgU" id="M30-Un-hjd"/>
                 <outlet property="scratchView" destination="RHn-k1-ZMG" id="IC8-u1-u1P"/>
+                <outlet property="textDif" destination="F9m-RC-W4I" id="u14-xg-VuK"/>
+                <outlet property="textTimer" destination="eZ9-Pa-nug" id="2cx-Zs-7iK"/>
                 <outlet property="vibView" destination="tW5-xf-BOv" id="tXb-ST-EJf"/>
                 <outlet property="window" destination="QvC-M9-y7g" id="gIp-Ho-8D9"/>
             </connections>
@@ -674,7 +676,7 @@
         <window title="audiosound" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" id="QvC-M9-y7g">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <rect key="contentRect" x="541" y="201" width="583" height="474"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1280" height="778"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1280" height="800"/>
             <view key="contentView" id="EiT-Mj-1SZ">
                 <rect key="frame" x="0.0" y="0.0" width="583" height="474"/>
                 <autoresizingMask key="autoresizingMask"/>
@@ -719,7 +721,7 @@
                     <slider horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="DvU-tR-NUr">
                         <rect key="frame" x="149" y="377" width="21" height="79"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <sliderCell key="cell" alignment="left" maxValue="100" doubleValue="6" tickMarkPosition="right" sliderType="linear" id="c2X-hq-uBL"/>
+                        <sliderCell key="cell" alignment="left" maxValue="100" doubleValue="6" tickMarkPosition="left" sliderType="linear" id="c2X-hq-uBL"/>
                     </slider>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="2OT-0c-6Cr">
                         <rect key="frame" x="131" y="454" width="57" height="17"/>
@@ -775,6 +777,15 @@
                         <rect key="frame" x="456" y="361" width="38" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Label" id="kYQ-QR-mec">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QNG-v4-8Jr">
+                        <rect key="frame" x="20" y="454" width="94" height="17"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Label" id="jvy-T9-5Fp">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>

@@ -106,12 +106,12 @@ static NSString* strCode[] = {@"A", @"A#", @"B", @"C", @"C#", @"D", @"D#", @"E",
                     [soundPath
                      moveToPoint:(NSPoint){
                          po+(winX*_speed.doubleValue/8192)-(winX*_speed.doubleValue*j/1024/128)
-                         , (j-sound.codes[j]/50.0) / sound.size * winY
+                         , (((double)j)-sound.codes[j]) / sound.size * winY
                      }];
                     [soundPath
                      lineToPoint:(NSPoint){
                          po+(winX*_speed.doubleValue/8192)-(winX*_speed.doubleValue*j/1024/128)
-                         , (j+sound.codes[j]/50.0) / sound.size * winY
+                         , (((double)j)+sound.codes[j]) / sound.size * winY
                      }];
                 }
             }else{
