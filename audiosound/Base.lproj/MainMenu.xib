@@ -17,10 +17,7 @@
             <connections>
                 <outlet property="frView" destination="36r-hp-kgU" id="M30-Un-hjd"/>
                 <outlet property="scratchView" destination="RHn-k1-ZMG" id="IC8-u1-u1P"/>
-                <outlet property="textDif" destination="F9m-RC-W4I" id="u14-xg-VuK"/>
-                <outlet property="textTimer" destination="eZ9-Pa-nug" id="2cx-Zs-7iK"/>
                 <outlet property="vibView" destination="tW5-xf-BOv" id="tXb-ST-EJf"/>
-                <outlet property="window" destination="QvC-M9-y7g" id="gIp-Ho-8D9"/>
             </connections>
         </customObject>
         <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
@@ -716,12 +713,13 @@
                             <outlet property="app" destination="Voe-Tx-rLC" id="Aw7-Gh-pFv"/>
                             <outlet property="maxFreqLabel" destination="U3k-U2-0WF" id="Zmh-He-krH"/>
                             <outlet property="speed" destination="qa1-o6-sIt" id="ea1-JJ-NTB"/>
+                            <outlet property="textChords" destination="DB9-ok-cqW" id="SpC-oq-hOM"/>
                         </connections>
                     </customView>
                     <slider horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="DvU-tR-NUr">
                         <rect key="frame" x="149" y="377" width="21" height="79"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <sliderCell key="cell" alignment="left" maxValue="100" doubleValue="6" tickMarkPosition="left" sliderType="linear" id="c2X-hq-uBL"/>
+                        <sliderCell key="cell" alignment="left" maxValue="100" doubleValue="6" tickMarkPosition="right" sliderType="linear" id="c2X-hq-uBL"/>
                     </slider>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="2OT-0c-6Cr">
                         <rect key="frame" x="131" y="454" width="57" height="17"/>
@@ -746,42 +744,6 @@
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="eZ9-Pa-nug">
-                        <rect key="frame" x="328" y="361" width="38" height="17"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Label" id="bUr-AM-DYM">
-                            <font key="font" metaFont="system"/>
-                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                    </textField>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="F9m-RC-W4I">
-                        <rect key="frame" x="392" y="361" width="38" height="17"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Label" id="K7R-mW-F22">
-                            <font key="font" metaFont="system"/>
-                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                    </textField>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="SPb-WQ-b7g">
-                        <rect key="frame" x="527" y="361" width="38" height="17"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Label" id="qPX-iY-9qo">
-                            <font key="font" metaFont="system"/>
-                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                    </textField>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="xpk-6P-lNa">
-                        <rect key="frame" x="456" y="361" width="38" height="17"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Label" id="kYQ-QR-mec">
-                            <font key="font" metaFont="system"/>
-                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                    </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QNG-v4-8Jr">
                         <rect key="frame" x="20" y="454" width="94" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -791,20 +753,27 @@
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="DB9-ok-cqW">
+                        <rect key="frame" x="527" y="361" width="38" height="17"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Label" id="ZWp-QQ-KZO">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="SPb-WQ-b7g" firstAttribute="leading" secondItem="xpk-6P-lNa" secondAttribute="trailing" constant="37" id="06l-oi-Vjv"/>
                     <constraint firstItem="DvU-tR-NUr" firstAttribute="leading" secondItem="tW5-xf-BOv" secondAttribute="trailing" id="40O-Nl-mjC"/>
                     <constraint firstItem="tW5-xf-BOv" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="20" id="4ie-9t-xNj"/>
+                    <constraint firstItem="DB9-ok-cqW" firstAttribute="trailing" secondItem="36r-hp-kgU" secondAttribute="trailing" id="5U0-7f-vek"/>
                     <constraint firstItem="RHn-k1-ZMG" firstAttribute="top" secondItem="U3k-U2-0WF" secondAttribute="top" constant="20" id="AWJ-kc-caP"/>
                     <constraint firstAttribute="centerX" secondItem="RHn-k1-ZMG" secondAttribute="centerX" id="DOf-Y3-fdo"/>
-                    <constraint firstItem="xpk-6P-lNa" firstAttribute="baseline" secondItem="SPb-WQ-b7g" secondAttribute="baseline" id="HRD-rl-LG5"/>
                     <constraint firstItem="DvU-tR-NUr" firstAttribute="top" secondItem="tW5-xf-BOv" secondAttribute="top" id="J3y-c2-cjE"/>
                     <constraint firstItem="DvU-tR-NUr" firstAttribute="top" secondItem="2OT-0c-6Cr" secondAttribute="bottom" id="JPi-Bs-Gv3"/>
                     <constraint firstItem="sh5-UE-Z5K" firstAttribute="leading" secondItem="RHn-k1-ZMG" secondAttribute="leading" id="KnU-aT-N5S"/>
                     <constraint firstItem="qa1-o6-sIt" firstAttribute="leading" secondItem="sh5-UE-Z5K" secondAttribute="trailing" constant="2" id="Ks7-Fo-HoF"/>
                     <constraint firstAttribute="trailing" secondItem="RHn-k1-ZMG" secondAttribute="trailing" constant="20" id="Lc8-3r-1k3"/>
-                    <constraint firstItem="xpk-6P-lNa" firstAttribute="baseline" secondItem="eZ9-Pa-nug" secondAttribute="baseline" id="Lir-Z5-g10"/>
                     <constraint firstItem="tW5-xf-BOv" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" constant="20" id="Mt4-Ij-kRS"/>
                     <constraint firstItem="U3k-U2-0WF" firstAttribute="top" secondItem="tW5-xf-BOv" secondAttribute="bottom" constant="2" id="Np7-as-0cv"/>
                     <constraint firstItem="36r-hp-kgU" firstAttribute="centerY" secondItem="tW5-xf-BOv" secondAttribute="centerY" id="Q7d-WM-GXd"/>
@@ -812,19 +781,15 @@
                     <constraint firstAttribute="bottom" secondItem="RHn-k1-ZMG" secondAttribute="bottom" constant="20" id="TIb-Hm-Tvt"/>
                     <constraint firstItem="36r-hp-kgU" firstAttribute="width" secondItem="tW5-xf-BOv" secondAttribute="width" multiplier="3" id="aDm-cP-FcN"/>
                     <constraint firstItem="tW5-xf-BOv" firstAttribute="height" secondItem="DvU-tR-NUr" secondAttribute="height" id="bSk-Fp-ImD"/>
-                    <constraint firstItem="xpk-6P-lNa" firstAttribute="baseline" secondItem="F9m-RC-W4I" secondAttribute="baseline" id="dNQ-qC-hbw"/>
+                    <constraint firstItem="DB9-ok-cqW" firstAttribute="bottom" secondItem="U3k-U2-0WF" secondAttribute="bottom" id="cfU-hI-nQ6"/>
                     <constraint firstItem="qa1-o6-sIt" firstAttribute="top" secondItem="RHn-k1-ZMG" secondAttribute="bottom" constant="3" id="dbW-yQ-LIq"/>
                     <constraint firstItem="RHn-k1-ZMG" firstAttribute="trailing" secondItem="qa1-o6-sIt" secondAttribute="trailing" id="eTh-RA-ugr"/>
                     <constraint firstItem="DvU-tR-NUr" firstAttribute="centerX" secondItem="2OT-0c-6Cr" secondAttribute="centerX" id="eq9-Ra-21L"/>
                     <constraint firstItem="U3k-U2-0WF" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="20" id="h0w-XM-5ae"/>
-                    <constraint firstItem="xpk-6P-lNa" firstAttribute="leading" secondItem="F9m-RC-W4I" secondAttribute="trailing" constant="30" id="hlz-Px-rib"/>
-                    <constraint firstAttribute="trailing" secondItem="SPb-WQ-b7g" secondAttribute="trailing" constant="20" id="idG-Ct-0wE"/>
-                    <constraint firstItem="xpk-6P-lNa" firstAttribute="baseline" secondItem="U3k-U2-0WF" secondAttribute="baseline" id="oXJ-uC-B2g"/>
                     <constraint firstItem="sh5-UE-Z5K" firstAttribute="centerY" secondItem="qa1-o6-sIt" secondAttribute="centerY" id="pno-xF-pz8"/>
                     <constraint firstAttribute="trailing" secondItem="36r-hp-kgU" secondAttribute="trailing" constant="20" id="rk9-eb-NUS"/>
                     <constraint firstItem="tW5-xf-BOv" firstAttribute="height" secondItem="36r-hp-kgU" secondAttribute="height" id="wgH-aA-pXs"/>
                     <constraint firstItem="36r-hp-kgU" firstAttribute="leading" secondItem="tW5-xf-BOv" secondAttribute="trailing" constant="20" id="xOg-s6-YSV"/>
-                    <constraint firstItem="F9m-RC-W4I" firstAttribute="leading" secondItem="eZ9-Pa-nug" secondAttribute="trailing" constant="30" id="xay-sv-dGo"/>
                 </constraints>
             </view>
         </window>

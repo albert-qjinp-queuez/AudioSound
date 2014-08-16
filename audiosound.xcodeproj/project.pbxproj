@@ -17,6 +17,7 @@
 		677E7AF81955432C00C30944 /* libfftw3.la in Resources */ = {isa = PBXBuildFile; fileRef = 677E7AF71955432C00C30944 /* libfftw3.la */; };
 		677E7AFC195544B400C30944 /* ASFreqView.m in Sources */ = {isa = PBXBuildFile; fileRef = 677E7AFB195544B400C30944 /* ASFreqView.m */; };
 		677E7AFD195544B400C30944 /* ASFreqView.m in Sources */ = {isa = PBXBuildFile; fileRef = 677E7AFB195544B400C30944 /* ASFreqView.m */; };
+		6786A5801996D4DC00A482D2 /* TestASScratchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6786A57F1996D4DC00A482D2 /* TestASScratchView.m */; };
 		678E18741972583300DECC03 /* TestASFreqView.m in Sources */ = {isa = PBXBuildFile; fileRef = 678E18731972583300DECC03 /* TestASFreqView.m */; };
 		679F1BC61959404D00F1A2E0 /* ASScratchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 679F1BC51959404D00F1A2E0 /* ASScratchView.m */; };
 		679F1BC71959404D00F1A2E0 /* ASScratchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 679F1BC51959404D00F1A2E0 /* ASScratchView.m */; };
@@ -63,6 +64,7 @@
 		677E7AF71955432C00C30944 /* libfftw3.la */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = libfftw3.la; path = fftw3/libfftw3.la; sourceTree = SOURCE_ROOT; };
 		677E7AFA195544B400C30944 /* ASFreqView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASFreqView.h; sourceTree = "<group>"; };
 		677E7AFB195544B400C30944 /* ASFreqView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASFreqView.m; sourceTree = "<group>"; };
+		6786A57F1996D4DC00A482D2 /* TestASScratchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestASScratchView.m; sourceTree = "<group>"; };
 		678E18731972583300DECC03 /* TestASFreqView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestASFreqView.m; path = ../TestASFreqView.m; sourceTree = "<group>"; };
 		679F1BC41959404D00F1A2E0 /* ASScratchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASScratchView.h; sourceTree = "<group>"; };
 		679F1BC51959404D00F1A2E0 /* ASScratchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASScratchView.m; sourceTree = "<group>"; };
@@ -215,6 +217,7 @@
 			isa = PBXGroup;
 			children = (
 				678E18731972583300DECC03 /* TestASFreqView.m */,
+				6786A57F1996D4DC00A482D2 /* TestASScratchView.m */,
 				67E54A8619442369005ADA09 /* audiosoundTests.m */,
 				67D003E0197100E200947732 /* musicTest.m */,
 				6778CA1F194809D300E903E3 /* PortAudioBasicFunctions.m */,
@@ -349,6 +352,7 @@
 				677E7AFD195544B400C30944 /* ASFreqView.m in Sources */,
 				67D003DC1970F47F00947732 /* Music.c in Sources */,
 				679F1BC71959404D00F1A2E0 /* ASScratchView.m in Sources */,
+				6786A5801996D4DC00A482D2 /* TestASScratchView.m in Sources */,
 				6778CA20194809D300E903E3 /* PortAudioBasicFunctions.m in Sources */,
 				67D003E1197100E200947732 /* musicTest.m in Sources */,
 				67E54A8719442369005ADA09 /* audiosoundTests.m in Sources */,

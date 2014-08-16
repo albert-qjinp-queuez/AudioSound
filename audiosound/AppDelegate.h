@@ -35,8 +35,10 @@ int patestCallback( const void *inputBuffer, void *outputBuffer,
 @property (assign) IBOutlet ASVibrationView* vibView;
 @property (assign) IBOutlet ASFreqView* frView;
 @property (assign) IBOutlet ASScratchView* scratchView;
-@property (assign) IBOutlet NSTextField* textTimer;
-@property (assign) IBOutlet NSTextField* textDif;
+//@property (assign) IBOutlet NSTextField* textTimer;
+//@property (assign) IBOutlet NSTextField* textDif;
+//@property (assign) IBOutlet NSTextField* textCheck;
+//@property (assign) IBOutlet NSTextField* textCalc;
 
 @property (assign) PaError err;
 @property (assign) PaStream *stream;

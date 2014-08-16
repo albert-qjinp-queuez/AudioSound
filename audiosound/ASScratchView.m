@@ -20,17 +20,59 @@ static NSString* strCode[] = {@"A", @"A#", @"B", @"C", @"C#", @"D", @"D#", @"E",
         _time = time;
         _size = size;
         _codes = malloc(sizeof(double)*_size);
+        for (int i=0; i<12; i++) {
+            _chordSum[i].chordNum = i;
+            _chordSum[i].power = 0;
+        }
         for (int i = 0; i<_size; i++) {
             _codes[i] = pCode[i].size;
+            _chordSum[i%12].power += _codes[i];
         }
     }
     return self;
 }
++ (id)alloc {
+    id this =[super alloc];
+    return this;
+}
 - (void)dealloc {
     free(_codes);
 }
+-(NSString*) getChordset{
+    //sort _chordSum by power
+    struct Chord tmpChord;
+    for (int i=0; i<12; i++) {
+        for (int j=i; j<12; j++) {
+            if (_chordSum[i].power < _chordSum[j].power) {
+                tmpChord = _chordSum[i];
+                _chordSum[i] = _chordSum[j];
+                _chordSum[j] = tmpChord;
+            }
+        }
+    }
+    //find maximumGap
+    double maxGap = 0.0;
+    int gapPos = 0;
+    for (int i=0; i<11; i++) {
+        double gap = _chordSum[i].power-_chordSum[i+1].power;
+        if (gap>maxGap) {
+            maxGap = gap;
+            gapPos = i+1;
+        }
+        
+    }
+    //join the chords above maximumGap
+    NSMutableString* strChords = [[NSMutableString alloc]initWithCapacity:24];
+    [strChords setString:@""];
+    for (int i=0; i<gapPos; i++) {
+        [strChords appendString:strCode[_chordSum[i].chordNum]];
+    }
+    
+    return [NSString stringWithString:strChords];
+}
 
 @end
+
 
 @implementation ASScratchView
 
@@ -84,10 +126,10 @@ static NSString* strCode[] = {@"A", @"A#", @"B", @"C", @"C#", @"D", @"D#", @"E",
         }
         for (int i=0; i<10; i++) {
             
-            sound = [_sounds objectAtIndex:_sounds.count-i-1];
+            sound = [_sounds objectAtIndex:_sounds.count-1-i];
             if( _codes!= NULL){
                 for(int j=0;j < sound.size; j++){
-                    _codes[j] += sound.codes[j];
+                    _codes[j] += sound.codes[j]*(10-i);
                     if (max < _codes[j]) {
                         max = _codes[j];
                         maxInt = j;
@@ -96,8 +138,10 @@ static NSString* strCode[] = {@"A", @"A#", @"B", @"C", @"C#", @"D", @"D#", @"E",
             }
         }
         _maxFreqLabel.stringValue = [ASScratchView strCode:((maxInt))%12];
-        
+        sound = [_sounds objectAtIndex:_sounds.count-1];
+        _textChords.stringValue = [sound getChordset];
         for (int i=0; i<_sounds.count; i++) {
+            
             ASChartTime * sound = [_sounds objectAtIndex:i];
             double po = (lpTime - sound.time)*_speed.doubleValue ;
             

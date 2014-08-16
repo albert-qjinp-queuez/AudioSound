@@ -47,11 +47,24 @@ int patestCallback( const void *inputBuffer, void *outputBuffer,
         [app.vibView setBuffer:(app.pinBuf) size:BUF_SIZE];
         [app.frView setBuffer:app.pFreq size:(CODE_HIGHST-CODE_A1)*3 rate:SAMPLE_RATE ];
     }
+    if ( app.prvTime == -1.0) {
+        app.prvTime = timeInfo->inputBufferAdcTime;
+    }
+    double timeDiff = timeInfo->inputBufferAdcTime - app.prvTime;
+    double zeroSpace = (double)timeDiff*(double)SAMPLE_RATE;
+//    app.textTimer.doubleValue = timeInfo->inputBufferAdcTime;
+//    app.textDif.doubleValue = timeDiff;
+//    app.textCheck.doubleValue = zeroSpace;
     
     long int n;
-    for( n=0 ; n < BUF_SIZE-framesPerBuffer; n++){
+    int shiftSize = (zeroSpace < BUF_SIZE)?zeroSpace:BUF_SIZE;
+    
+    for( n=shiftSize ; n < BUF_SIZE; n++){
         //shifting the data from the past to bothside
-        app.pinBuf[BUF_SIZE-1-n] = app.pinBuf[BUF_SIZE-framesPerBuffer-1-n];
+        app.pinBuf[BUF_SIZE-1-n+shiftSize] = app.pinBuf[BUF_SIZE-1-n];
+    }
+    for (n=framesPerBuffer; n < shiftSize;  n++) {
+        app.pinBuf[n] = 0;
     }
     //new signal generated from the middle :)
     for (n=0; n<framesPerBuffer; n++) {
@@ -69,9 +82,7 @@ int patestCallback( const void *inputBuffer, void *outputBuffer,
 
     //my own transform
     [app CFT];
-
-    app.textTimer.doubleValue = timeInfo->inputBufferAdcTime;
-    app.textDif.doubleValue = timeInfo->inputBufferAdcTime - app.prvTime;
+//    app.textCalc.doubleValue = zeroSpace;
     app.prvTime = timeInfo->inputBufferAdcTime;
     return 0;
 }
@@ -81,6 +92,7 @@ int patestCallback( const void *inputBuffer, void *outputBuffer,
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
+    _prvTime = -1.0;
     // Insert code here to initialize your application
     _err = Pa_Initialize();
     initMusic();
@@ -139,14 +151,15 @@ int patestCallback( const void *inputBuffer, void *outputBuffer,
     double sinsum = 0;
     double fx, cosnwt, sinnwt;
 //    int n2;
-//    int div = 4; // this number is the key of speed!!!
-//    int scale = div - div*order/BUF_SIZE;
-//    int scale = 1;
+    int scale = 2 - 2*order/BUF_SIZE;
+    
+//    scale = 1;
+    
     int length = (int)BUF_SIZE/order*128;
     int loopEnd = (length < BUF_SIZE)?length:(int)BUF_SIZE;
     
-    for (int n=0; n < loopEnd; n++) {
-        fx = _pinBuf[n] * (0.54+0.46*cos(M_PI*n/(loopEnd-1)));
+    for (int n=0; n < loopEnd; n+= scale ) {
+        fx = _pinBuf[n] * (0.54+0.46*cos(M_PI*n/(loopEnd-1))) ;
         cosnwt = cos(M_PI*order/BUF_SIZE*n);
         sinnwt = sin(M_PI*order/BUF_SIZE*n);
         cossum += fx*cosnwt;
