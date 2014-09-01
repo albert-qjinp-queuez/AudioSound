@@ -156,12 +156,6 @@
         
     }
     
-    //noise egnoreance line
-	NSBezierPath* noisePath = [NSBezierPath bezierPath];
-    [noisePath moveToPoint:(NSPoint){ 0 , _noise.doubleValue/fqMax*h}];
-    [noisePath lineToPoint:(NSPoint){ w , _noise.doubleValue/fqMax*h}];
-    [[NSColor redColor] set];
-    [noisePath stroke];
 }
 -(void)setBuffer:(double*)inbuf size:(long int)size rate:(long int)rate{
     _size = size;

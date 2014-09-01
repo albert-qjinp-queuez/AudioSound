@@ -11,9 +11,9 @@
 
 extern char* cStrCode[];
 
-extern long int BUF_SIZE;
-extern long int SAMPLE_SIZE;
-extern long int SAMPLE_RATE;
+extern int BUF_SIZE;
+extern int SAMPLE_SIZE;
+extern int SAMPLE_RATE;
 extern double BASE_FREQ;
 extern double FREQ_A1;
 extern double FREQ_LWA1;

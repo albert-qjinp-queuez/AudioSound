@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		6727EE45194548A50038132D /* libportaudio.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6727EE44194548A50038132D /* libportaudio.a */; };
 		6727EE4919454A7D0038132D /* libportaudio.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6727EE44194548A50038132D /* libportaudio.a */; };
+		6731850019B50E3700861583 /* ASChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = 673184FF19B50E3700861583 /* ASChartView.m */; };
+		6731850119B50E3700861583 /* ASChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = 673184FF19B50E3700861583 /* ASChartView.m */; };
+		674869C519A5A46300DA3097 /* ASTrasnform.m in Sources */ = {isa = PBXBuildFile; fileRef = 674869C419A5A46300DA3097 /* ASTrasnform.m */; };
+		674869C619A5A46300DA3097 /* ASTrasnform.m in Sources */ = {isa = PBXBuildFile; fileRef = 674869C419A5A46300DA3097 /* ASTrasnform.m */; };
 		676724A3194D3D3C005AAAAB /* ASVibrationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 676724A2194D3D3C005AAAAB /* ASVibrationView.m */; };
 		676724A5194D3EB6005AAAAB /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 676724A4194D3EB6005AAAAB /* OpenGL.framework */; };
 		676CE5A319611D78005B816E /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67E54A5F19442369005ADA09 /* AppKit.framework */; };
@@ -55,6 +59,10 @@
 
 /* Begin PBXFileReference section */
 		6727EE44194548A50038132D /* libportaudio.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libportaudio.a; path = portaudio/lib/.libs/libportaudio.a; sourceTree = SOURCE_ROOT; };
+		673184FE19B50E3700861583 /* ASChartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASChartView.h; sourceTree = "<group>"; };
+		673184FF19B50E3700861583 /* ASChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASChartView.m; sourceTree = "<group>"; };
+		674869C319A5A46300DA3097 /* ASTrasnform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASTrasnform.h; sourceTree = "<group>"; };
+		674869C419A5A46300DA3097 /* ASTrasnform.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASTrasnform.m; sourceTree = "<group>"; };
 		676724A1194D3D3C005AAAAB /* ASVibrationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASVibrationView.h; sourceTree = "<group>"; };
 		676724A2194D3D3C005AAAAB /* ASVibrationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASVibrationView.m; sourceTree = "<group>"; };
 		676724A4194D3EB6005AAAAB /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
@@ -192,6 +200,10 @@
 				679F1BC51959404D00F1A2E0 /* ASScratchView.m */,
 				67D003DD1970F49100947732 /* Music.h */,
 				67D003DA1970F47F00947732 /* Music.c */,
+				674869C319A5A46300DA3097 /* ASTrasnform.h */,
+				674869C419A5A46300DA3097 /* ASTrasnform.m */,
+				673184FE19B50E3700861583 /* ASChartView.h */,
+				673184FF19B50E3700861583 /* ASChartView.m */,
 				67E54A6E19442369005ADA09 /* AppDelegate.h */,
 				67E54A6F19442369005ADA09 /* AppDelegate.m */,
 				67E54A7119442369005ADA09 /* MainMenu.xib */,
@@ -335,8 +347,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				677E7AFC195544B400C30944 /* ASFreqView.m in Sources */,
+				6731850019B50E3700861583 /* ASChartView.m in Sources */,
 				679F1BC61959404D00F1A2E0 /* ASScratchView.m in Sources */,
 				676724A3194D3D3C005AAAAB /* ASVibrationView.m in Sources */,
+				674869C519A5A46300DA3097 /* ASTrasnform.m in Sources */,
 				67D003DB1970F47F00947732 /* Music.c in Sources */,
 				67E54A7019442369005ADA09 /* AppDelegate.m in Sources */,
 				67E54A6919442369005ADA09 /* main.m in Sources */,
@@ -349,9 +363,11 @@
 			files = (
 				678E18741972583300DECC03 /* TestASFreqView.m in Sources */,
 				67D003DF1970FFA900947732 /* AppDelegate.m in Sources */,
+				674869C619A5A46300DA3097 /* ASTrasnform.m in Sources */,
 				677E7AFD195544B400C30944 /* ASFreqView.m in Sources */,
 				67D003DC1970F47F00947732 /* Music.c in Sources */,
 				679F1BC71959404D00F1A2E0 /* ASScratchView.m in Sources */,
+				6731850119B50E3700861583 /* ASChartView.m in Sources */,
 				6786A5801996D4DC00A482D2 /* TestASScratchView.m in Sources */,
 				6778CA20194809D300E903E3 /* PortAudioBasicFunctions.m in Sources */,
 				67D003E1197100E200947732 /* musicTest.m in Sources */,

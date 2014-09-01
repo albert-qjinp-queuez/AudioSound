@@ -22,7 +22,6 @@
 @property (assign) int LastCode;
 
 @property (assign) IBOutlet NSTextField* maxFreqLabel;
-@property (assign) IBOutlet NSSlider* noise;
 @property (assign) IBOutlet ASScratchView* scaleView;
 
 

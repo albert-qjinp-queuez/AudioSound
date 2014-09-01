@@ -15,6 +15,11 @@
 #import "ASVibrationView.h"
 #import "ASFreqView.h"
 #import "ASScratchView.h"
+#import "ASTrasnform.h"
+#import "ASChartView.h"
+
+@class ASTrasnform;
+
 typedef struct
 {
     float left_phase;
@@ -32,13 +37,10 @@ int patestCallback( const void *inputBuffer, void *outputBuffer,
 @interface AppDelegate : NSObject <NSApplicationDelegate>
 
 @property (assign) IBOutlet NSWindow *window;
-@property (assign) IBOutlet ASVibrationView* vibView;
 @property (assign) IBOutlet ASFreqView* frView;
 @property (assign) IBOutlet ASScratchView* scratchView;
-//@property (assign) IBOutlet NSTextField* textTimer;
-//@property (assign) IBOutlet NSTextField* textDif;
-//@property (assign) IBOutlet NSTextField* textCheck;
-//@property (assign) IBOutlet NSTextField* textCalc;
+@property (assign) IBOutlet ASChartView* chartView;
+@property (retain) ASTrasnform* myTrasnform;
 
 @property (assign) PaError err;
 @property (assign) PaStream *stream;
@@ -46,14 +48,12 @@ int patestCallback( const void *inputBuffer, void *outputBuffer,
 @property (assign) long int size;
 @property (assign) double noiseLv;
 @property (assign) double prvTime;
+@property (assign, readwrite) double lastPlayTime;
 
 @property (assign) double *pinBuf;
-//@property (assign) double *pWindowed;
-@property (assign) double *pFreq;
-@property (assign,readwrite) double lastPlayTime;
 
 //@property (assign) fftw_plan plan;
--(void)CFT;
--(double)getPowerOfOrder:(int)order;
--(void)get3PowerOfCodeNo:(int)code;
+-(void)CFT:(float*)inbuf time:(double)time;
+- (IBAction)openDocument:(id)sender;
+
 @end

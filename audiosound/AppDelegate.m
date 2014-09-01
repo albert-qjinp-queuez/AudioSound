@@ -23,67 +23,14 @@ int patestCallback( const void *inputBuffer, void *outputBuffer,
     AppDelegate* app = (__bridge AppDelegate *)userData;
     float *in = (float*)inputBuffer;
     
-    [app.vibView setNeedsDisplay:YES];
-    [app.frView setNeedsDisplay:YES];
-    app.lastPlayTime = timeInfo->inputBufferAdcTime;
-    
-    if (app.pinBuf != NULL && framesPerBuffer != app.size) {
-        free(app.pinBuf);
-        free(app.pFreq);
-        
-        app.pinBuf = NULL;
-        app.pFreq = NULL;
-//        app.pWindowed = NULL;
-    }
-    if (app.pinBuf == NULL){
-        app.pinBuf = malloc(sizeof(double)*BUF_SIZE);
-        app.pFreq = malloc(sizeof(double)*(CODE_HIGHST-CODE_A1)*3);
-//        app.pWindowed = malloc(sizeof(double)*BUF_SIZE);
-
-        app.size = framesPerBuffer;
-//        unsigned flag = FFTW_MEASURE;
-//        app.plan = fftw_plan_dft_r2c_1d((int)BUF_SIZE, app.pWindowed, app.pFreq , flag);
-//        app.plan = fftw_plan_r2r_1d(BUF_SIZE, app.pWindowed, app.pFreq, FFTW_REDFT00 , flag);
-        [app.vibView setBuffer:(app.pinBuf) size:BUF_SIZE];
-        [app.frView setBuffer:app.pFreq size:(CODE_HIGHST-CODE_A1)*3 rate:SAMPLE_RATE ];
-    }
     if ( app.prvTime == -1.0) {
         app.prvTime = timeInfo->inputBufferAdcTime;
     }
-    double timeDiff = timeInfo->inputBufferAdcTime - app.prvTime;
-    double zeroSpace = (double)timeDiff*(double)SAMPLE_RATE;
-//    app.textTimer.doubleValue = timeInfo->inputBufferAdcTime;
-//    app.textDif.doubleValue = timeDiff;
-//    app.textCheck.doubleValue = zeroSpace;
     
-    long int n;
-    int shiftSize = (zeroSpace < BUF_SIZE)?zeroSpace:BUF_SIZE;
-    
-    for( n=shiftSize ; n < BUF_SIZE; n++){
-        //shifting the data from the past to bothside
-        app.pinBuf[BUF_SIZE-1-n+shiftSize] = app.pinBuf[BUF_SIZE-1-n];
-    }
-    for (n=framesPerBuffer; n < shiftSize;  n++) {
-        app.pinBuf[n] = 0;
-    }
-    //new signal generated from the middle :)
-    for (n=0; n<framesPerBuffer; n++) {
-        app.pinBuf[framesPerBuffer-n] = (double)in[n];
-    }
-    
-
-//    for (n=0; n<BUF_SIZE; n++) {
-//        app.pWindowed[n] = app.pinBuf[n];
-//        app.pWindowed[n] *= 0.5*(1-sin( M_PI*n/(BUF_SIZE-1)/2) ); // Hann windowing
-//        app.pWindowed[n] *= exp(-0.007*fabs(n));//poisson window
-//    }
-
-//    fftw_execute(app.plan);
 
     //my own transform
-    [app CFT];
-//    app.textCalc.doubleValue = zeroSpace;
-    app.prvTime = timeInfo->inputBufferAdcTime;
+    [app CFT:in time:timeInfo->inputBufferAdcTime];
+    
     return 0;
 }
 
@@ -92,12 +39,17 @@ int patestCallback( const void *inputBuffer, void *outputBuffer,
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
+    
+    if (_pinBuf == NULL){
+        _pinBuf = malloc(sizeof(double)*BUF_SIZE);
+        _size = SAMPLE_SIZE;
+    }
     _prvTime = -1.0;
     // Insert code here to initialize your application
     _err = Pa_Initialize();
     initMusic();
 //    if( err != paNoError ) goto error;
-
+    
     _pSelf = CFBridgingRetain(self);
     /* Open an audio I/O stream. */
     _err = Pa_OpenDefaultStream( &_stream,
@@ -116,69 +68,68 @@ int patestCallback( const void *inputBuffer, void *outputBuffer,
                                (void*)_pSelf ); /*This is a pointer that will be passed to
                                          your callback*/
 //if( err != paNoError ) goto error;
-    
     _err = Pa_StartStream( _stream );
 
     /* Sleep for several seconds. */
     //    Pa_Sleep(15*1000);
     
+    _myTrasnform = [[ASTrasnform alloc]init];
+    [_myTrasnform setApp:self freqView:_frView];
+    [_myTrasnform setInputSize:BUF_SIZE frqBufSize:(CODE_HIGHST-CODE_A1)*3];
+    [_myTrasnform startCalc];
 
 }
--(void)CFT{
-    //my own foureier transform
-    //only gets 3 freq per each code
-    //with the seperated sample langth
+-(void)CFT:(float*)inbuf time:(double)time{
+    _lastPlayTime = time;
+    double timeDiff = time - _prvTime;
+    double zeroSpace = (double)timeDiff*(double)SAMPLE_RATE;
     
-    for (int k=CODE_A1; k<CODE_HIGHST; k++) {
-        [self get3PowerOfCodeNo:k];
+    long int n;
+    int shiftSize = (zeroSpace < BUF_SIZE)?zeroSpace:(int)BUF_SIZE;
+    
+    @synchronized(self){
+        for( n=shiftSize ; n < BUF_SIZE; n++){
+            //shifting the data from the past to bothside
+            _pinBuf[BUF_SIZE-1-n+shiftSize] = _pinBuf[BUF_SIZE-1-n];
+        }
+        for (n=_size; n < shiftSize;  n++) {
+            _pinBuf[n] = 0;
+        }
+        //new signal generated from the middle :)
+        for (n=0; n<_size; n++) {
+            _pinBuf[_size-n] = (double)inbuf[n];
+        }
     }
-}
-
--(void)get3PowerOfCodeNo:(int)code{
-    int order;
-    int code2 = (code - CODE_A1)*3;
-    order = codeNo2OrderLower(code);
-    _pFreq[code2] = [self getPowerOfOrder:order];
-    order = codeNo2OrderRound(code);
-    _pFreq[code2+1] = [self getPowerOfOrder:order];
-    order = codeNo2OrderHigher(code);
-    _pFreq[code2+2] = [self getPowerOfOrder:order];
-    
-}
-
--(double)getPowerOfOrder:(int)order{
-    double cossum = 0;
-    double sinsum = 0;
-    double fx, cosnwt, sinnwt;
-//    int n2;
-    int scale = 2 - 2*order/BUF_SIZE;
-    
-//    scale = 1;
-    
-    int length = (int)BUF_SIZE/order*128;
-    int loopEnd = (length < BUF_SIZE)?length:(int)BUF_SIZE;
-    
-    for (int n=0; n < loopEnd; n+= scale ) {
-        fx = _pinBuf[n] * (0.54+0.46*cos(M_PI*n/(loopEnd-1))) ;
-        cosnwt = cos(M_PI*order/BUF_SIZE*n);
-        sinnwt = sin(M_PI*order/BUF_SIZE*n);
-        cossum += fx*cosnwt;
-        sinsum -= fx*sinnwt;
-    }
-    
-    return sqrt((cossum*cossum + sinsum*sinsum)/loopEnd);
+    _prvTime = time;
 }
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification
 {
-//    fftw_destroy_plan(_plan);
     free(_pinBuf);
-//    free(_pWindowed);
-    free(_pFreq);
+//    free(_pFreq);
     CFBridgingRelease(_pSelf);
     _err = Pa_StopStream( _stream );
     
     _err = Pa_Terminate();
 }
+- (IBAction)openDocument:(id)sender{
+    
+    NSOpenPanel* panel = [NSOpenPanel openPanel];
+    
+    // This method displays the panel and returns immediately.
+    // The completion handler is called when the user selects an
+    // item or cancels the panel.
+    [panel beginWithCompletionHandler:^(NSInteger result){
 
+        NSURL* theDoc;
+
+        if (result == NSFileHandlingPanelOKButton) {
+            theDoc = [[panel URLs] objectAtIndex:0];
+            // Open  the document.
+            
+            [_chartView readFile:theDoc];
+        }
+    }];
+    
+}
 @end

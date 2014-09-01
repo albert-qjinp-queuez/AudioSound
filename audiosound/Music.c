@@ -12,9 +12,9 @@
 
 char* cStrCode[] = {"A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#"};
 
-long int BUF_SIZE = 32768;
-long int SAMPLE_RATE = 8192;
-long int SAMPLE_SIZE = 256;
+int BUF_SIZE = 32768;
+int SAMPLE_RATE = 8192;
+int SAMPLE_SIZE = 256;
 double BASE_FREQ = 440;
 double FREQ_A1 = 55;
 double FREQ_LWA1;
