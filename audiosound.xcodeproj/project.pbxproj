@@ -45,6 +45,8 @@
 		67E54A7D19442369005ADA09 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67E54A5C19442369005ADA09 /* Cocoa.framework */; };
 		67E54A8519442369005ADA09 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 67E54A8319442369005ADA09 /* InfoPlist.strings */; };
 		67E54A8719442369005ADA09 /* audiosoundTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 67E54A8619442369005ADA09 /* audiosoundTests.m */; };
+		67E6345B19CBFD9400CDDECF /* ASTextGuitarTab.m in Sources */ = {isa = PBXBuildFile; fileRef = 67E6345A19CBFD9400CDDECF /* ASTextGuitarTab.m */; };
+		67E6345C19CBFD9400CDDECF /* ASTextGuitarTab.m in Sources */ = {isa = PBXBuildFile; fileRef = 67E6345A19CBFD9400CDDECF /* ASTextGuitarTab.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -105,6 +107,8 @@
 		67E54A8219442369005ADA09 /* audiosoundTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "audiosoundTests-Info.plist"; sourceTree = "<group>"; };
 		67E54A8419442369005ADA09 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		67E54A8619442369005ADA09 /* audiosoundTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = audiosoundTests.m; sourceTree = "<group>"; };
+		67E6345919CBFD9400CDDECF /* ASTextGuitarTab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASTextGuitarTab.h; sourceTree = "<group>"; };
+		67E6345A19CBFD9400CDDECF /* ASTextGuitarTab.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASTextGuitarTab.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -192,16 +196,18 @@
 		67E54A6219442369005ADA09 /* audiosound */ = {
 			isa = PBXGroup;
 			children = (
+				67D003DD1970F49100947732 /* Music.h */,
+				67D003DA1970F47F00947732 /* Music.c */,
+				67E6345919CBFD9400CDDECF /* ASTextGuitarTab.h */,
+				67E6345A19CBFD9400CDDECF /* ASTextGuitarTab.m */,
+				674869C319A5A46300DA3097 /* ASTrasnform.h */,
+				674869C419A5A46300DA3097 /* ASTrasnform.m */,
 				676724A1194D3D3C005AAAAB /* ASVibrationView.h */,
 				676724A2194D3D3C005AAAAB /* ASVibrationView.m */,
 				677E7AFA195544B400C30944 /* ASFreqView.h */,
 				677E7AFB195544B400C30944 /* ASFreqView.m */,
 				679F1BC41959404D00F1A2E0 /* ASScratchView.h */,
 				679F1BC51959404D00F1A2E0 /* ASScratchView.m */,
-				67D003DD1970F49100947732 /* Music.h */,
-				67D003DA1970F47F00947732 /* Music.c */,
-				674869C319A5A46300DA3097 /* ASTrasnform.h */,
-				674869C419A5A46300DA3097 /* ASTrasnform.m */,
 				673184FE19B50E3700861583 /* ASChartView.h */,
 				673184FF19B50E3700861583 /* ASChartView.m */,
 				67E54A6E19442369005ADA09 /* AppDelegate.h */,
@@ -354,6 +360,7 @@
 				67D003DB1970F47F00947732 /* Music.c in Sources */,
 				67E54A7019442369005ADA09 /* AppDelegate.m in Sources */,
 				67E54A6919442369005ADA09 /* main.m in Sources */,
+				67E6345B19CBFD9400CDDECF /* ASTextGuitarTab.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -369,6 +376,7 @@
 				679F1BC71959404D00F1A2E0 /* ASScratchView.m in Sources */,
 				6731850119B50E3700861583 /* ASChartView.m in Sources */,
 				6786A5801996D4DC00A482D2 /* TestASScratchView.m in Sources */,
+				67E6345C19CBFD9400CDDECF /* ASTextGuitarTab.m in Sources */,
 				6778CA20194809D300E903E3 /* PortAudioBasicFunctions.m in Sources */,
 				67D003E1197100E200947732 /* musicTest.m in Sources */,
 				67E54A8719442369005ADA09 /* audiosoundTests.m in Sources */,

@@ -40,6 +40,8 @@ int patestCallback( const void *inputBuffer, void *outputBuffer,
 @property (assign) IBOutlet ASFreqView* frView;
 @property (assign) IBOutlet ASScratchView* scratchView;
 @property (assign) IBOutlet ASChartView* chartView;
+@property (assign) IBOutlet NSLayoutConstraint *chartHeight;
+
 @property (retain) ASTrasnform* myTrasnform;
 
 @property (assign) PaError err;

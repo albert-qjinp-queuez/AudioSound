@@ -85,7 +85,10 @@ int patestCallback( const void *inputBuffer, void *outputBuffer,
     double zeroSpace = (double)timeDiff*(double)SAMPLE_RATE;
     
     long int n;
-    int shiftSize = (zeroSpace < BUF_SIZE)?zeroSpace:(int)BUF_SIZE;
+    long int shiftSize = (zeroSpace < BUF_SIZE)?zeroSpace:(int)BUF_SIZE;
+    if (shiftSize < 0) {
+        shiftSize = BUF_SIZE;
+    }
     
     @synchronized(self){
         for( n=shiftSize ; n < BUF_SIZE; n++){
@@ -113,7 +116,6 @@ int patestCallback( const void *inputBuffer, void *outputBuffer,
     _err = Pa_Terminate();
 }
 - (IBAction)openDocument:(id)sender{
-    
     NSOpenPanel* panel = [NSOpenPanel openPanel];
     
     // This method displays the panel and returns immediately.

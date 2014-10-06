@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="5056"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6245"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
@@ -10,9 +10,11 @@
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
-        <customObject id="-3" userLabel="Application"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customObject id="Voe-Tx-rLC" customClass="AppDelegate">
             <connections>
+                <outlet property="chartHeight" destination="OFZ-46-d53" id="fNG-Zv-g2B"/>
+                <outlet property="chartView" destination="5fB-a9-TFE" id="5DU-s9-gfk"/>
                 <outlet property="frView" destination="36r-hp-kgU" id="M30-Un-hjd"/>
                 <outlet property="scratchView" destination="RHn-k1-ZMG" id="IC8-u1-u1P"/>
                 <outlet property="window" destination="QvC-M9-y7g" id="NfN-5d-ku0"/>
@@ -678,7 +680,6 @@
                 <subviews>
                     <customView translatesAutoresizingMaskIntoConstraints="NO" id="36r-hp-kgU" customClass="ASFreqView">
                         <rect key="frame" x="20" y="357" width="543" height="100"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="100" id="bQf-Xv-fc9"/>
                         </constraints>
@@ -689,7 +690,6 @@
                     </customView>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="U3k-U2-0WF">
                         <rect key="frame" x="18" y="340" width="38" height="17"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Label" id="rTF-mw-eIe">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -697,8 +697,7 @@
                         </textFieldCell>
                     </textField>
                     <customView translatesAutoresizingMaskIntoConstraints="NO" id="RHn-k1-ZMG" customClass="ASScratchView">
-                        <rect key="frame" x="20" y="148" width="543" height="189"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <rect key="frame" x="20" y="48" width="543" height="289"/>
                         <connections>
                             <outlet property="app" destination="Voe-Tx-rLC" id="Aw7-Gh-pFv"/>
                             <outlet property="maxFreqLabel" destination="U3k-U2-0WF" id="Zmh-He-krH"/>
@@ -707,13 +706,11 @@
                         </connections>
                     </customView>
                     <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="qa1-o6-sIt">
-                        <rect key="frame" x="58" y="126" width="507" height="21"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <rect key="frame" x="58" y="26" width="507" height="21"/>
                         <sliderCell key="cell" state="on" alignment="left" maxValue="50" doubleValue="20" tickMarkPosition="above" sliderType="linear" id="7LB-iB-xy3"/>
                     </slider>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="sh5-UE-Z5K">
-                        <rect key="frame" x="18" y="128" width="42" height="17"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <rect key="frame" x="18" y="28" width="42" height="17"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Spead" id="BA3-RS-vG2">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -722,19 +719,19 @@
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="DB9-ok-cqW">
                         <rect key="frame" x="527" y="340" width="38" height="17"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Label" id="ZWp-QQ-KZO">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="5fB-a9-TFE" customClass="ASChartView">
-                        <rect key="frame" x="20" y="20" width="543" height="100"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <customView misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5fB-a9-TFE" customClass="ASChartView">
                         <constraints>
-                            <constraint firstAttribute="height" constant="100" id="OFZ-46-d53"/>
+                            <constraint firstAttribute="height" id="OFZ-46-d53"/>
                         </constraints>
+                        <connections>
+                            <outlet property="viewHeight" destination="OFZ-46-d53" id="w3S-eO-Jmr"/>
+                        </connections>
                     </customView>
                 </subviews>
                 <constraints>

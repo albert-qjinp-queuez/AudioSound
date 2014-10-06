@@ -7,7 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
-
+#import "ASTextGuitarTab.h"
 @interface ASChartView : NSView{
     enum {CHART_HEAD, CHART_BODY} parseState;
     int lineWidth;
@@ -16,7 +16,9 @@
 @property (retain) NSString * title;
 @property (retain) NSArray * lines;
 @property (assign) double currentPos;
+@property (assign) IBOutlet NSLayoutConstraint *viewHeight;
 
+@property (retain) ASTextGuitarTab *chart;//TODO:: Make interface
 
 -(void)readFile:(NSURL*)fURL;
 -(void)removeFile;
