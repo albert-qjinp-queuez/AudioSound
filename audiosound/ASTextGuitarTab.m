@@ -46,11 +46,6 @@
     }
     return self;
 }
--(void) pushTimes:(NSString*)times
-          Measure:(int)measure
-{
-    
-}
 
 -(void) parse:(NSString*)line
 {
@@ -81,4 +76,9 @@
         }
     }
 }
+-(ASMeasures*) getMeasure:(long int)mNum{
+    NSString * strNum = [NSString stringWithFormat:@"%ld", mNum];
+    return [_measure objectForKey:strNum];
+}
+
 @end

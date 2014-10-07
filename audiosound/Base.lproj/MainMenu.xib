@@ -673,7 +673,7 @@
         <window title="audiosound" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" id="QvC-M9-y7g">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <rect key="contentRect" x="541" y="201" width="583" height="474"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1280" height="778"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1280" height="800"/>
             <view key="contentView" id="EiT-Mj-1SZ">
                 <rect key="frame" x="0.0" y="0.0" width="583" height="474"/>
                 <autoresizingMask key="autoresizingMask"/>
@@ -725,11 +725,48 @@
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <customView misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5fB-a9-TFE" customClass="ASChartView">
+                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="5fB-a9-TFE" customClass="ASChartView">
+                        <subviews>
+                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="YxJ-pV-Kd5">
+                                <rect key="frame" x="0.0" y="0.0" width="50" height="17"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="17" id="HSO-pW-nY9"/>
+                                    <constraint firstAttribute="width" constant="50" id="Zj8-qU-cVQ"/>
+                                </constraints>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="O6a-BJ-lVz">
+                                    <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="309" maximumFractionDigits="3" id="Stt-vn-tdM"/>
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                                <connections>
+                                    <action selector="posChange:" target="5fB-a9-TFE" id="s61-Kw-7LK"/>
+                                </connections>
+                            </textField>
+                            <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="F4q-RM-e8q">
+                                <rect key="frame" x="48" y="-2" width="497" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="17" id="5Hs-AK-tW1"/>
+                                </constraints>
+                                <sliderCell key="cell" state="on" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="above" sliderType="linear" id="8zR-b5-iaN"/>
+                                <connections>
+                                    <action selector="posChange:" target="5fB-a9-TFE" id="mBk-NJ-NS6"/>
+                                </connections>
+                            </slider>
+                        </subviews>
                         <constraints>
+                            <constraint firstItem="F4q-RM-e8q" firstAttribute="leading" secondItem="YxJ-pV-Kd5" secondAttribute="trailing" id="5EO-QH-lid"/>
+                            <constraint firstAttribute="bottom" secondItem="YxJ-pV-Kd5" secondAttribute="bottom" id="Aik-sZ-qSm"/>
+                            <constraint firstItem="YxJ-pV-Kd5" firstAttribute="leading" secondItem="5fB-a9-TFE" secondAttribute="leading" id="KTg-EO-Few"/>
                             <constraint firstAttribute="height" id="OFZ-46-d53"/>
+                            <constraint firstAttribute="bottom" secondItem="F4q-RM-e8q" secondAttribute="bottom" id="S05-Re-CrB"/>
+                            <constraint firstAttribute="bottom" secondItem="YxJ-pV-Kd5" secondAttribute="bottom" id="b8I-cq-rhi"/>
+                            <constraint firstItem="YxJ-pV-Kd5" firstAttribute="leading" secondItem="5fB-a9-TFE" secondAttribute="leading" id="cnL-TO-QLJ"/>
+                            <constraint firstAttribute="trailing" secondItem="F4q-RM-e8q" secondAttribute="trailing" id="kDa-7b-KbM"/>
                         </constraints>
                         <connections>
+                            <outlet property="sliderCurrentPos" destination="F4q-RM-e8q" id="MiE-Ie-bxk"/>
+                            <outlet property="textCurrentPos" destination="YxJ-pV-Kd5" id="dUN-12-2bV"/>
                             <outlet property="viewHeight" destination="OFZ-46-d53" id="w3S-eO-Jmr"/>
                         </connections>
                     </customView>
@@ -757,5 +794,6 @@
                 </constraints>
             </view>
         </window>
+        <userDefaultsController representsSharedInstance="YES" id="NHO-wL-dcE"/>
     </objects>
 </document>
