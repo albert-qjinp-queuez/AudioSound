@@ -33,6 +33,17 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "-[ASChartView drawRect:]:ASChartView.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "(6-k) * 13">
+            </PersistentString>
+            <PersistentString
+               value = "j * 160/bitCount + (i-curPos) * 160">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "-[ASScratchView drawRect:]:ASScratchView.m">
          <PersistentStrings>
             <PersistentString

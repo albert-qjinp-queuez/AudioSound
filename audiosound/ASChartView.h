@@ -17,7 +17,7 @@
 }
 @property (retain) NSString * title;
 @property (retain) NSArray * lines;
-@property (assign) double currentPos;
+//@property (assign) double currentPos;
 @property (assign) IBOutlet NSLayoutConstraint *viewHeight;
 @property (assign) IBOutlet NSSlider *sliderCurrentPos;
 @property (assign) IBOutlet NSTextField *textCurrentPos;

@@ -15,6 +15,7 @@
 		674869C619A5A46300DA3097 /* ASTrasnform.m in Sources */ = {isa = PBXBuildFile; fileRef = 674869C419A5A46300DA3097 /* ASTrasnform.m */; };
 		676724A3194D3D3C005AAAAB /* ASVibrationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 676724A2194D3D3C005AAAAB /* ASVibrationView.m */; };
 		676724A5194D3EB6005AAAAB /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 676724A4194D3EB6005AAAAB /* OpenGL.framework */; };
+		67681A4519E5137D008C19B2 /* CANNOND.txt in Resources */ = {isa = PBXBuildFile; fileRef = 67681A4419E5137D008C19B2 /* CANNOND.txt */; };
 		676CE5A319611D78005B816E /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67E54A5F19442369005ADA09 /* AppKit.framework */; };
 		6778CA20194809D300E903E3 /* PortAudioBasicFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6778CA1F194809D300E903E3 /* PortAudioBasicFunctions.m */; };
 		677E7AF4195542B700C30944 /* libfftw3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 677E7AF3195542B700C30944 /* libfftw3.a */; };
@@ -68,6 +69,7 @@
 		676724A1194D3D3C005AAAAB /* ASVibrationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASVibrationView.h; sourceTree = "<group>"; };
 		676724A2194D3D3C005AAAAB /* ASVibrationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASVibrationView.m; sourceTree = "<group>"; };
 		676724A4194D3EB6005AAAAB /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
+		67681A4419E5137D008C19B2 /* CANNOND.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CANNOND.txt; sourceTree = "<group>"; };
 		6778CA1F194809D300E903E3 /* PortAudioBasicFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PortAudioBasicFunctions.m; sourceTree = "<group>"; };
 		677E7AF3195542B700C30944 /* libfftw3.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfftw3.a; path = fftw3/.libs/libfftw3.a; sourceTree = "<group>"; };
 		677E7AF6195542F600C30944 /* fftw3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = fftw3.h; path = fftw3/api/fftw3.h; sourceTree = "<group>"; };
@@ -145,6 +147,7 @@
 		67E54A5019442369005ADA09 = {
 			isa = PBXGroup;
 			children = (
+				67681A4419E5137D008C19B2 /* CANNOND.txt */,
 				677E7AF3195542B700C30944 /* libfftw3.a */,
 				677E7AF6195542F600C30944 /* fftw3.h */,
 				677E7AF71955432C00C30944 /* libfftw3.la */,
@@ -333,6 +336,7 @@
 				67E54A7519442369005ADA09 /* Images.xcassets in Resources */,
 				67E54A6D19442369005ADA09 /* Credits.rtf in Resources */,
 				677E7AF81955432C00C30944 /* libfftw3.la in Resources */,
+				67681A4519E5137D008C19B2 /* CANNOND.txt in Resources */,
 				67E54A7319442369005ADA09 /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

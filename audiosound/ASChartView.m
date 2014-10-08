@@ -33,7 +33,11 @@
     // Drawing code here.
     [[NSColor whiteColor] set];
     NSRectFill(self.bounds);
-    long int curPos = floor(_currentPos);
+    
+    NSBezierPath* linesPath = [NSBezierPath bezierPath];
+    
+    long int curPos = _sliderCurrentPos.intValue;
+    
     for (long int i = curPos; i < curPos+50; i++) {
         ASMeasures* mea = [_chart getMeasure:i];
         unsigned long int bitCount = [mea.bits count];
@@ -42,17 +46,24 @@
             unsigned long int noteCount = [bit.notes count];
             for (unsigned long int k=0; k<noteCount; k++) {
                 NSString* key = [bit.notes objectAtIndex:k];
-                [key drawAtPoint: (NSPoint){j * 80/bitCount + (i-curPos) * 80, (6-k) * 14} withAttributes:attributes];
+                if ([key compare:@"X"] != NSOrderedSame) {
+                    [key drawAtPoint: (NSPoint){j * 160/bitCount + (i-curPos) * 160, 85 - 13*k} withAttributes:attributes];
+                }
             }
         }
+        [linesPath
+         moveToPoint:(NSPoint){(i-curPos) * 160, 0.0}];
+        [linesPath
+         lineToPoint:(NSPoint){(i-curPos) * 160, 100.0}];
     }
+    [[NSColor blueColor] set];
+    [linesPath stroke];
     
     
 }
 -(void)readFile:(NSURL*)fURL{
     NSError *error;
     [self removeFile];
-    _currentPos = 1.0;
     
     NSString * filerep = [NSString stringWithContentsOfURL:fURL encoding:NSUTF8StringEncoding error:&error];
     _lines = [filerep componentsSeparatedByString:@"\n"];
@@ -99,9 +110,10 @@
                 break;
         }
     }
-    _sliderCurrentPos.doubleValue = _currentPos;
+    _sliderCurrentPos.intValue = 1;
     _sliderCurrentPos.minValue = 1;
     _sliderCurrentPos.maxValue = _chart.measure.count;
+    _sliderCurrentPos.numberOfTickMarks = _chart.measure.count;
     _lines = nil;
     _viewHeight.constant = 100;
     [self setNeedsLayout:YES];
@@ -112,6 +124,7 @@
     [self setNeedsLayout:YES];
 }
 -(IBAction)posChange:(id)sender{
-    
+    [self needsToDrawRect:self.bounds];
+    self.needsDisplay = YES;
 }
 @end

@@ -725,7 +725,7 @@
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="5fB-a9-TFE" customClass="ASChartView">
+                    <customView misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5fB-a9-TFE" customClass="ASChartView">
                         <subviews>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="YxJ-pV-Kd5">
                                 <rect key="frame" x="0.0" y="0.0" width="50" height="17"/>
@@ -740,7 +740,7 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                                 <connections>
-                                    <action selector="posChange:" target="5fB-a9-TFE" id="s61-Kw-7LK"/>
+                                    <action selector="posChange:" target="5fB-a9-TFE" id="EXr-bL-BM7"/>
                                 </connections>
                             </textField>
                             <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="F4q-RM-e8q">
@@ -750,7 +750,7 @@
                                 </constraints>
                                 <sliderCell key="cell" state="on" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="above" sliderType="linear" id="8zR-b5-iaN"/>
                                 <connections>
-                                    <action selector="posChange:" target="5fB-a9-TFE" id="mBk-NJ-NS6"/>
+                                    <action selector="posChange:" target="5fB-a9-TFE" id="fMQ-jh-B7P"/>
                                 </connections>
                             </slider>
                         </subviews>
